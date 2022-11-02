@@ -6,12 +6,12 @@ namespace Targil0
     {
         static void Main(string[] args)
         {
-            Welcom9386();
+            Welcome9386();
             Welcome5850();
             Console.ReadKey();
         }
 
-        private static void Welcom9386()
+        private static void Welcome9386()
         {
             Console.WriteLine("Enter your name");
             string userName = Console.ReadLine();
