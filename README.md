@@ -1,4 +1,4 @@
 # Hello world
 # DotNet5783_9386_5850
 # מיני פרוייקט במערכת חלונות ##  
-# Hello World Number 2
+# Hello class Number 2
