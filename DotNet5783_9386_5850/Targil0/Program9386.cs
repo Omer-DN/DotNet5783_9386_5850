@@ -2,7 +2,7 @@
 using System;
 namespace Targil0
 {
-    partial class Program
+    partial class Program5850
     {
         static void Main(string[] args)
         {
