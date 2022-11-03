@@ -22,40 +22,21 @@ internal class DataSource
         static int numOfOrders = 0;
         static int numOfOrdersItems = 0;
     }
-    public static void AddProduct(int id, string name, double price, Category category, int instock)
+    public static void AddProduct(Product product)
     {
-        Product newProduct = new Product();
-        newProduct.Id = id;
-        newProduct.Name = name;
-        newProduct.Price = price;
-        newProduct.Category = category;
-        newProduct.InStock = instock;
-        arrayOforders[numOfProducts] = newProduct;
+        arrayOforders[numOfProducts] = product;
         numOfProducts++;
     }
 
-    public static void AddOrder(int id, string costumerName, string costumerEmail, string costumerAdress, DateTime OrderDate, DateTime ShipDate, DateTime DeliveryDate)
+    public static void AddOrder(Order order)
     {
-        Order newOrder = new Order();
-        newOrder.Id = id;
-        newOrder.costumerName = costumerName;
-        newOrder.costumerEmail = costumerEmail;
-        newOrder.costumerAdress = costumerAdress;
-        newOrder.OrderDate = OrderDate;
-        newOrder.ShipDate = ShipDate;
-        newOrder.DeliveryDate = DeliveryDate;
-        arrayOforders[numOfOrders] = newOrder;
+        arrayOforders[numOfOrders] = order;
         numOfOrders++;
     }
 
-    public static void AddOrderItem(int ProductID, int OrderID, double Price, int Amount)
+    public static void AddOrderItem(OrderItem orderItem)
     {
-        OrderItem newOrderItem = new OrderItem();
-        newOrderItem.ProductID = ProductID;
-        newOrderItem.OrderID = OrderID;
-        newOrderItem.Price = Price;
-        newOrderItem.Amount = Amount;
-        arrayOrderItems[numOfOrdersItems] = newOrderItem;
+        arrayOrderItems[numOfOrdersItems] = orderItem;
         numOfOrdersItems++;
     }
 }
