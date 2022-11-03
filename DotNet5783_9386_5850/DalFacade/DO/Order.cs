@@ -9,11 +9,11 @@ namespace DO;
 public struct Order
 {
     public int Id { get; set; }
-    public string Name { get; set; }
-    public string Email { get; set; }
-    public string DeliveryAdress { get; set; }
-    public DateTime OrderCreationDate { get; set; }
-    public DateTime ShippingDate { get; set; } 
+    public string costumerName { get; set; }
+    public string costumerEmail { get; set; }
+    public string costumerAdress { get; set; }
+    public DateTime OrderDate { get; set; }
+    public DateTime ShipDate { get; set; } 
     public DateTime DeliveryDate  { get; set; }
 
     public override string ToString()
@@ -26,5 +26,10 @@ public struct Order
         Order Creation: {OrderCreationDate}
         Shipping Date: {ShippingDate}
         Delivery Date: {DeliveryDate}";
+    }
+
+    public static implicit operator Order(Product v)
+    {
+        throw new NotImplementedException();
     }
 }
