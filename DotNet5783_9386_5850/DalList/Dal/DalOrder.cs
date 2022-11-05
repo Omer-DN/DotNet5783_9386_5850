@@ -10,9 +10,9 @@ public class DalOrder
     {
         Order newOrder = new Order();
         newOrder.Id = id;
-        newOrder.costumerName = costumerName;
-        newOrder.costumerEmail = costumerEmail;
-        newOrder.costumerAdress = costumerAdress;
+        newOrder.CostumerName = costumerName;
+        newOrder.CostumerEmail = costumerEmail;
+        newOrder.CostumerAdress = costumerAdress;
         newOrder.OrderDate = OrderDate;
         newOrder.ShipDate = ShipDate;
         newOrder.DeliveryDate = DeliveryDate;
