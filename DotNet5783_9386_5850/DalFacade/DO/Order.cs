@@ -9,9 +9,9 @@ namespace DO;
 public struct Order
 {
     public int Id { get; set; }
-    public string costumerName { get; set; }
-    public string costumerEmail { get; set; }
-    public string costumerAdress { get; set; }
+    public string CostumerName { get; set; }
+    public string CostumerEmail { get; set; }
+    public string CostumerAdress { get; set; }
     public DateTime OrderDate { get; set; }
     public DateTime ShipDate { get; set; } 
     public DateTime DeliveryDate  { get; set; }
@@ -20,11 +20,11 @@ public struct Order
     {
         return
         $@"Order ID = {Id}
-        Name = {Name} 
-        Email - {Email} 
-        Delivery Adress: {DeliveryAdress}
-        Order Creation: {OrderCreationDate}
-        Shipping Date: {ShippingDate}
+        Name = {CostumerName} 
+        Email - {CostumerEmail} 
+        Delivery Adress: {CostumerAdress}
+        Order Creation: {OrderDate}
+        Shipping Date: {ShipDate}
         Delivery Date: {DeliveryDate}";
     }
 
