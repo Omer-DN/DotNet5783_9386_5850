@@ -13,7 +13,7 @@ public class DalProduct
     public static Product Create(int id, string name, double price, Category category, int instock)
     {
         Product newProduct = new Product();
-        newProduct.Id = id;
+        newProduct.ID = id;
         newProduct.Name = name;
         newProduct.Price = price;
         newProduct.Category = category;

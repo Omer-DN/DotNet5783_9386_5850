@@ -9,7 +9,7 @@ public class DalOrder
     public static Order Create(int id, string costumerName, string costumerEmail, string costumerAdress, DateTime OrderDate, DateTime ShipDate, DateTime DeliveryDate)
     {
         Order newOrder = new Order();
-        newOrder.Id = id;
+        newOrder.ID = id;
         newOrder.CostumerName = costumerName;
         newOrder.CostumerEmail = costumerEmail;
         newOrder.CostumerAdress = costumerAdress;

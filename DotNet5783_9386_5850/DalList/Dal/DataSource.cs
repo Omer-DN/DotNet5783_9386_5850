@@ -29,12 +29,12 @@ internal class DataSource
     {
         foreach(Product i in arrayOfproducts)
         {
-            if (product.Id == i.Id)
+            if (product.ID == i.ID)
                 throw new Exception("This product already exists in the system");
         }
         arrayOfproducts[numOfProducts] = product;
         numOfProducts++;
-        return product.Id;
+        return product.ID;
     }
 
     public static void AddOrder(Order order)
@@ -54,9 +54,9 @@ internal class DataSource
     {
         foreach (Product i in arrayOfproducts)
         {
-            if (i.Id == product.Id)
+            if (i.ID == product.ID)
             {
-                product.Id = 0;
+                product.ID = 0;
                 product.Name = "";
                 product.Price = 0;
                 product.Category = 0;
@@ -74,9 +74,9 @@ internal class DataSource
     {
         foreach (Order i in arrayOforders)
         {
-            if(i.Id == order.Id)
+            if(i.ID == order.ID)
             {
-                order.Id = 0;
+                order.ID = 0;
                 order.CostumerName = "";
                 order.CostumerEmail = "";
                 order.CostumerAdress = "";
@@ -97,6 +97,20 @@ internal class DataSource
                 orderItem.Amount = 0;
                 numOfOrdersItems--;
             }
+        }
+    }
+
+    public static void UpdateProduct(Product product)
+    {
+        foreach(Product i in arrayOfproducts)
+        {
+            if(i.ID == product.ID)
+            {
+
+            }
+            throw new Exception("This product does not exist in the system");
+
+
         }
     }
 }

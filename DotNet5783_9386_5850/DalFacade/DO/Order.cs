@@ -8,7 +8,7 @@ namespace DO;
 /// </summary>
 public struct Order
 {
-    public int Id { get; set; }
+    public int ID { get; set; }
     public string CostumerName { get; set; }
     public string CostumerEmail { get; set; }
     public string CostumerAdress { get; set; }
@@ -19,7 +19,7 @@ public struct Order
     public override string ToString()
     {
         return
-        $@"Order ID = {Id}
+        $@"Order ID = {ID}
         Name = {CostumerName} 
         Email - {CostumerEmail} 
         Delivery Adress: {CostumerAdress}

@@ -8,7 +8,7 @@ namespace DO;
 
 public struct Product
 {
-    public int Id { get; set; }
+    public int ID { get; set; }
     public string Name { get; set; }
     public double Price { get; set; }
     public Category Category { get; set; }
@@ -16,7 +16,7 @@ public struct Product
     public override string ToString()
     {
         return
-        $@"Product ID = {Id}: {Name} 
+        $@"Product ID = {ID}: {Name} 
         category - {Category} 
         Price: {Price}
         Amount in stock: {InStock}";
