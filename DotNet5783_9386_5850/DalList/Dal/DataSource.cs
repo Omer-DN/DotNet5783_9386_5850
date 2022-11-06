@@ -57,6 +57,31 @@ internal class DataSource
                 product.InStock = 0;
             }
         }
-
+    }
+    public static void DeleteOrder(Order order)
+    {
+        foreach (Order i in arrayOforders)
+        {
+            if(i.Id == order.Id)
+            {
+                order.Id = 0;
+                order.CostumerName = "";
+                order.CostumerEmail = "";
+                order.CostumerAdress = "";
+            }
+        }
+    }
+    public static void DeleteOrderItem(OrderItem orderItem)
+    {
+        foreach (OrderItem i in arrayOrderItems)
+        {
+            if (i.ProductID == orderItem.ProductID)
+            {
+                orderItem.ProductID = 0;
+                orderItem.OrderID = 0;
+                orderItem.Price = 0;
+                orderItem.Amount = 0;
+            }
+        }
     }
 }
