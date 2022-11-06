@@ -50,14 +50,6 @@ public class DalProduct
         }
         throw new Exception("This product does not exist in the system");
     }
-
-
-    public static void InitializeProduct(Product parameter)
-    {
-        Random r = new Random();
-        parameter.ID = r.Next(100000, 999999);
-
-    }
 }
 
 

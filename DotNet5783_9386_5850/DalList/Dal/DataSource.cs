@@ -1,6 +1,7 @@
 ﻿
 
 using DO;
+using static DO.Enums;
 
 namespace Dal;
 
@@ -10,7 +11,7 @@ internal class DataSource
     internal static Product[] arrayOfproducts = new Product[50];
     internal static Order[] arrayOforders = new Order[100];
     internal static OrderItem[] arrayOrderItems = new OrderItem[200];
-
+    internal static int[] vegetablesPrices = {5,3,20,15,6, 12, 9, 7, 8,5};
 
     static internal class Config
     {
@@ -20,7 +21,83 @@ internal class DataSource
     }
 
 
-   
+    public static void InitializeProduct(Product parameter)
+    {
+
+        Random r = new Random();
+        bool flag = false;
+        while (flag == false)
+        {
+            flag = true;
+            parameter.ID = r.Next(100000, 1000000);
+            for (int i = 0; i < Config.numOfProducts; i++)
+            {
+                if (arrayOfproducts[i].ID == parameter.ID)
+                {
+                    flag = false;
+                }
+            }
+        }
+        parameter.Category = (Category)r.Next(0, 5);
+        switch (parameter.Category)
+        {
+            case Category.vegetables:
+                int number = r.Next(0, 10);
+                parameter.Name = "" + (vegetables)number;
+                parameter.Price = vegetablesPrices[number]; 
+                break;
+            case Category.Meat:
+                parameter.Name=""+(Meat)r.Next(0, 6);
+                break;
+
+        }
+        parameter.InStock = r.Next(1, 101);
+    }
+
+
+    public static void InitializeOrder(Order parameter)
+    {
+        Random r = new Random();
+        bool flag = false;
+        while (flag == false)
+        {
+            flag = true;
+            parameter.ID = r.Next(100000, 1000000);
+            for (int i = 0; i < Config.numOfOrders; i++)
+            {
+                if (arrayOforders[i].ID == parameter.ID)
+                {
+                    flag = false;
+                }
+            }
+        }
+        int number = r.Next(0, 10);
+        parameter.CostumerName = "" + (CostumerNames)number;
+        parameter.CostumerEmail = parameter.CostumerName + "@gmail.com";
+        parameter.CostumerAdress =""+ (CostumerAdress)number;
+        parameter.OrderDate = DateTime.MinValue;
+        parameter.ShipDate = parameter.OrderDate.AddDays(r.Next(0, 7));
+        parameter.DeliveryDate = parameter.ShipDate.AddDays(r.Next(0, 10));
+    }
+
+
+    public static void InitializeOrderItem(OrderItem parameter)
+    {
+        Random r = new Random();
+        int number = r.Next(0, Config.numOfOrders);
+        parameter.OrderID = arrayOforders[number].ID;
+        number = r.Next(0, Config.numOfProducts);
+        parameter.ProductID = arrayOfproducts[number].ID;
+        parameter.Price = arrayOfproducts[number].Price;
+        parameter.Amount = r.Next(1, 6);
+    }
+
+    public static void s_Initialize()
+    {
+
+    }
+
+
 
     /*
     public static void AddOrder(Order order)
