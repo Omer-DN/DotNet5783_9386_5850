@@ -1,16 +1,16 @@
 ﻿
 
 using DO;
-using System.ComponentModel;
+
 using static DO.Enums;
-using System.Diagnostics;
-using System.Xml.Linq;
+
 using static Dal.DataSource;
 
 namespace Dal;
 
 public class DalProduct
 {
+
     public static Product Create(int id, string name, double price, Category category, int instock)
     {
         Product newProduct = new Product();
@@ -21,6 +21,7 @@ public class DalProduct
         newProduct.InStock = instock;
         return newProduct;
     }
+
     public static int AddProduct(Product product)
     {
         foreach (Product i in DataSource.arrayOfproducts)
