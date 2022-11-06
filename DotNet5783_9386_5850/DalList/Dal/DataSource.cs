@@ -27,13 +27,19 @@ internal class DataSource
     }
     public static int AddProduct(Product product)
     {
-        arrayOforders[numOfProducts] = product;
+        foreach(Product i in arrayOfproducts)
+        {
+            if (product.Id == i.Id)
+                throw new Exception("This product already exists in the system");
+        }
+        arrayOfproducts[numOfProducts] = product;
         numOfProducts++;
         return product.Id;
     }
 
     public static void AddOrder(Order order)
     {
+
         arrayOforders[numOfOrders] = order;
         numOfOrders++;
     }
@@ -55,6 +61,12 @@ internal class DataSource
                 product.Price = 0;
                 product.Category = 0;
                 product.InStock = 0;
+                numOfProducts--;
+            }
+            else
+            {
+                throw new Exception("This product does not exist in the system");
+
             }
         }
     }
@@ -68,6 +80,8 @@ internal class DataSource
                 order.CostumerName = "";
                 order.CostumerEmail = "";
                 order.CostumerAdress = "";
+                numOfOrders--;
+
             }
         }
     }
@@ -81,6 +95,7 @@ internal class DataSource
                 orderItem.OrderID = 0;
                 orderItem.Price = 0;
                 orderItem.Amount = 0;
+                numOfOrdersItems--;
             }
         }
     }
