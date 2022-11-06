@@ -11,32 +11,19 @@ namespace Dal;
 internal class DataSource
 {
     readonly Random rand = new Random();
-    static Product[] arrayOfproducts = new Product[50];
-    static Order[] arrayOforders = new Order[100];
-    static OrderItem[] arrayOrderItems = new OrderItem[200];
+    internal static Product[] arrayOfproducts = new Product[50];
+    internal static Order[] arrayOforders = new Order[100];
+    internal static OrderItem[] arrayOrderItems = new OrderItem[200];
 
-    private static int numOfProducts;
-    private static int numOfOrders;
-    private static int numOfOrdersItems;
 
-    internal class Config
+    static internal class Config
     {
-        static int numOfProducts = 0;
-        static int numOfOrders = 0;
-        static int numOfOrdersItems = 0;
-    }
-    public static int AddProduct(Product product)
-    {
-        foreach(Product i in arrayOfproducts)
-        {
-            if (product.ID == i.ID)
-                throw new Exception("This product already exists in the system");
-        }
-        arrayOfproducts[numOfProducts] = product;
-        numOfProducts++;
-        return product.ID;
+        static internal int numOfProducts = 0;
+        static internal int numOfOrders = 0;
+        static internal int numOfOrdersItems = 0;
     }
 
+    /*
     public static void AddOrder(Order order)
     {
 
@@ -50,41 +37,7 @@ internal class DataSource
         numOfOrdersItems++;
     }
 
-    public static void Deleteproduct(Product product)
-    {
-        foreach (Product i in arrayOfproducts)
-        {
-            if (i.ID == product.ID)
-            {
-                product.ID = 0;
-                product.Name = "";
-                product.Price = 0;
-                product.Category = 0;
-                product.InStock = 0;
-                numOfProducts--;
-            }
-            else
-            {
-                throw new Exception("This product does not exist in the system");
-
-            }
-        }
-    }
-    public static void DeleteOrder(Order order)
-    {
-        foreach (Order i in arrayOforders)
-        {
-            if(i.ID == order.ID)
-            {
-                order.ID = 0;
-                order.CostumerName = "";
-                order.CostumerEmail = "";
-                order.CostumerAdress = "";
-                numOfOrders--;
-
-            }
-        }
-    }
+    
     public static void DeleteOrderItem(OrderItem orderItem)
     {
         foreach (OrderItem i in arrayOrderItems)
@@ -113,4 +66,6 @@ internal class DataSource
 
         }
     }
+    */
 }
+    

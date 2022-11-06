@@ -5,6 +5,7 @@ using System.ComponentModel;
 using static DO.Enums;
 using System.Diagnostics;
 using System.Xml.Linq;
+using static Dal.DataSource;
 
 namespace Dal;
 
@@ -20,4 +21,34 @@ public class DalProduct
         newProduct.InStock = instock;
         return newProduct;
     }
+    public static int AddProduct(Product product)
+    {
+        foreach (Product i in DataSource.arrayOfproducts)
+        {
+            if (product.ID == i.ID)
+                throw new Exception("This product already exists in the system");
+        }
+        DataSource.arrayOfproducts[DataSource.Config.numOfProducts++] = product;
+        return product.ID;
+    }
+
+    public static void Deleteproduct(Product product)
+    {
+        for(int i=0;i<Config.numOfProducts;i++)
+        {
+            if (arrayOfproducts[i].ID == product.ID)
+            {
+                
+                for (int j=i ; j < Config.numOfProducts-1;j++)
+                {
+                    arrayOfproducts[j] = arrayOfproducts[j + 1];
+                }
+                Config.numOfProducts--;
+                return;
+            }
+        }
+        throw new Exception("This product does not exist in the system");
+    }
 }
+
+
