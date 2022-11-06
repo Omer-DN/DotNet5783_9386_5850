@@ -55,13 +55,9 @@ public class DalProduct
     public static void InitializeProduct(Product parameter)
     {
         Random r = new Random();
-        parameter.ID = r.Next(1000000);
-
+        parameter.ID = r.Next(100000, 999999);
 
     }
-
-
-
 }
 
 
