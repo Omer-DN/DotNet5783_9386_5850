@@ -22,10 +22,11 @@ internal class DataSource
         static int numOfOrders = 0;
         static int numOfOrdersItems = 0;
     }
-    public static void AddProduct(Product product)
+    public static int AddProduct(Product product)
     {
         arrayOforders[numOfProducts] = product;
         numOfProducts++;
+        return product.Id;
     }
 
     public static void AddOrder(Order order)
@@ -39,4 +40,5 @@ internal class DataSource
         arrayOrderItems[numOfOrdersItems] = orderItem;
         numOfOrdersItems++;
     }
+
 }
