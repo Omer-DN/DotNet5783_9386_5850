@@ -2,6 +2,8 @@
 
 using DO;
 using System.ComponentModel;
+using System.Diagnostics;
+using System.Xml.Linq;
 using static DO.Enums;
 
 namespace Dal;
@@ -12,6 +14,7 @@ internal class DataSource
     static Product[] arrayOfproducts = new Product[50];
     static Order[] arrayOforders = new Order[100];
     static OrderItem[] arrayOrderItems = new OrderItem[200];
+
     private static int numOfProducts;
     private static int numOfOrders;
     private static int numOfOrdersItems;
@@ -41,4 +44,19 @@ internal class DataSource
         numOfOrdersItems++;
     }
 
+    public static void Deleteproduct(Product product)
+    {
+        foreach (Product i in arrayOfproducts)
+        {
+            if (i.Id == product.Id)
+            {
+                product.Id = 0;
+                product.Name = "";
+                product.Price = 0;
+                product.Category = 0;
+                product.InStock = 0;
+            }
+        }
+
+    }
 }
