@@ -20,7 +20,6 @@ internal class DataSource
         static internal int numOfOrdersItems = 0;
     }
 
-
     public static void InitializeProduct(Product parameter)
     {
 
@@ -44,11 +43,26 @@ internal class DataSource
             case Category.vegetables:
                 int number = r.Next(0, 10);
                 parameter.Name = "" + (vegetables)number;
-                parameter.Price = vegetablesPrices[number]; 
+                #// parameter.Price = (double)Pricesvegetables.(parameter.Name); 
                 break;
             case Category.Meat:
                 parameter.Name=""+(Meat)r.Next(0, 6);
+                //parameter.Price = (double)Pricesvegetables.(parameter.Name);
                 break;
+            case Category.Legumes:
+                parameter.Name ="" +(Legumes)r.Next(0,4);
+                //parameter.Price = (double)PricesLegumes.(parameter.Name);
+                break;
+            case Category.DairyProducts:
+                parameter.Name = "" + (DairyProducts)r.Next(0, 5);
+                //parameter.Price = (double)Pricesvegetables.(parameter.Name);
+                break;
+            case Category.CleanProducts:
+                parameter.Name = "" + (CleanProducts)r.Next(0, 5);
+                //parameter.Price = (double)PricesCleanProducts.(parameter.Name);
+
+                break;
+
 
         }
         parameter.InStock = r.Next(1, 101);
@@ -71,10 +85,9 @@ internal class DataSource
                 }
             }
         }
-        int number = r.Next(0, 10);
-        parameter.CostumerName = "" + (CostumerNames)number;
+        parameter.CostumerName = "" + (CostumerNames)r.Next(0,10);
         parameter.CostumerEmail = parameter.CostumerName + "@gmail.com";
-        parameter.CostumerAdress =""+ (CostumerAdress)number;
+        parameter.CostumerAdress =""+ (CostumerAdress)r.Next(0,10);
         parameter.OrderDate = DateTime.MinValue;
         parameter.ShipDate = parameter.OrderDate.AddDays(r.Next(0, 7));
         parameter.DeliveryDate = parameter.ShipDate.AddDays(r.Next(0, 10));
