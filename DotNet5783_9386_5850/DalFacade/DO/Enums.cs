@@ -2,7 +2,7 @@
 namespace DO;
 
 public struct Enums
-{
+{ 
     public enum CostumerNames {Shimon,David,Reuben,Yakov,Shlomo,Moshe,Yuval,Elad,Omer,Yonatan}
     public enum CostumerAdress { Shimon74, David13, Reuben2, Yakov8, Shlomo65, Moshe27, Yuval44, Elad35, Omer24, Yonatan79 }
 
