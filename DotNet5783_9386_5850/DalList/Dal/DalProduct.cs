@@ -50,6 +50,25 @@ public class DalProduct
         }
         throw new Exception("This product does not exist in the system");
     }
+
+    public static void UpdateProduct(Product product)
+    {
+        foreach (Product i in arrayOfproducts)
+        {
+            if (i.ID == product.ID)
+            {
+                i.Name.Concat(product.Name);
+            }
+            throw new Exception("This product does not exist in the system");
+        }
+    }
+
+    public static Product getProduct(int ID)
+    {
+        foreach (Product i in arrayOfproducts)
+            if (i.ID == ID)
+                return i;
+    }
 }
 
 
