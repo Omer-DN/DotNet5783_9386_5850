@@ -28,7 +28,7 @@ internal class DataSource
         while (flag == false)
         {
             flag = true;
-            parameter.ID = r.Next(100000, 1000000);
+            parameter.ID = r.Next(100000, 999999);
             for (int i = 0; i < Config.numOfProducts; i++)
             {
                 if (arrayOfproducts[i].ID == parameter.ID)
@@ -42,35 +42,42 @@ internal class DataSource
         {
             case Category.vegetables:
                 int number = r.Next(0, 10);
-                parameter.Name = "" + (vegetables)number;
-                parameter.Price = 0;
+                parameter.Name = "" + (Vegetables)number;
                 //I created a new variable of type vegetable,
                 //and it contains the index of that vegetable from "enum" vegetables.
-                vegetables otherVeg = (vegetables)number;
+                Vegetables otherVeg = (Vegetables)number;
                 //The price of the item is equal to the value of that vegetable,
                 //according to the index given in the new variable
                 parameter.Price = (double)otherVeg;
                 break;
 
             case Category.Meat:
+                number = r.Next(0, 6);
                 parameter.Name=""+(Meat)r.Next(0, 6);
-                //parameter.Price = (double)Pricesvegetables.(parameter.Name);
+                Meat otherMeat = (Meat)number;
+                parameter.Price = (double)otherMeat;
                 break;
+
             case Category.Legumes:
+                number = r.Next(0, 4);
                 parameter.Name ="" +(Legumes)r.Next(0,4);
-                //parameter.Price = (double)PricesLegumes.(parameter.Name);
+                Legumes otherLegu = (Legumes)number;
+                parameter.Price = (double)otherLegu;
                 break;
+
             case Category.DairyProducts:
+                number = r.Next(0, 5);
                 parameter.Name = "" + (DairyProducts)r.Next(0, 5);
-                //parameter.Price = (double)Pricesvegetables.(parameter.Name);
+                DairyProducts otherDairy = (DairyProducts)number;
+                parameter.Price = (double)otherDairy;
                 break;
             case Category.CleanProducts:
+                number = r.Next(0, 5);
                 parameter.Name = "" + (CleanProducts)r.Next(0, 5);
-                //parameter.Price = (double)PricesCleanProducts.(parameter.Name);
+                CleanProducts otherClean = (CleanProducts)number;
+                parameter.Price = (double)otherClean;
 
                 break;
-
-
         }
         parameter.InStock = r.Next(1, 101);
     }
