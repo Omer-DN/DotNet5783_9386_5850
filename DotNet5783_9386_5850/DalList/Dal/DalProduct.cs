@@ -24,12 +24,12 @@ public class DalProduct
 
     public static int AddProduct(Product product)
     {
-        foreach (Product i in DataSource.arrayOfproducts)
+        foreach (Product i in DataSource.arrayProducts)
         {
             if (product.ID == i.ID)
                 throw new Exception("This product already exists in the system");
         }
-        DataSource.arrayOfproducts[DataSource.Config.numOfProducts++] = product;
+        DataSource.arrayProducts[DataSource.Config.numOfProducts++] = product;
         return product.ID;
     }
 
@@ -37,12 +37,12 @@ public class DalProduct
     {
         for(int i=0;i<Config.numOfProducts;i++)
         {
-            if (arrayOfproducts[i].ID == product.ID)
+            if (arrayProducts[i].ID == product.ID)
             {
                 
                 for (int j=i ; j < Config.numOfProducts-1;j++)
                 {
-                    arrayOfproducts[j] = arrayOfproducts[j + 1];
+                    arrayProducts[j] = arrayProducts[j + 1];
                 }
                 Config.numOfProducts--;
                 return;
@@ -53,7 +53,7 @@ public class DalProduct
 
     public static void UpdateProduct(Product product)
     {
-        foreach (Product i in arrayOfproducts)
+        foreach (Product i in arrayProducts)
         {
             if (i.ID == product.ID)
             {
@@ -63,11 +63,13 @@ public class DalProduct
         }
     }
 
-    public static Product getProduct(int ID)
+    public static Product GetProduct(int id)
     {
-        foreach (Product i in arrayOfproducts)
-            if (i.ID == ID)
-                return i;
+        for (int i = 0; i < Config.numOfProducts;i++)
+            if (arrayProducts[i].ID==id)
+                return arrayProducts[i];
+        throw new Exception("This product does not exist in the system");
+
     }
 }
 

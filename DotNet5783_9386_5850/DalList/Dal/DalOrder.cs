@@ -20,9 +20,20 @@ public class DalOrder
         return newOrder;
     }
 
+    public static int AddOrder(Order order)
+    {
+        foreach (Order i in DataSource.arrayOrders)
+        {
+            if (order.ID == i.ID)
+                throw new Exception("This product already exists in the system");
+        }
+        DataSource.arrayOrders[DataSource.Config.numOfProducts++] = order;
+        return order.ID;
+    }
+
     public static void DeleteOrder(Order order)
     {
-        foreach (Order i in arrayOforders)
+        foreach (Order i in arrayOrders)
         {
             if (i.ID == order.ID)
             {
