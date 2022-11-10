@@ -57,7 +57,7 @@ public class DalProduct
             if (arrayProducts[i].ID == product.ID)
                 arrayProducts[i] = product;            
             throw new Exception("This product does not exist in the system");
-        }
+        
     }
 
     public static Product GetProduct(int id)
@@ -69,5 +69,6 @@ public class DalProduct
 
     }
 }
+
 
 
