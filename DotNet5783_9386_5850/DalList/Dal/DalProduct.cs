@@ -53,12 +53,9 @@ public class DalProduct
 
     public static void UpdateProduct(Product product)
     {
-        foreach (Product i in arrayProducts)
-        {
-            if (i.ID == product.ID)
-            {
-                i.Name.Concat(product.Name);
-            }
+        for (int i = 0; i < Config.numOfProducts; i++)
+            if (arrayProducts[i].ID == product.ID)
+                arrayProducts[i] = product;            
             throw new Exception("This product does not exist in the system");
         }
     }
