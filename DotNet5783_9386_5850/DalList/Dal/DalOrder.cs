@@ -22,18 +22,18 @@ public class DalOrder
 
     public static int AddOrder(Order order)
     {
-        foreach (Order i in DataSource.arrayOrders)
+        foreach (Order i in DataSource.arrayOfOrders)
         {
             if (order.ID == i.ID)
                 throw new Exception("This product already exists in the system");
         }
-        DataSource.arrayOrders[DataSource.Config.numOfProducts++] = order;
+        DataSource.arrayOfOrders[DataSource.Config.numOfProducts++] = order;
         return order.ID;
     }
 
     public static void DeleteOrder(Order order)
     {
-        foreach (Order i in arrayOrders)
+        foreach (Order i in arrayOfOrders)
         {
             if (i.ID == order.ID)
             {
