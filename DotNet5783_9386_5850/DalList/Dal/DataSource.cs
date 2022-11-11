@@ -20,6 +20,8 @@ internal class DataSource
         static internal int numOfOrdersItems = 0;
         static internal int lastProductId = 100000;
         static internal int lastOrderId = 100000;
+        internal static int numOfOrderItems;
+
         static internal int getlastProductId()
         {
             return lastProductId++;

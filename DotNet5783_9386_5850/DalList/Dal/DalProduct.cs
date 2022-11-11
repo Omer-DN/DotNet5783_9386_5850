@@ -24,11 +24,9 @@ public class DalProduct
 
     public static int AddProduct(Product product)
     {
-        foreach (Product i in DataSource.arrayOfProducts)
-        {
-            if (product.ID == i.ID)
+        for (int i = 0; i < Config.numOfProducts; i++)
+            if (arrayOfProducts[i].ID == product.ID)
                 throw new Exception("This product already exists in the system");
-        }
         DataSource.arrayOfProducts[DataSource.Config.numOfProducts++] = product;
         return product.ID;
     }
@@ -67,6 +65,17 @@ public class DalProduct
                 return arrayOfProducts[i];
         throw new Exception("This product does not exist in the system");
 
+    }
+
+    // return a List of current products in the store
+    public static Product[] GetProductList()
+    {
+        Product[] products = new Product[Config.numOfProducts];
+        for (int i = 0; i < Config.numOfProducts; i++)
+        {
+            products[i] = arrayOfProducts[i];
+        }
+        return products;
     }
 }
 

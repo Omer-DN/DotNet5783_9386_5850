@@ -22,28 +22,59 @@ public class DalOrder
 
     public static int AddOrder(Order order)
     {
-        foreach (Order i in DataSource.arrayOfOrders)
-        {
-            if (order.ID == i.ID)
+        for (int i = 0; i < Config.numOfOrders; i++)
+            if (arrayOfProducts[i].ID == order.ID)
                 throw new Exception("This product already exists in the system");
-        }
-        DataSource.arrayOfOrders[DataSource.Config.numOfProducts++] = order;
+        DataSource.arrayOfOrders[DataSource.Config.numOfOrders++] = order;
         return order.ID;
     }
 
     public static void DeleteOrder(Order order)
     {
-        foreach (Order i in arrayOfOrders)
+        for (int i = 0; i < Config.numOfOrders; i++)
         {
-            if (i.ID == order.ID)
+            if (arrayOfProducts[i].ID == order.ID)
             {
-                order.ID = 0;
-                order.CostumerName = "";
-                order.CostumerEmail = "";
-                order.CostumerAdress = "";
-                Config.numOfOrders--;
 
+                for (int j = i; j < Config.numOfOrders - 1; j++)
+                {
+                    arrayOfOrders[j] = arrayOfOrders[j + 1];
+                }
+                Config.numOfOrders--;
+                return;
             }
         }
+        throw new Exception("This order does not exist in the system");
     }
+
+    public static void UpdateOrder(Order order)
+    {
+        for (int i = 0; i < Config.numOfOrders; i++)
+            if (arrayOfOrders[i].ID == order.ID)
+                arrayOfOrders[i] = order;
+        throw new Exception("This order does not exist in the system");
+
+    }
+
+    public static Order GetOrder(int id)
+    {
+        for (int i = 0; i < Config.numOfOrders; i++)
+            if (arrayOfOrders[i].ID == id)
+                return arrayOfOrders[i];
+        throw new Exception("This order does not exist in the system");
+
+    }
+
+    // return a List of current orders in the store
+    public static Order[] GetOrderList()
+    {
+        Order[] orders = new Order[Config.numOfOrders];
+        for(int i = 0; i < Config.numOfOrders; i++)
+        {
+            orders[i] = arrayOfOrders[i];
+        }
+        return orders;
+    }
+
+
 }
