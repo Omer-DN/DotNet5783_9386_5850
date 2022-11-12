@@ -7,10 +7,9 @@ namespace Dal;
 
 public class DalOrder
 {
-    public static Order Create(int id, string costumerName, string costumerEmail, string costumerAdress, DateTime OrderDate, DateTime ShipDate, DateTime DeliveryDate)
+    public Order Create(string costumerName, string costumerEmail, string costumerAdress, DateTime OrderDate, DateTime ShipDate, DateTime DeliveryDate)
     {
         Order newOrder = new Order();
-        newOrder.ID = id;
         newOrder.CostumerName = costumerName;
         newOrder.CostumerEmail = costumerEmail;
         newOrder.CostumerAdress = costumerAdress;
@@ -20,20 +19,21 @@ public class DalOrder
         return newOrder;
     }
 
-    public static int AddOrder(Order order)
+    public int AddOrder(Order order)
     {
         for (int i = 0; i < Config.numOfOrders; i++)
             if (arrayOfProducts[i].ID == order.ID)
                 throw new Exception("This product already exists in the system");
+        order.ID = DataSource.Config.getlastOrderId();
         DataSource.arrayOfOrders[DataSource.Config.numOfOrders++] = order;
         return order.ID;
     }
 
-    public static void DeleteOrder(Order order)
+    public void DeleteOrder(int id)
     {
         for (int i = 0; i < Config.numOfOrders; i++)
         {
-            if (arrayOfProducts[i].ID == order.ID)
+            if (arrayOfProducts[i].ID == id)
             {
 
                 for (int j = i; j < Config.numOfOrders - 1; j++)
@@ -47,7 +47,7 @@ public class DalOrder
         throw new Exception("This order does not exist in the system");
     }
 
-    public static void UpdateOrder(Order order)
+    public void UpdateOrder(Order order)
     {
         for (int i = 0; i < Config.numOfOrders; i++)
             if (arrayOfOrders[i].ID == order.ID)
@@ -56,7 +56,7 @@ public class DalOrder
 
     }
 
-    public static Order GetOrder(int id)
+    public Order GetOrder(int id)
     {
         for (int i = 0; i < Config.numOfOrders; i++)
             if (arrayOfOrders[i].ID == id)
@@ -66,7 +66,7 @@ public class DalOrder
     }
 
     // return a List of current orders in the store
-    public static Order[] GetOrderList()
+    public Order[] GetOrderList()
     {
         Order[] orders = new Order[Config.numOfOrders];
         for(int i = 0; i < Config.numOfOrders; i++)

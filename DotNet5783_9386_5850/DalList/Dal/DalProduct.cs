@@ -10,11 +10,9 @@ namespace Dal;
 
 public class DalProduct
 {
-
-    public static Product Create(int id, string name, double price, Category category, int instock)
+    public Product Create(string name, double price, Category category, int instock)
     {
         Product newProduct = new Product();
-        newProduct.ID = id;
         newProduct.Name = name;
         newProduct.Price = price;
         newProduct.Category = category;
@@ -22,20 +20,21 @@ public class DalProduct
         return newProduct;
     }
 
-    public static int AddProduct(Product product)
+    public int AddProduct(Product product)
     {
         for (int i = 0; i < Config.numOfProducts; i++)
             if (arrayOfProducts[i].ID == product.ID)
                 throw new Exception("This product already exists in the system");
+        product.ID = DataSource.Config.getlastProductId();
         DataSource.arrayOfProducts[DataSource.Config.numOfProducts++] = product;
         return product.ID;
     }
 
-    public static void Deleteproduct(Product product)
+    public void Deleteproduct(int id)
     {
         for(int i=0;i<Config.numOfProducts;i++)
         {
-            if (arrayOfProducts[i].ID == product.ID)
+            if (arrayOfProducts[i].ID == id)
             {
                 
                 for (int j=i ; j < Config.numOfProducts-1;j++)
@@ -49,7 +48,7 @@ public class DalProduct
         throw new Exception("This product does not exist in the system");
     }
 
-    public static void UpdateProduct(Product product)
+    public void UpdateProduct(Product product)
     {
         for (int i = 0; i < Config.numOfProducts; i++)
             if (arrayOfProducts[i].ID == product.ID)
@@ -58,7 +57,7 @@ public class DalProduct
         
     }
 
-    public static Product GetProduct(int id)
+    public Product GetProduct(int id)
     {
         for (int i = 0; i < Config.numOfProducts;i++)
             if (arrayOfProducts[i].ID==id)
@@ -68,7 +67,7 @@ public class DalProduct
     }
 
     // return a List of current products in the store
-    public static Product[] GetProductList()
+    public Product[] GetProductList()
     {
         Product[] products = new Product[Config.numOfProducts];
         for (int i = 0; i < Config.numOfProducts; i++)
