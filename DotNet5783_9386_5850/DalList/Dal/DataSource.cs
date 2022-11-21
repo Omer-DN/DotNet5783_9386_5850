@@ -14,33 +14,51 @@ internal class DataSource
     /*internal static Product[] arrayOfProducts = new Product[50];
     internal static Order[] arrayOfOrders = new Order[100];
     internal static OrderItem[] arrayOfOrderItems = new OrderItem[200];*/
+
+
+    //static internal class Config
+    //{
+    //    /*static internal int numOfProducts = 0;
+    //    static internal int numOfOrders = 0;
+    //    static internal int numOfOrdersItems = 0;*/
+    //    static internal int lastProductId = 100000;
+    //    static internal int lastOrderId = 100000;
+    //    static internal int lastOrderItemId = 100000;
+    //    internal static int numOfOrderItems;
+
+    //    static internal int getlastProductId()
+    //    {
+    //        return lastProductId++;
+    //    }
+    //    static internal int getlastOrderId()
+    //    {
+    //        return lastOrderId++;
+    //    }
+    //    static internal int getlastOrderItemId()
+    //    {
+    //        return lastOrderItemId++;
+    //    }
+    //}
+
+    static internal int lastProductId = 100000;
+    static internal int lastOrderId = 100000;
+    static internal int lastOrderItemId = 100000;
+    internal static int numOfOrderItems;
     
-
-    static internal class Config
+    static internal int getlastProductId()
     {
-        /*static internal int numOfProducts = 0;
-        static internal int numOfOrders = 0;
-        static internal int numOfOrdersItems = 0;*/
-        static internal int lastProductId = 100000;
-        static internal int lastOrderId = 100000;
-        static internal int lastOrderItemId = 100000;
-        internal static int numOfOrderItems;
-
-        static internal int getlastProductId()
-        {
-            return lastProductId++;
-        }
-        static internal int getlastOrderId()
-        {
-            return lastOrderId++;
-        }
-        static internal int getlastOrderItemId()
-        {
-            return lastOrderItemId++;
-        }
+        return lastProductId++;
+    }
+    static internal int getlastOrderId()
+    {
+        return lastOrderId++;
+    }
+    static internal int getlastOrderItemId()
+    {
+        return lastOrderItemId++;
     }
 
-    static  DataSource()
+    static DataSource()
     {
         s_initialize();
     }
@@ -49,7 +67,7 @@ internal class DataSource
     {
 
         Random r = new Random();
-        parameter.ID = Config.getlastProductId();
+        parameter.ID = getlastProductId();
         /*        bool flag = false;
                 while (flag == false)
                 {
@@ -113,7 +131,7 @@ internal class DataSource
     public static void InitializeOrder(Order parameter)
     {
         Random r = new Random();
-        parameter.ID = Config.getlastOrderId();
+        parameter.ID = getlastOrderId();
         /*
         bool flag = false;
         while (flag == false)
@@ -129,7 +147,6 @@ internal class DataSource
             }
         }
         */
-        Config.lastOrderId = parameter.ID;
         parameter.CostumerName = "" + (CostumerNames)r.Next(0,10);
         parameter.CostumerEmail = parameter.CostumerName + "@gmail.com";
         parameter.CostumerAdress =""+ (CostumerAdress)r.Next(0,10);
@@ -142,7 +159,7 @@ internal class DataSource
     public static void InitializeOrderItem(OrderItem parameter)
     {
         Random r = new Random();
-        parameter.ID = Config.getlastOrderItemId();
+        parameter.ID = getlastOrderItemId();
         int number = r.Next(0, listOfOrders.Count());
         parameter.OrderID = listOfOrders[number].ID;
         number = r.Next(0, listOfProducts.Count());

@@ -19,8 +19,8 @@ internal class DalOrder : IOrder
             if (i.ID == order.ID)
                 throw new idNotFound("This product already exists in the system");
         }
-        order.ID = DataSource.Config.getlastOrderId();
-        DataSource.listOfOrders.Add(order);
+        order.ID = getlastOrderId();
+        listOfOrders.Add(order);
         return order.ID;
     }
 

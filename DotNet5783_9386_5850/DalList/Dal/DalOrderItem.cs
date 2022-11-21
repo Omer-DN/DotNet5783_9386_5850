@@ -13,8 +13,8 @@ internal class DalOrderItem:IOrderItem
         foreach (OrderItem i in listOfOrderItems)
             if (i.ID == Orderitem.ID)
                 throw new Exception("This order item already exists in the order items list");
-        Orderitem.ID = DataSource.Config.getlastOrderItemId();
-        DataSource.listOfOrderItems.Add(Orderitem);
+        Orderitem.ID = getlastOrderItemId();
+        listOfOrderItems.Add(Orderitem);
         return Orderitem.ID;
     }
 

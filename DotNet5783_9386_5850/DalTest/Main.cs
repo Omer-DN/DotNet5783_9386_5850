@@ -16,11 +16,12 @@ namespace Dal
         /*private static DalProduct dalProduct = new DalProduct();
         private static DalOrder dalOrder = new DalOrder();
         private static DalOrderItem dalOrderItem = new DalOrderItem();*/
-        private static IDal dal = new Dal.DalList();
+        //private static IDal dal = new Dal.DalList();
 
 
         static void Main(string[] args)
         {
+            IDal dal = new Dal.DalList();
             Console.WriteLine("Welcome, Please Choose one choice from the Menu:");
             Console.WriteLine("1 - Check the DalProduct Class");
             Console.WriteLine("2 - Check the DalOrder Class");
