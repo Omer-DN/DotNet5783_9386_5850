@@ -5,74 +5,66 @@ using DO;
 using static DO.Enums;
 
 using static Dal.DataSource;
+using DalApi;
 
 namespace Dal;
 
-public class DalProduct
-{
-    public Product Create(string name, double price, Category category, int instock)
-    {
-        Product newProduct = new Product();
-        newProduct.Name = name;
-        newProduct.Price = price;
-        newProduct.Category = category;
-        newProduct.InStock = instock;
-        return newProduct;
-    }
 
-    public int AddProduct(Product product)
+public class DalProduct:IProduct
+{
+    public int Add(Product product)
     {
-        for (int i = 0; i < Config.numOfProducts; i++)
-            if (arrayOfProducts[i].ID == product.ID)
-                throw new Exception("This product already exists in the system");
+        foreach (Product i in listOfProducts)
+        {
+            if (i.ID == product.ID)
+                throw new idNotFound("This product already exists in the system");
+        }
         product.ID = DataSource.Config.getlastProductId();
-        DataSource.arrayOfProducts[DataSource.Config.numOfProducts++] = product;
+        DataSource.listOfProducts.Add(product);
         return product.ID;
     }
 
-    public void Deleteproduct(int id)
+    public void Delete(int id)
     {
-        for(int i=0;i<Config.numOfProducts;i++)
+        foreach (Product i in listOfProducts)
         {
-            if (arrayOfProducts[i].ID == id)
+            if (i.ID == id)
             {
-                
-                for (int j=i ; j < Config.numOfProducts-1;j++)
-                {
-                    arrayOfProducts[j] = arrayOfProducts[j + 1];
-                }
-                Config.numOfProducts--;
+                listOfProducts.Remove(i);
                 return;
             }
         }
+        throw new idNotFound("This product does not exist in the system");
+    }
+
+    public void Update(Product product)
+    {
+        if (listOfProducts.Exists(x => x.ID == product.ID))
+        {
+            var index = listOfProducts.FindIndex(i => i.ID == product.ID);
+            listOfProducts[index] = product;
+            return;
+        }
         throw new Exception("This product does not exist in the system");
+
     }
 
-    public void UpdateProduct(Product product)
+    public Product Get(int id)
     {
-        for (int i = 0; i < Config.numOfProducts; i++)
-            if (arrayOfProducts[i].ID == product.ID)
-                arrayOfProducts[i] = product;            
-            throw new Exception("This product does not exist in the system");
-        
-    }
-
-    public Product GetProduct(int id)
-    {
-        for (int i = 0; i < Config.numOfProducts;i++)
-            if (arrayOfProducts[i].ID==id)
-                return arrayOfProducts[i];
+        foreach (Product i in listOfProducts)
+            if (i.ID == id)
+                return i;
         throw new Exception("This product does not exist in the system");
 
     }
 
     // return a List of current products in the store
-    public Product[] GetProductList()
+    public IEnumerable<Product> GetList()
     {
-        Product[] products = new Product[Config.numOfProducts];
-        for (int i = 0; i < Config.numOfProducts; i++)
+        List<Product> products = new List<Product>();
+        foreach (Product i in listOfProducts)
         {
-            products[i] = arrayOfProducts[i];
+            products.Add(i);
         }
         return products;
     }

@@ -6,14 +6,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using static DO.Enums;
+using DalApi;
+
 
 namespace Dal
 {
     class TestClass
     {
-        private static DalProduct dalProduct = new DalProduct();
+        /*private static DalProduct dalProduct = new DalProduct();
         private static DalOrder dalOrder = new DalOrder();
-        private static DalOrderItem dalOrderItem = new DalOrderItem();
+        private static DalOrderItem dalOrderItem = new DalOrderItem();*/
+        private static IDal dal = new Dal.DalList();
+
 
         static void Main(string[] args)
         {
@@ -57,8 +61,8 @@ namespace Dal
                                     instock = int.Parse(Console.ReadLine());
                                     try
                                     {
-                                        Product NewProduct = dalProduct.Create(name, price, category, instock);
-                                        id = dalProduct.AddProduct(NewProduct);
+                                        Product newProduct = dal.Product.Create(name, price, category, instock);
+                                        id = dal.Product.Add(newProduct);
                                         Console.WriteLine("The product has been successfully added with id: {0}", id);
                                     }
                                     catch (Exception Error)
@@ -71,7 +75,7 @@ namespace Dal
                                     id = int.Parse(Console.ReadLine());
                                     try
                                     {
-                                        Product product = dalProduct.GetProduct(id);
+                                        Product product = dal.Product.Get(id);
                                         Console.WriteLine("Product found!");
                                         Console.WriteLine("ID:{0}, Name:{1}, Price:{2}, Category:{3}, In Stock:{4}",
                                             product.ID, product.Name, product.Price, product.Category, product.InStock);
@@ -83,7 +87,7 @@ namespace Dal
                                     break;
                                 case 3:
                                     Console.WriteLine("The Product list of the store:");
-                                    Product[] products = dalProduct.GetProductList();
+                                    IEnumerable<Product> products = dal.Product.GetList();
                                     foreach (Product product in products)
                                     {
                                         Console.WriteLine("ID:{0}, Name:{1}, Price:{2}, Category:{3}, In Stock:{4}",
@@ -95,7 +99,7 @@ namespace Dal
                                     id = int.Parse(Console.ReadLine());
                                     try
                                     {
-                                        Product product = dalProduct.GetProduct(id);
+                                        Product product = dal.Product.Get(id);
                                         Console.WriteLine("Product found!");
                                         Console.WriteLine("ID:{0}, Name:{1}, Price:{2}, Category:{3}, In Stock:{4}",
                                             product.ID, product.Name, product.Price, product.Category, product.InStock);
@@ -109,9 +113,9 @@ namespace Dal
                                         category = (Category)int.Parse(Console.ReadLine());
                                         Console.WriteLine("Please select quantity in stock for the product:");
                                         instock = int.Parse(Console.ReadLine());
-                                        Product NewProduct = dalProduct.Create(name, price, category, instock);
+                                        Product NewProduct = dal.Product.Create(name, price, category, instock);
                                         NewProduct.ID = product.ID;
-                                        dalProduct.UpdateProduct(NewProduct);
+                                        dal.Product.Update(NewProduct);
                                         Console.WriteLine("The product has been successfully updated!");
                                     }
                                     catch (Exception Error)
@@ -124,7 +128,7 @@ namespace Dal
                                     id = int.Parse(Console.ReadLine());
                                     try
                                     {
-                                        dalProduct.Deleteproduct(id);
+                                        dal.Product.Delete(id);
                                         Console.WriteLine("The product has been successfully deleted!");
                                     }
                                     catch (Exception Error)
@@ -177,8 +181,8 @@ namespace Dal
                                     deliveryDate = DateTime.Parse(Console.ReadLine());
                                     try
                                     {
-                                        Order NewOrder = dalOrder.Create(costumerName, costumerEmail, costumerAdress, orderDate, shipDate, deliveryDate);
-                                        id = dalOrder.AddOrder(NewOrder);
+                                        Order NewOrder = dal.Order.Create(costumerName, costumerEmail, costumerAdress, orderDate, shipDate, deliveryDate);
+                                        id = dal.Order.Add(NewOrder);
                                         Console.WriteLine("The order has been successfully added with id: {0}", id);
                                     }
                                     catch (Exception Error)
@@ -191,7 +195,7 @@ namespace Dal
                                     id = int.Parse(Console.ReadLine());
                                     try
                                     {
-                                        Order order = dalOrder.GetOrder(id);
+                                        Order order = dal.Order.Get(id);
                                         Console.WriteLine("Order found!");
                                         Console.WriteLine("ID:{0}, Costumer Name:{1}, Costumer Email:{2}, Costumer Adress:{3}, Order Date:{4},Ship Date:{5}, Delivery Date:{6}",
                                             order.ID, order.CostumerName, order.CostumerEmail, order.CostumerAdress, order.OrderDate, order.ShipDate, order.DeliveryDate);
@@ -203,7 +207,7 @@ namespace Dal
                                     break;
                                 case 3:
                                     Console.WriteLine("The Orders list of the store:");
-                                    Order[] orders = dalOrder.GetOrderList();
+                                    IEnumerable<Order> orders = dal.Order.GetList();
                                     foreach (Order order in orders)
                                     {
                                         Console.WriteLine("ID:{0}, Costumer Name:{1}, Costumer Email:{2}, Costumer Adress:{3}, Order Date:{4},Ship Date:{5}, Delivery Date:{6}",
@@ -215,7 +219,7 @@ namespace Dal
                                     id = int.Parse(Console.ReadLine());
                                     try
                                     {
-                                        Order order = dalOrder.GetOrder(id);
+                                        Order order = dal.Order.Get(id);
                                         Console.WriteLine("Order found!");
                                         Console.WriteLine("ID:{0}, Costumer Name:{1}, Costumer Email:{2}, Costumer Adress:{3}, Order Date:{4},Ship Date:{5}, Delivery Date:{6}",
                                            order.ID, order.CostumerName, order.CostumerEmail, order.CostumerAdress, order.OrderDate, order.ShipDate, order.DeliveryDate);
@@ -232,9 +236,9 @@ namespace Dal
                                         shipDate = DateTime.Parse(Console.ReadLine());
                                         Console.WriteLine("Please enter Delivery Date:");
                                         deliveryDate = DateTime.Parse(Console.ReadLine());
-                                        Order NewOrder = dalOrder.Create(costumerName, costumerEmail, costumerAdress, orderDate, shipDate, deliveryDate);
+                                        Order NewOrder = dal.Order.Create(costumerName, costumerEmail, costumerAdress, orderDate, shipDate, deliveryDate);
                                         NewOrder.ID = order.ID;
-                                        dalOrder.UpdateOrder(NewOrder);
+                                        dal.Order.Update(NewOrder);
                                         Console.WriteLine("The order has been successfully updated!");
                                     }
                                     catch (Exception Error)
@@ -247,7 +251,7 @@ namespace Dal
                                     id = int.Parse(Console.ReadLine());
                                     try
                                     {
-                                        dalOrder.DeleteOrder(id);
+                                        dal.Order.Delete(id);
                                         Console.WriteLine("The order has been successfully deleted!");
                                     }
                                     catch (Exception Error)
@@ -284,7 +288,7 @@ namespace Dal
                             switch (Choice2)
                             {
                                 case 1:
-                                    int productId, orderId, amount;
+                                    int ID,productId, orderId, amount;
                                     double price;
                                     Console.WriteLine("Please enter Product id:");
                                     productId = int.Parse(Console.ReadLine());
@@ -296,9 +300,9 @@ namespace Dal
                                     amount = int.Parse(Console.ReadLine());
                                     try
                                     {
-                                        OrderItem NewOrderItem = dalOrderItem.Create(productId, orderId, price, amount);
-                                        dalOrderItem.AddOrderItem(NewOrderItem);
-                                        Console.WriteLine("The order item has been successfully added");
+                                        OrderItem NewOrderItem = dal.OrderItem.Create(productId, orderId, price, amount);
+                                        ID = dal.OrderItem.Add(NewOrderItem);
+                                        Console.WriteLine("The order item has been successfully added with ID:{0}",ID);
                                     }
                                     catch (Exception Error)
                                     {
@@ -306,15 +310,14 @@ namespace Dal
                                     }
                                     break;
                                 case 2:
-                                    Console.WriteLine("Please Enter the Product ID and the Order ID of the order item to get:");
-                                    productId = int.Parse(Console.ReadLine());
-                                    orderId = int.Parse(Console.ReadLine());
+                                    Console.WriteLine("Please Enter the ID of the order item to get:");
+                                    ID = int.Parse(Console.ReadLine());
                                     try
                                     {
-                                        OrderItem orderItem = dalOrderItem.GetOrderItem(productId, orderId);
+                                        OrderItem orderItem = dal.OrderItem.Get(ID);
                                         Console.WriteLine("Order item found!");
-                                        Console.WriteLine("Product ID:{0}, Product ID:{1}, Price:{2}, Amount:{3}",
-                                            orderItem.ProductID, orderItem.ProductID, orderItem.Price, orderItem.Amount);
+                                        Console.WriteLine("ID:{0}, Product ID:{1}, Product ID:{2}, Price:{3}, Amount:{4}",
+                                            orderItem.ID,orderItem.ProductID, orderItem.ProductID, orderItem.Price, orderItem.Amount);
                                     }
                                     catch (Exception Error)
                                     {
@@ -323,23 +326,22 @@ namespace Dal
                                     break;
                                 case 3:
                                     Console.WriteLine("The Order Items list:");
-                                    OrderItem[] orderItems = dalOrderItem.GetOrderItemList();
+                                    IEnumerable<OrderItem> orderItems = dal.OrderItem.GetList();
                                     foreach (OrderItem orderitems in orderItems)
                                     {
-                                        Console.WriteLine("Product ID:{0}, Product ID:{1}, Price:{2}, Amount:{3}",
-                                            orderitems.ProductID, orderitems.ProductID, orderitems.Price, orderitems.Amount);
+                                        Console.WriteLine("ID:{0}, Product ID:{1}, Product ID:{2}, Price:{3}, Amount:{4}",
+                                            orderitems.ID, orderitems.ProductID, orderitems.ProductID, orderitems.Price, orderitems.Amount);
                                     }
                                     break;
                                 case 4:
-                                    Console.WriteLine("Please Enter the Product ID and the Order ID of the order you want to update:");
-                                    productId = int.Parse(Console.ReadLine());
-                                    orderId = int.Parse(Console.ReadLine());
+                                    Console.WriteLine("Please Enter the ID of the order you want to update:");
+                                    ID = int.Parse(Console.ReadLine());
                                     try
                                     {
-                                        OrderItem orderItem = dalOrderItem.GetOrderItem(productId, orderId);
+                                        OrderItem orderItem = dal.OrderItem.Get(ID);
                                         Console.WriteLine("Order Item found!");
-                                        Console.WriteLine("Product ID:{0}, Product ID:{1}, Price:{2}, Amount:{3}",
-                                            orderItem.ProductID, orderItem.ProductID, orderItem.Price, orderItem.Amount);
+                                        Console.WriteLine("ID:{0}, Product ID:{1}, Product ID:{2}, Price:{3}, Amount:{4}",
+                                            orderItem.ID, orderItem.ProductID, orderItem.ProductID, orderItem.Price, orderItem.Amount);
                                         Console.WriteLine("Please Enter the details of the new order item to update:");
                                         Console.WriteLine("Please enter Product id:");
                                         productId = int.Parse(Console.ReadLine());
@@ -349,10 +351,9 @@ namespace Dal
                                         price = double.Parse(Console.ReadLine());
                                         Console.WriteLine("Please enter Amount:");
                                         amount = int.Parse(Console.ReadLine());
-                                        OrderItem NewOrderItem = dalOrderItem.Create(productId, orderId, price, amount);
-                                        NewOrderItem.ProductID = orderItem.ProductID;
-                                        NewOrderItem.OrderID = orderItem.OrderID;
-                                        dalOrderItem.UpdateOrderItem(NewOrderItem);
+                                        OrderItem NewOrderItem = dal.OrderItem.Create(productId, orderId, price, amount);
+                                        NewOrderItem.ID = orderItem.ID;
+                                        dal.OrderItem.Update(NewOrderItem);
                                         Console.WriteLine("The order item has been successfully updated!");
                                     }
                                     catch (Exception Error)
@@ -361,12 +362,11 @@ namespace Dal
                                     }
                                     break;
                                 case 5:
-                                    Console.WriteLine("Please Enter the Product ID and the Order ID of the order you want to delete:");
-                                    productId = int.Parse(Console.ReadLine());
-                                    orderId = int.Parse(Console.ReadLine());
+                                    Console.WriteLine("Please Enter the ID of the order item you want to delete:");
+                                    ID = int.Parse(Console.ReadLine());
                                     try
                                     {
-                                        dalOrderItem.DeleteOrderItem(productId, orderId);
+                                        dal.OrderItem.Delete(ID);
                                         Console.WriteLine("The order item has been successfully deleted!");
                                     }
                                     catch (Exception Error)

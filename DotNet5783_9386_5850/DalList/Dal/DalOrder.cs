@@ -2,78 +2,90 @@
 
 using DO;
 using static Dal.DataSource;
-
+using DalApi;
 namespace Dal;
 
-public class DalOrder
+internal class DalOrder : IOrder
 {
-    public Order Create(string costumerName, string costumerEmail, string costumerAdress, DateTime OrderDate, DateTime ShipDate, DateTime DeliveryDate)
+    public int Add(Order order)
     {
-        Order newOrder = new Order();
-        newOrder.CostumerName = costumerName;
-        newOrder.CostumerEmail = costumerEmail;
-        newOrder.CostumerAdress = costumerAdress;
-        newOrder.OrderDate = OrderDate;
-        newOrder.ShipDate = ShipDate;
-        newOrder.DeliveryDate = DeliveryDate;
-        return newOrder;
-    }
-
-    public int AddOrder(Order order)
-    {
-        for (int i = 0; i < Config.numOfOrders; i++)
+        /*for (int i = 0; i < Config.numOfOrders; i++)
             if (arrayOfProducts[i].ID == order.ID)
                 throw new Exception("This product already exists in the system");
         order.ID = DataSource.Config.getlastOrderId();
-        DataSource.arrayOfOrders[DataSource.Config.numOfOrders++] = order;
+        DataSource.arrayOfOrders[DataSource.Config.numOfOrders++] = order;*/
+        foreach (Order i in listOfOrders)
+        {
+            if (i.ID == order.ID)
+                throw new idNotFound("This product already exists in the system");
+        }
+        order.ID = DataSource.Config.getlastOrderId();
+        DataSource.listOfOrders.Add(order);
         return order.ID;
     }
 
-    public void DeleteOrder(int id)
+    public void Delete(int id)
     {
-        for (int i = 0; i < Config.numOfOrders; i++)
+        foreach (Order i in listOfOrders)
         {
-            if (arrayOfProducts[i].ID == id)
+            if (i.ID == id)
             {
 
-                for (int j = i; j < Config.numOfOrders - 1; j++)
+                /*for (int j = i; j < Config.numOfOrders - 1; j++)
                 {
                     arrayOfOrders[j] = arrayOfOrders[j + 1];
                 }
-                Config.numOfOrders--;
+                Config.numOfOrders--;*/
+                listOfOrders.Remove(i);
                 return;
             }
         }
-        throw new Exception("This order does not exist in the system");
+        throw new idNotFound("This order does not exist in the system");
     }
 
-    public void UpdateOrder(Order order)
+    public void Update(Order order)
     {
-        for (int i = 0; i < Config.numOfOrders; i++)
-            if (arrayOfOrders[i].ID == order.ID)
-                arrayOfOrders[i] = order;
+        if(listOfOrders.Exists(x=> x.ID == order.ID))
+        {
+            var index = listOfOrders.FindIndex(i => i.ID == order.ID);
+            listOfOrders[index] = order;
+            return;
+        }
         throw new Exception("This order does not exist in the system");
-
+        /*foreach (Order i in listOfOrders)
+            if (i.ID == order.ID)
+            {
+                //arrayOfOrders[i] = order;
+                var temp = listOfOrders.Find(i => i.ID == order.ID);
+            }
+        throw new Exception("This order does not exist in the system");
+               */
     }
 
-    public Order GetOrder(int id)
+    public Order Get(int id)
     {
-        for (int i = 0; i < Config.numOfOrders; i++)
-            if (arrayOfOrders[i].ID == id)
-                return arrayOfOrders[i];
+        foreach (Order i in listOfOrders)
+            if (i.ID == id)
+                return i;
         throw new Exception("This order does not exist in the system");
 
     }
 
     // return a List of current orders in the store
-    public Order[] GetOrderList()
+    public IEnumerable<Order> GetList()
     {
-        Order[] orders = new Order[Config.numOfOrders];
+        List<Order> orders = new List<Order>();
+        foreach(Order i in listOfOrders)
+        {
+            orders.Add(i);
+        }
+        return orders;
+        /*Order[] orders = new Order[Config.numOfOrders];
         for(int i = 0; i < Config.numOfOrders; i++)
         {
             orders[i] = arrayOfOrders[i];
         }
-        return orders;
+        return orders;*/
     }
 
 

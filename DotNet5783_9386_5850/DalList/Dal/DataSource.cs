@@ -7,19 +7,23 @@ namespace Dal;
 
 internal class DataSource
 {
+    internal static List<Product> listOfProducts = new List<Product>(50);
+    internal static List<Order> listOfOrders = new List<Order>(100);
+    internal static List<OrderItem> listOfOrderItems = new List<OrderItem>(200);
     readonly Random rand = new Random();
-    internal static Product[] arrayOfProducts = new Product[50];
+    /*internal static Product[] arrayOfProducts = new Product[50];
     internal static Order[] arrayOfOrders = new Order[100];
-    internal static OrderItem[] arrayOfOrderItems = new OrderItem[200];
+    internal static OrderItem[] arrayOfOrderItems = new OrderItem[200];*/
     
 
     static internal class Config
     {
-        static internal int numOfProducts = 0;
+        /*static internal int numOfProducts = 0;
         static internal int numOfOrders = 0;
-        static internal int numOfOrdersItems = 0;
+        static internal int numOfOrdersItems = 0;*/
         static internal int lastProductId = 100000;
         static internal int lastOrderId = 100000;
+        static internal int lastOrderItemId = 100000;
         internal static int numOfOrderItems;
 
         static internal int getlastProductId()
@@ -29,6 +33,10 @@ internal class DataSource
         static internal int getlastOrderId()
         {
             return lastOrderId++;
+        }
+        static internal int getlastOrderItemId()
+        {
+            return lastOrderItemId++;
         }
     }
 
@@ -96,7 +104,6 @@ internal class DataSource
                 parameter.Name = "" + (CleanProducts)r.Next(0, 5);
                 CleanProducts otherClean = (CleanProducts)number;
                 parameter.Price = (double)otherClean;
-
                 break;
         }
         parameter.InStock = r.Next(1, 101);
@@ -135,11 +142,12 @@ internal class DataSource
     public static void InitializeOrderItem(OrderItem parameter)
     {
         Random r = new Random();
-        int number = r.Next(0, Config.numOfOrders);
-        parameter.OrderID = arrayOfOrders[number].ID;
-        number = r.Next(0, Config.numOfProducts);
-        parameter.ProductID = arrayOfProducts[number].ID;
-        parameter.Price = arrayOfProducts[number].Price;
+        parameter.ID = Config.getlastOrderItemId();
+        int number = r.Next(0, listOfOrders.Count());
+        parameter.OrderID = listOfOrders[number].ID;
+        number = r.Next(0, listOfProducts.Count());
+        parameter.ProductID = listOfProducts[number].ID;
+        parameter.Price = listOfProducts[number].Price;
         parameter.Amount = r.Next(1, 6);
     }
     public static void s_initialize()
@@ -148,19 +156,22 @@ internal class DataSource
         {
             Product newProduct = new Product();
             InitializeProduct(newProduct);
-            arrayOfProducts[i] = newProduct;
+            //arrayOfProducts[i] = newProduct;
+            listOfProducts.Add(newProduct);
         }
         for (int i = 0; i < 40; i++)
         {
             Order newOrder = new Order();
             InitializeOrder(newOrder);
-            arrayOfOrders[i] = newOrder;
+            //arrayOfOrders[i] = newOrder;
+            listOfOrders.Add(newOrder);
         }
         for (int i = 0; i < 100; i++)
         {
             OrderItem newOrderItem = new OrderItem();
             InitializeOrderItem(newOrderItem);
-            arrayOfOrderItems[i] = newOrderItem;
+            //arrayOfOrderItems[i] = newOrderItem;
+            listOfOrderItems.Add(newOrderItem);
         }
     }
 

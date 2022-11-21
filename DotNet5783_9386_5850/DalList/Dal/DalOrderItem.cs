@@ -2,74 +2,62 @@
 using DO;
 using System.Diagnostics;
 using static Dal.DataSource;
+using DalApi;
 
 namespace Dal;
 
-public class DalOrderItem
+internal class DalOrderItem:IOrderItem
 {
-    public OrderItem Create(int ProductID, int OrderID, double Price, int Amount)
+    public int Add(OrderItem Orderitem)
     {
-        OrderItem newOrderItem = new OrderItem();
-        newOrderItem.ProductID = ProductID;
-        newOrderItem.OrderID = OrderID;
-        newOrderItem.Price = Price;
-        newOrderItem.Amount = Amount;
-        return newOrderItem;
+        foreach (OrderItem i in listOfOrderItems)
+            if (i.ID == Orderitem.ID)
+                throw new Exception("This order item already exists in the order items list");
+        Orderitem.ID = DataSource.Config.getlastOrderItemId();
+        DataSource.listOfOrderItems.Add(Orderitem);
+        return Orderitem.ID;
     }
 
-    public int AddOrderItem(OrderItem Orderitem)
+    public void Delete(int id)
     {
-        for (int i = 0; i < Config.numOfOrdersItems; i++)
-            if ((arrayOfOrderItems[i].ProductID == Orderitem.ProductID)&&(arrayOfOrderItems[i].OrderID == Orderitem.OrderID))
-                throw new Exception("This product already exists in the order items list");
-        DataSource.arrayOfOrderItems[DataSource.Config.numOfOrdersItems++] = Orderitem;
-        return Orderitem.ProductID;
-    }
-
-    public void DeleteOrderItem(int productID, int orderID)
-    {
-        for (int i = 0; i < Config.numOfOrderItems; i++)
+        foreach (OrderItem i in listOfOrderItems)
         {
-            if ((arrayOfOrderItems[i].ProductID == productID) && (arrayOfOrderItems[i].OrderID == orderID))
+            if (i.ID == id)
             {
-
-                for (int j = i; j < Config.numOfOrderItems - 1; j++)
-                {
-                    arrayOfOrderItems[j] = arrayOfOrderItems[j + 1];
-                }
-                Config.numOfOrderItems--;
+                listOfOrderItems.Remove(i);
                 return;
             }
         }
         throw new Exception("This order item does not exist in the system");
     }
 
-    public void UpdateOrderItem(OrderItem Orderitem)
+    public void Update(OrderItem Orderitem)
     {
-        for (int i = 0; i < Config.numOfOrderItems; i++)
-            if ((arrayOfOrderItems[i].ProductID == Orderitem.ProductID) && (arrayOfOrderItems[i].OrderID == Orderitem.OrderID))
-                arrayOfOrderItems[i] = Orderitem;
+        foreach (OrderItem i in listOfOrderItems)
+            if (i.ID == Orderitem.ID)
+            {
+                var index = listOfOrderItems.FindIndex(i => i.ID == Orderitem.ID);
+                listOfOrderItems[index] = Orderitem;
+            }
         throw new Exception("This order item does not exist in the system");
-
     }
 
-    public OrderItem GetOrderItem(int ProductID, int OrderID)
+    public OrderItem Get(int id)
     {
-        for (int i = 0; i < Config.numOfOrderItems; i++)
-            if ((arrayOfOrderItems[i].ProductID == ProductID) && (arrayOfOrderItems[i].OrderID == OrderID))
-                return arrayOfOrderItems[i];
+        foreach (OrderItem i in listOfOrderItems)
+            if (i.ID == id)
+                return i;
         throw new Exception("This order item does not exist in the system");
-
     }
 
     // return a List of current order items in all the orders of the store
-    public OrderItem[] GetOrderItemList()
+    public IEnumerable<OrderItem> GetList()
     {
-        OrderItem[] OrderItems = new OrderItem[Config.numOfOrderItems];
-        for (int i = 0; i < Config.numOfOrderItems; i++)
+        List<OrderItem> orderItems = new List<OrderItem>();
+        foreach (OrderItem i in listOfOrderItems)
         {
-            OrderItems[i] = arrayOfOrderItems[i];
+            orderItems.Add(i);
         }
-        return OrderItems;
+        return orderItems;
     }
 }
