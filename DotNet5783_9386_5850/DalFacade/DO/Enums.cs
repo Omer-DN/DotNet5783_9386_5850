@@ -5,7 +5,6 @@ public partial struct Enums
 { 
     public enum CostumerNames {Shimon,David,Reuben,Yakov,Shlomo,Moshe,Yuval,Elad,Omer,Yonatan}
     public enum CostumerAdress { Shimon74, David13, Reuben2, Yakov8, Shlomo65, Moshe27, Yuval44, Elad35, Omer24, Yonatan79 }
-
     public enum Category {vegetables,Meat,Legumes,DairyProducts,CleanProducts}
     public enum Vegetables {Tomatoes, Cucumbers, Potatoes, SweetPotatoes, Peppers, Garlic, Onion, Cabbage, Squash,Eggplant}
     public enum Pricesvegetables { Tomatoes = 5, Cucumbers = 4, Potatoes = 4, SweetPotatoes = 4, Peppers = 4, Garlic = 2 , Onion = 3, Cabbage = 4, Squash = 4, Eggplant = 5}
@@ -20,7 +19,6 @@ public partial struct Enums
 
     public enum CleanProducts { Shampoo, Soap, FloorLiquid, DishSoap, Cloth}
     public enum PricesCleanProducts { Shampoo = 10, Soap = 7, FloorLiquid = 11, DishSoap = 8, Cloth = 5 }
-
 
 
 }
