@@ -11,34 +11,7 @@ internal class DataSource
     internal static List<Order> listOfOrders = new List<Order>(100);
     internal static List<OrderItem> listOfOrderItems = new List<OrderItem>(200);
     readonly Random rand = new Random();
-    /*internal static Product[] arrayOfProducts = new Product[50];
-    internal static Order[] arrayOfOrders = new Order[100];
-    internal static OrderItem[] arrayOfOrderItems = new OrderItem[200];*/
 
-
-    //static internal class Config
-    //{
-    //    /*static internal int numOfProducts = 0;
-    //    static internal int numOfOrders = 0;
-    //    static internal int numOfOrdersItems = 0;*/
-    //    static internal int lastProductId = 100000;
-    //    static internal int lastOrderId = 100000;
-    //    static internal int lastOrderItemId = 100000;
-    //    internal static int numOfOrderItems;
-
-    //    static internal int getlastProductId()
-    //    {
-    //        return lastProductId++;
-    //    }
-    //    static internal int getlastOrderId()
-    //    {
-    //        return lastOrderId++;
-    //    }
-    //    static internal int getlastOrderItemId()
-    //    {
-    //        return lastOrderItemId++;
-    //    }
-    //}
 
     static internal int lastProductId = 100000;
     static internal int lastOrderId = 100000;
