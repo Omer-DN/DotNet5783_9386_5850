@@ -11,11 +11,9 @@ using DalApi;
 
 namespace BlApi
 {
-    public class IProduct
+    public interface IProduct
     {
-        public IEnumerable<BoProduct> GetProducts()
-        {
-            List<BoProduct> products = DataSource.listOfProducts
-        }
+        public IEnumerable<BoProduct?> GetProducts();
+
     }
 }
