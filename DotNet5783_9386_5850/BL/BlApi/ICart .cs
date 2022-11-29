@@ -1,15 +1,13 @@
-﻿using BL.BO;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BL.BO;
 
 namespace BlApi
 {
-    public interface IOrder
+    public interface ICart
     {
-        public IEnumerable<BoProduct?> GetOrder(int id);
-
     }
 }
