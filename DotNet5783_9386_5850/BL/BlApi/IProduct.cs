@@ -13,7 +13,11 @@ namespace BlApi
 {
     public interface IProduct
     {
-        public IEnumerable<BoProduct?> GetProducts();
+        public IEnumerable<BoProduct?> GetProducts()
+        {
+            return new List<BoProduct?>();
+
+        }
 
     }
 }
