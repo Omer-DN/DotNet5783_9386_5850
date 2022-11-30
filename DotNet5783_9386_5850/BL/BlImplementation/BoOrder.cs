@@ -4,9 +4,9 @@ using BO;
 
 namespace BlImplementation
 {
-    internal class Order : BlApi.IBOOrder
+    internal class BoOrder : BlApi.IBOOrder
     {
-        public IEnumerable<BoOrder?> GetOrders()
+        public IEnumerable<BO.BoOrder?> GetOrders()
         {
             return 
         }

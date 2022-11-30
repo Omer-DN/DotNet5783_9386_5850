@@ -3,7 +3,7 @@
 
 namespace BlApi
 {
-    public interface IBOOrder
+    public interface IBoOrder
     {
         public IEnumerable<BoProduct?> GetOrder()
         {
