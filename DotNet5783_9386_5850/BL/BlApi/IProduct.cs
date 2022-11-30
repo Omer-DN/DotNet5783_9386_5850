@@ -37,7 +37,8 @@ namespace BlApi
             {
                 try
                 {
-                    product.Get(id);
+                    product = new (product.Get(id));
+                    return product;
 
                 }
                 catch (Exception)
@@ -46,6 +47,7 @@ namespace BlApi
                 }
             }
         }
+
 
     }
 }
