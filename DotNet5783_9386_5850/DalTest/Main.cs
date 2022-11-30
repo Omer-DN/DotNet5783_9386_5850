@@ -13,12 +13,6 @@ namespace Dal
 {
     class TestClass
     {
-        /*private static DalProduct dalProduct = new DalProduct();
-        private static DalOrder dalOrder = new DalOrder();
-        private static DalOrderItem dalOrderItem = new DalOrderItem();*/
-        //private static IDal dal = new Dal.DalList();
-
-
         static void Main(string[] args)
         {
             IDal dal = new Dal.DalList();
@@ -263,7 +257,6 @@ namespace Dal
                                 default:
                                     Console.WriteLine("Please Enter correct number!");
                                     break;
-
                             }
                             Console.WriteLine("DalOrder: Please Choose one choice:");
                             Console.WriteLine("1 - Add a Order to the orders list of the store");
@@ -402,7 +395,5 @@ namespace Dal
                 Choice1 = int.Parse(Console.ReadLine());
             }
         }
-
-
     }
 }

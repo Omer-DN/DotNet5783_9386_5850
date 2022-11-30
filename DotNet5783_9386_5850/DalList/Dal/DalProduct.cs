@@ -9,7 +9,6 @@ using DalApi;
 
 namespace Dal;
 
-
 public class DalProduct:IProduct
 {
     public int Add(Product product)
@@ -46,7 +45,6 @@ public class DalProduct:IProduct
             return;
         }
         throw new Exception("This product does not exist in the system");
-
     }
 
     public Product Get(int id)
@@ -55,7 +53,6 @@ public class DalProduct:IProduct
             if (i.ID == id)
                 return i;
         throw new Exception("This product does not exist in the system");
-
     }
 
     // return a List of current products in the store
@@ -69,6 +66,3 @@ public class DalProduct:IProduct
         return products;
     }
 }
-
-
-

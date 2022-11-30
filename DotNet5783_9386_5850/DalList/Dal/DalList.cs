@@ -13,7 +13,5 @@ namespace Dal.Dal
         public IOrder Order => new DalOrder();
 
         public IOrderItem OrderItem => new DalOrderItem();
-
-
     }
 }

@@ -12,7 +12,6 @@ internal class DataSource
     internal static List<OrderItem> listOfOrderItems = new List<OrderItem>(200);
     readonly Random rand = new Random();
 
-
     static internal int lastProductId = 100000;
     static internal int lastOrderId = 100000;
     static internal int lastOrderItemId = 100000;
@@ -41,20 +40,6 @@ internal class DataSource
 
         Random r = new Random();
         parameter.ID = getlastProductId();
-        /*        bool flag = false;
-                while (flag == false)
-                {
-                    flag = true;
-                    parameter.ID = r.Next(100000, 999999);
-                    for (int i = 0; i < Config.numOfProducts; i++)
-                    {
-                        if (arrayOfProducts[i].ID == parameter.ID)
-                        {
-                            flag = false;
-                        }
-                    }
-                }
-        */
 
         parameter.Category = (Category)r.Next(0, 5);
         switch (parameter.Category)
@@ -99,27 +84,11 @@ internal class DataSource
         }
         parameter.InStock = r.Next(1, 101);
     }
-
-
     public static void InitializeOrder(Order parameter)
     {
         Random r = new Random();
         parameter.ID = getlastOrderId();
-        /*
-        bool flag = false;
-        while (flag == false)
-        {
-            flag = true;
-            parameter.ID = r.Next(100000, 1000000);
-            for (int i = 0; i < Config.numOfOrders; i++)
-            {
-                if (arrayOfOrders[i].ID == parameter.ID)
-                {
-                    flag = false;
-                }
-            }
-        }
-        */
+
         parameter.CostumerName = "" + (CostumerNames)r.Next(0,10);
         parameter.CostumerEmail = parameter.CostumerName + "@gmail.com";
         parameter.CostumerAdress =""+ (CostumerAdress)r.Next(0,10);
@@ -127,7 +96,6 @@ internal class DataSource
         parameter.ShipDate = parameter.OrderDate.AddDays(r.Next(0, 7));
         parameter.DeliveryDate = parameter.ShipDate.AddDays(r.Next(0, 10));
     }
-
 
     public static void InitializeOrderItem(OrderItem parameter)
     {
@@ -146,21 +114,18 @@ internal class DataSource
         {
             Product newProduct = new Product();
             InitializeProduct(newProduct);
-            //arrayOfProducts[i] = newProduct;
             listOfProducts.Add(newProduct);
         }
         for (int i = 0; i < 40; i++)
         {
             Order newOrder = new Order();
             InitializeOrder(newOrder);
-            //arrayOfOrders[i] = newOrder;
             listOfOrders.Add(newOrder);
         }
         for (int i = 0; i < 100; i++)
         {
             OrderItem newOrderItem = new OrderItem();
             InitializeOrderItem(newOrderItem);
-            //arrayOfOrderItems[i] = newOrderItem;
             listOfOrderItems.Add(newOrderItem);
         }
     }

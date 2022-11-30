@@ -9,11 +9,7 @@ internal class DalOrder : IOrder
 {
     public int Add(Order order)
     {
-        /*for (int i = 0; i < Config.numOfOrders; i++)
-            if (arrayOfProducts[i].ID == order.ID)
-                throw new Exception("This product already exists in the system");
-        order.ID = DataSource.Config.getlastOrderId();
-        DataSource.arrayOfOrders[DataSource.Config.numOfOrders++] = order;*/
+
         foreach (Order i in listOfOrders)
         {
             if (i.ID == order.ID)
@@ -30,14 +26,8 @@ internal class DalOrder : IOrder
         {
             if (i.ID == id)
             {
-
-                /*for (int j = i; j < Config.numOfOrders - 1; j++)
-                {
-                    arrayOfOrders[j] = arrayOfOrders[j + 1];
-                }
-                Config.numOfOrders--;*/
-                listOfOrders.Remove(i);
-                return;
+               listOfOrders.Remove(i);
+               return;
             }
         }
         throw new idNotFound("This order does not exist in the system");
@@ -52,14 +42,6 @@ internal class DalOrder : IOrder
             return;
         }
         throw new Exception("This order does not exist in the system");
-        /*foreach (Order i in listOfOrders)
-            if (i.ID == order.ID)
-            {
-                //arrayOfOrders[i] = order;
-                var temp = listOfOrders.Find(i => i.ID == order.ID);
-            }
-        throw new Exception("This order does not exist in the system");
-               */
     }
 
     public Order Get(int id)
@@ -80,12 +62,7 @@ internal class DalOrder : IOrder
             orders.Add(i);
         }
         return orders;
-        /*Order[] orders = new Order[Config.numOfOrders];
-        for(int i = 0; i < Config.numOfOrders; i++)
-        {
-            orders[i] = arrayOfOrders[i];
-        }
-        return orders;*/
+
     }
 
 
