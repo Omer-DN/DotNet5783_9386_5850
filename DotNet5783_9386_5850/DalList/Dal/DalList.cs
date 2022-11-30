@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DalApi;
-namespace Dal.Dal
+namespace DalList.Dal
 {
     sealed public class DalList : IDal
 

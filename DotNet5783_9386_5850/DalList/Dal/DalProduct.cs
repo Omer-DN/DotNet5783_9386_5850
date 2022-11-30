@@ -4,10 +4,10 @@ using DO;
 
 using static DO.Enums;
 
-using static Dal.DataSource;
+using static DalList.DataSource;
 using DalApi;
 
-namespace Dal;
+namespace DalList;
 
 public class DalProduct:IProduct
 {

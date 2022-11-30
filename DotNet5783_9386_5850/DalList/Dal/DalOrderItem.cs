@@ -1,10 +1,10 @@
 ﻿
 using DO;
 using System.Diagnostics;
-using static Dal.DataSource;
+using static DalList.DataSource;
 using DalApi;
 
-namespace Dal;
+namespace DalList;
 
 internal class DalOrderItem:IOrderItem
 {

@@ -3,7 +3,7 @@
 using DO;
 using static DO.Enums;
 
-namespace Dal;
+namespace DalList;
 
 internal class DataSource
 {

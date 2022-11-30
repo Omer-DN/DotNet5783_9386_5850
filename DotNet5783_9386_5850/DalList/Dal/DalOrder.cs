@@ -1,9 +1,9 @@
 ﻿
 
 using DO;
-using static Dal.DataSource;
+using static DalList.DataSource;
 using DalApi;
-namespace Dal;
+namespace DalList;
 
 internal class DalOrder : IOrder
 {

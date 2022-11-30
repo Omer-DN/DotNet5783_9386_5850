@@ -9,7 +9,7 @@ using static DO.Enums;
 using DalApi;
 
 
-namespace Dal
+namespace DalList
 {
     class TestClass
     {

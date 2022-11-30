@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using BL.BO;
 using BO;
-using Dal;
+using DalList;
 using DalApi;
 using DO;
 
@@ -31,7 +31,7 @@ namespace BlApi
         /// will return a constructed Product object
         /// throw its own appropriate exception Product request failed -
         /// (product does not exist in data layer - catch exception)
-        public Dal.DalProduct product (int id)
+        public DalList.DalProduct product (int id)
         {
             if (id > 0)
             {
