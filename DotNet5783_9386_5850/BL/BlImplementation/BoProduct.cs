@@ -1,14 +1,12 @@
 ﻿using BlApi;
-
+using Dal.Dal;
+using DalApi;
 
 namespace BlImplementation
 {
     internal class BoProduct : IBoProduct
     {
 
-       /* public IEnumerable<BL.BO.BoProduct?> GetProducts()
-        {
-            return
-        }*/
+        private IDal Dal = new DalList;
     }
 }

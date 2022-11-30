@@ -1,13 +1,11 @@
-﻿
-using BlApi;
+﻿using BlApi;
+using Dal.Dal;
+using DalApi;
 
 namespace BlImplementation
 {
     internal class BoCart : IBoCart
     {
-        /*public IEnumerable<BO.BoCart?> GetCarts()
-        {
-            return;
-        }*/
+        private IDal Dal = new DalList;
     }
 }
