@@ -8,10 +8,10 @@ namespace BlApi
 {
     public interface IBl
     {
-        public IBOProduct product { get; }
+        public IBoProduct BoProduct { get; }
 
-        public IBOOrder order { get; }
+        public IBoOrder BoOrder { get; }
 
-        public ICart cart { get;}  
+        public ICart BoCart { get;}  
     }
 }
