@@ -3,7 +3,7 @@
 
 namespace BlImplementation
 {
-    internal class Product : BlApi.IProduct
+    internal class Product : BlApi.IBOProduct
     {
 
         public IEnumerable<BoProduct?> GetProducts()

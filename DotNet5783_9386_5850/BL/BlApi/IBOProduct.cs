@@ -12,7 +12,7 @@ using DO;
 
 namespace BlApi
 {
-    public interface IProduct
+    public interface IBoProduct
     {
         /// Request a list of products from the data layer
         /// Build a list of products of the ProductForList type (logical entity) based on the data
