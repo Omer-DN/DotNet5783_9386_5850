@@ -1,14 +1,14 @@
-﻿using BL.BO;
+﻿using BlApi;
 
 
 namespace BlImplementation
 {
-    internal class BoProduct : BlApi.IBOProduct
+    internal class BoProduct : IBoProduct
     {
 
-        public IEnumerable<BL.BO.BoProduct?> GetProducts()
+       /* public IEnumerable<BL.BO.BoProduct?> GetProducts()
         {
             return
-        }
+        }*/
     }
 }

@@ -1,10 +1,13 @@
-﻿using BL.BO;
-using BO;
+﻿
+using BlApi;
 
 namespace BlImplementation
 {
-    internal class BoCart : BlApi.ICart
+    internal class BoCart : IBoCart
     {
-        public IEnumerable<BO.BoCart?> GetCarts();
+        /*public IEnumerable<BO.BoCart?> GetCarts()
+        {
+            return;
+        }*/
     }
 }

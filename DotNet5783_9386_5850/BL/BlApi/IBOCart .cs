@@ -8,7 +8,7 @@ using BO;
 
 namespace BlApi
 {
-    public interface ICart
+    public interface IBoCart
     {
         public IEnumerable<BoCart> GetCarts()
         {

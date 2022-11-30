@@ -12,6 +12,6 @@ namespace BlApi
 
         public IBoOrder BoOrder { get; }
 
-        public ICart BoCart { get;}  
+        public IBoCart BoCart { get;}  
     }
 }
