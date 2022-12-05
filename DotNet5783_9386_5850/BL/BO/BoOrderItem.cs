@@ -15,6 +15,8 @@ namespace BO
         public int Amount { get; set; }
         public double TotalPrice { get; set; }
 
+        public static int lastID = 100000;
+
         public override string ToString()
         {
             return

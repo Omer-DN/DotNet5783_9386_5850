@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace BO
 {
-    internal class Exceptions
+    public class productOutOfStock : Exception
     {
+        public productOutOfStock (string error) : base(error) { }
+
+
     }
 }
