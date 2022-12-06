@@ -4,7 +4,7 @@ namespace BlImplementation
 {
     internal class BoOrder : IBoOrder
     {
-        private DalApi.IDal Dal = new DalList.DalList();
+        private DalApi.IDal Dal;
     }
 
 
