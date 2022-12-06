@@ -1,14 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml.Linq;
+﻿
 using static BO.Enums;
 
 namespace BO
 {
+    /// <summary>
+    /// List order helper entity OrderForList - 
+    /// for order list screen
+    /// </summary>
     public class BoOrderForList
     {
         public int ID { get; set; }

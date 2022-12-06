@@ -1,15 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml.Linq;
+﻿
 using static BO.Enums;
-using static DO.Enums;
 
 namespace BO
 {
+    /// <summary>
+    /// OrderTracking helper entity - 
+    /// for order tracking screen
+    /// </summary>
     public class BoOrderTracking
     {
         public int ID { get; set; }

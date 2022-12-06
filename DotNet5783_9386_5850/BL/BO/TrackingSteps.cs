@@ -1,13 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿
 using static BO.Enums;
-using static DO.Enums;
 
 namespace BO
 {
+    /// <summary>
+    /// TrackingSteps helper entity - 
+    /// for order mode
+    /// </summary>
     public class TrackingSteps
     {
         public DateTime? Time { get; set; }

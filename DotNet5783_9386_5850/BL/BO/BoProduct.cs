@@ -1,13 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿
 using static BO.Enums;
 
 namespace BO
 {
+    /// <summary>
+    /// Main logical entity of a product (Product) - 
+    /// for screens of product details (for management)
+    /// </summary>
     public class BoProduct
     {
         public int ID { get; set; }

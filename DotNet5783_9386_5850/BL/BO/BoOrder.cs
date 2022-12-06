@@ -1,15 +1,12 @@
-﻿using DO;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml.Linq;
+﻿
 using static BO.Enums;
 
 namespace BO
 {
+    /// <summary>
+    /// Main logical entity of an order (Order) - 
+    /// for an order details screen and actions on an order
+    /// </summary>
     public class BoOrder
     {
         public int ID { get; set; }

@@ -1,14 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Common;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿
 using BL.BO;
-using BO;
-using DalList;
-using DalApi;
-using DO;
+
 
 namespace BlApi
 {

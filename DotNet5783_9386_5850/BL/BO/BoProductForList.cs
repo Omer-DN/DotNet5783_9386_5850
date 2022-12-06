@@ -1,13 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿
 using static BO.Enums;
 
 namespace BO
 {
+    /// <summary>
+    /// Helper entity of a product in the list ProductForList - 
+    /// for the product list screen and catalog screen
+    /// </summary>
     public class BoProductForList
     {
         public int ID { get; set; }
