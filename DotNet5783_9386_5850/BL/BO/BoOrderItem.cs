@@ -1,6 +1,10 @@
 ﻿
 namespace BO
 {
+    /// <summary>
+    /// Auxiliary entity of an item in an order (represents a line in an order) OrderItem - 
+    /// for a list of items in the shopping basket screen and in the order details screen
+    /// </summary>
     public class BoOrderItem
     {
         public int ID { get; set; }

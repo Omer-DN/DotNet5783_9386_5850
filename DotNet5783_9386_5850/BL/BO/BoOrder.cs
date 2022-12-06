@@ -3,6 +3,10 @@ using static BO.Enums;
 
 namespace BO
 {
+    /// <summary>
+    /// Main logical entity of an order (Order) - 
+    /// for an order details screen and actions on an order
+    /// </summary>
     public class BoOrder
     {
         public int ID { get; set; }

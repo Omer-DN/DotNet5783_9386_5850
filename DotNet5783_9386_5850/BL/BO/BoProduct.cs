@@ -3,6 +3,10 @@ using static BO.Enums;
 
 namespace BL.BO
 {
+    /// <summary>
+    /// Main logical entity of a product (Product) - 
+    /// for screens of product details (for management)
+    /// </summary>
     public class BoProduct
     {
         public int ID { get; set; }

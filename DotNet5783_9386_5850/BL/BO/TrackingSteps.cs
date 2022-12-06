@@ -3,6 +3,10 @@ using static BO.Enums;
 
 namespace BO
 {
+    /// <summary>
+    /// TrackingSteps helper entity - 
+    /// for order mode
+    /// </summary>
     public class TrackingSteps
     {
         public DateTime Time { get; set; }

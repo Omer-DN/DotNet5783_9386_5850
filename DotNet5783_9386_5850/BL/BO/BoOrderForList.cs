@@ -3,6 +3,10 @@ using static BO.Enums;
 
 namespace BO
 {
+    /// <summary>
+    /// List order helper entity OrderForList - 
+    /// for order list screen
+    /// </summary>
     public class BoOrderForList
     {
         public int ID { get; set; }

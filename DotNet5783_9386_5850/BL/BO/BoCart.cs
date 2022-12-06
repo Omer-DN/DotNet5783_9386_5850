@@ -1,6 +1,10 @@
 ﻿
 namespace BO
 {
+    /// <summary>
+    /// Main logical entity of the shopping cart Cart - 
+    /// for the shopping cart management screen and order confirmation
+    /// </summary>
     public class BoCart
     {
         public string? CostumerName { get; set; }

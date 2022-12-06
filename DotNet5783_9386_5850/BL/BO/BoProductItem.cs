@@ -2,6 +2,10 @@
 
 namespace BO
 {
+    /// <summary>
+    /// Auxiliary entity of a product item (which represents a product for the catalog) ProductItem - 
+    /// for the catalog screen - with the list of products that are shown to the buyer
+    /// </summary>
     public class BoProductItem
     {
         public int ID { get; set; }
