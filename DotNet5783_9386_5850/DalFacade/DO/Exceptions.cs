@@ -11,7 +11,7 @@ namespace DO
         public idNotFound (string error) : base(error) { }
     }
 
-    class idAlreadyExist : Exception
+    public class idAlreadyExist : Exception
     {
         public idAlreadyExist (string error) : base(error) { }
     }

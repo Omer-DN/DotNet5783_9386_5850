@@ -6,15 +6,14 @@ using System.Text;
 using System.Threading.Tasks;
 using static BO.Enums;
 
-namespace BL.BO
+namespace BO
 {
     public class BoProduct
     {
         public int ID { get; set; }
         public string? Name { get; set; }
         public double Price { get; set; }
-        public Category category { get; set; }
-
+        public Category Category { get; set; }
         public int InStock { get; set; }
 
         public override string ToString()
