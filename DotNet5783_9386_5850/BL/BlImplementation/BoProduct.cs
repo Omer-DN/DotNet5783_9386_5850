@@ -111,6 +111,4 @@ namespace BlImplementation
                 if (product.Price < 0) throw new BO.WrongProductDetails("Error. The Price of the product is Wrong");
             }
         }
-
-    }
 }

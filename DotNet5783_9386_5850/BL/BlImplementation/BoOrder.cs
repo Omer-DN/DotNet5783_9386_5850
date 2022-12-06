@@ -1,5 +1,6 @@
 ﻿using BlApi;
 
+
 namespace BlImplementation
 {
     internal class BoOrder : IBoOrder
