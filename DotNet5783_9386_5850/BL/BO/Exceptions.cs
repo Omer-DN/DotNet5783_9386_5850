@@ -66,5 +66,9 @@ namespace BO
     {
         public MissingEmailAddress(string error) : base(error) { }
     }
+        public class NotExist : Exception
+    {
+        public NotExist(string error) : base(error) { }
+    }
 
 }
