@@ -93,8 +93,8 @@ internal class DataSource
         parameter.CostumerEmail = parameter.CostumerName + "@gmail.com";
         parameter.CostumerAdress =""+ (CostumerAdress)r.Next(0,10);
         parameter.OrderDate = DateTime.MinValue;
-        parameter.ShipDate = parameter.OrderDate.AddDays(r.Next(0, 7));
-        parameter.DeliveryDate = parameter.ShipDate.AddDays(r.Next(0, 10));
+        parameter.ShipDate = DateTime.MinValue.AddDays(r.Next(0, 7));
+        parameter.DeliveryDate = DateTime.MinValue.AddDays(r.Next(0, 17));
     }
 
     public static void InitializeOrderItem(OrderItem parameter)

@@ -1,6 +1,5 @@
 ﻿using BlApi;
-using DO;
-using System.Net;
+
 
 namespace BlImplementation
 {
@@ -75,15 +74,17 @@ namespace BlImplementation
             return cart;
         }
         public void Order_Confirmation(BO.BoCart cart, DO.Order costumer)
-        {
+        {   
+            BO.BoOrderItem newOrderItem = new BO.BoOrderItem();
+
             foreach (var item in cart.Items)
             {
                 
                 DO.Product check_product = Dal.Product.Get(item.ID);
+
                 if (check_product.InStock < item.Amount)
                 {
                     throw new BO.ProductNotEnoughStock("Not enough of this product in stock");
-                    BO.BoOrderItem newOrderItem = new BO.BoOrderItem();
                     newOrderItem.ID = BO.BoOrderItem.lastID++;
                     newOrderItem.ProductID = item.ID;
                     newOrderItem.Amount = item.Amount;
@@ -107,7 +108,15 @@ namespace BlImplementation
             if (!string.Equals(costumer.CostumerEmail[-10], "@gmail.com"))
                 throw new BO.EmailAddressProblem("Problem with the customer's email address");
 
-            BO.BoOrderItem OrderItem = new BO.BoOrderItem();
+            DO.Order order = new DO.Order();
+            order.OrderDate = DateTime.Now;
+            order.ShipDate = DateTime.MinValue;
+            order.DeliveryDate = DateTime.MinValue;
+
+            DO.OrderItem orderItem = new DO.OrderItem();
+            orderItem.ID = newOrderItem.ID;
+
+
             
 
 
