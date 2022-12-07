@@ -70,11 +70,17 @@ namespace BlImplementation
             return newProductItem;
         }
 
-        public void AddProduct(DO.Product product)
+        public void AddProduct(BO.BoProduct product)
         {
             if(product.ID>0 && product.Name!="" && product.InStock>=0 && product.Price>=0)
             {
-                Dal.Product.Add(product);
+                DO.Product newProduct = new DO.Product();
+                newProduct.ID = product.ID;
+                newProduct.Name = product.Name;
+                newProduct.Price = product.Price;
+                newProduct.Category = (DO.Enums.Category)product.Category;
+                newProduct.InStock = product.InStock;
+                Dal.Product.Add(newProduct);
             }
             else
             {
