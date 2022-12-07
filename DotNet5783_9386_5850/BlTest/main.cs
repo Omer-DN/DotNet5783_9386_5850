@@ -62,17 +62,15 @@ namespace BlTest
                                         Console.WriteLine(Error.Message);
                                     }
                                     break;
-                            
+
                                 case 2:
                                     Console.WriteLine("Please Enter the ID of the product to get from the catalog:");
                                     id = int.Parse(Console.ReadLine()!);
                                     try
                                     {
-                                        BoProductItem newProductitem = BL.BoProduct.BuyerGetProduct(UserCart,id);
+                                        BoProductItem newProductitem = BL.BoProduct.BuyerGetProduct(UserCart, id);
                                         Console.WriteLine("Product found!");
-                                        Console.WriteLine("ID:{0}, Name:{1}, Price:{2}, Category:{3}, Amount in Cart:{4} In Stock:{5}",
-                                            newProductitem.ID, newProductitem.Name, newProductitem.Price,
-                                            newProductitem.Category, newProductitem.Amount,newProductitem.InStock);
+                                        Console.WriteLine(newProductitem);
                                     }
                                     catch (Exception Error)
                                     {
@@ -86,9 +84,7 @@ namespace BlTest
                                     {
                                         BoProduct newProductitem = BL.BoProduct.ManagerGetProduct(id);
                                         Console.WriteLine("Product found!");
-                                        Console.WriteLine("ID:{0}, Name:{1}, Price:{2}, Category:{3}, In Stock:{4}",
-                                            newProductitem.ID, newProductitem.Name, newProductitem.Price,
-                                            newProductitem.Category, newProductitem.InStock);
+                                        Console.WriteLine(newProductitem);
                                     }
                                     catch (Exception Error)
                                     {
@@ -100,8 +96,7 @@ namespace BlTest
                                     IEnumerable<BoProductForList> products = BL.BoProduct.GetListOfProducts();
                                     foreach (BoProductForList product in products)
                                     {
-                                        Console.WriteLine("ID:{0}, Name:{1}, Price:{2}, Category:{3}",
-                                            product.ID, product.Name, product.Price, product.Category);
+                                        Console.WriteLine(product);
                                     }
                                     break;
                                 case 5:
@@ -111,9 +106,7 @@ namespace BlTest
                                     {
                                         BoProduct productToUpdate = BL.BoProduct.ManagerGetProduct(id);
                                         Console.WriteLine("Product found!");
-                                        Console.WriteLine("ID:{0}, Name:{1}, Price:{2}, Category:{3}, In Stock:{4}",
-                                            productToUpdate.ID, productToUpdate.Name, productToUpdate.Price,
-                                            productToUpdate.Category, productToUpdate.InStock);
+                                        Console.WriteLine(productToUpdate);
                                         Console.WriteLine("Please Enter the details of the new product to update:");
                                         Console.WriteLine("Please enter Product Name:");
                                         name = Console.ReadLine()!;
@@ -164,11 +157,111 @@ namespace BlTest
                         break;
                     case 2:
                         Console.WriteLine("BoCart: Please Choose one choice:");
-                        
-
-
-
-
+                        //........
+                        //........
+                        //........
+                        break;
+                    case 3:
+                        Console.WriteLine("BoOrder: Please Choose one choice:");
+                        Console.WriteLine("1 - Get the list of orders");
+                        Console.WriteLine("2 - Get a order");
+                        Console.WriteLine("3 - Update order shipping");
+                        Console.WriteLine("4 - Update order delivery");
+                        Console.WriteLine("5 - Track a order");
+                        Console.WriteLine("0 - Exit");
+                        Choice2 = int.Parse(Console.ReadLine());
+                        while (Choice2 != 0)
+                        {
+                            switch (Choice2)
+                            {
+                                case 1:
+                                    try
+                                    {
+                                        Console.WriteLine("The Orders list of the store:");
+                                        IEnumerable<BoOrderForList> orders = BL.BoOrder.GetListOfOrders();
+                                        foreach (BoOrderForList order in orders)
+                                        {
+                                            Console.WriteLine(order);
+                                        }
+                                    }
+                                    catch (Exception Error)
+                                    {
+                                        Console.WriteLine(Error.Message);
+                                    }
+                                    break;
+                                case 2:
+                                    Console.WriteLine("Please Enter the ID of the order to get:");
+                                    int id = int.Parse(Console.ReadLine()!);
+                                    try
+                                    {
+                                        BoOrder order = BL.BoOrder.GetOrder(id);
+                                        Console.WriteLine("Order found!");
+                                        Console.WriteLine(order);
+                                    }
+                                    catch (Exception Error)
+                                    {
+                                        Console.WriteLine(Error.Message);
+                                    }
+                                    break;
+                                case 3:
+                                    Console.WriteLine("Please Enter the ID of the order to update shipping:");
+                                    id = int.Parse(Console.ReadLine()!);
+                                    try
+                                    {
+                                        BL.BoOrder.UpdateShipping(id);
+                                        Console.WriteLine("Order shipping date has updated to the current time!");
+                                    }
+                                    catch (Exception Error)
+                                    {
+                                        Console.WriteLine(Error.Message);
+                                    }
+                                    break;
+                                case 4:
+                                    Console.WriteLine("Please Enter the ID of the order to update delivery:");
+                                    id = int.Parse(Console.ReadLine()!);
+                                    try
+                                    {
+                                        BL.BoOrder.UpdateDelivery(id);
+                                        Console.WriteLine("Order delivery date has updated to the current time!");
+                                    }
+                                    catch (Exception Error)
+                                    {
+                                        Console.WriteLine(Error.Message);
+                                    }
+                                    break;
+                                case 5:
+                                    Console.WriteLine("Please Enter the ID of the order you want to track:");
+                                    id = int.Parse(Console.ReadLine()!);
+                                    try
+                                    {
+                                        BoOrderTracking track = BL.BoOrder.Track(id);
+                                        Console.WriteLine(track);
+                                    }
+                                    catch (Exception Error)
+                                    {
+                                        Console.WriteLine(Error.Message);
+                                    }
+                                    break;
+                                default:
+                                    Console.WriteLine("Please Enter correct number!");
+                                    break;
+                            }
+                            Console.WriteLine("BoOrder: Please Choose one choice:");
+                            Console.WriteLine("1 - Get the list of orders");
+                            Console.WriteLine("2 - Get a order");
+                            Console.WriteLine("3 - Update order shipping");
+                            Console.WriteLine("4 - Update order delivery");
+                            Console.WriteLine("5 - Track a order");
+                            Console.WriteLine("0 - Exit");
+                            Choice2 = int.Parse(Console.ReadLine());
+                        }
+                        break;
                 }
+
+
+
+
+
+                        }
     }
 }
