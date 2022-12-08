@@ -1,13 +1,14 @@
 ﻿
-using BO;
 
 namespace BlApi
 {
     public interface IBoCart
     {
-        public IEnumerable<BoCart> GetCart()
-        {
-            return new List<BoCart>();
-        } 
+        public IEnumerable<BO.BoOrderForList> GetListOfOrders();
+        public BO.BoOrder AddItem(BO.BoCart item, int id);
+        public BO.BoOrder UpdateItem(BO.BoCart item, int amount, int id);
+        public BO.BoOrder OrderConfirmation(BO.BoCart item, int id);
+
+
     }
 }

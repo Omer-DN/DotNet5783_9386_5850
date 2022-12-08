@@ -13,7 +13,7 @@ namespace BlImplementation
         /// <param name="id"></Product ID>
         /// <returns></Returns the list if it is correct, otherwise throws an exception>
         /// <exception cref="BO.productOutOfStock"></exception>
-        public BO.BoCart addItem(BO.BoCart cart, int id)
+        public BO.BoCart AddItem(BO.BoCart cart, int id)
         {
             bool findID = false;
             foreach (var item in cart.Items)
@@ -61,7 +61,7 @@ namespace BlImplementation
         /// <param name="id"></Product ID>
         /// <returns></Returns the list if it is correct, otherwise throws an exception>>
         /// <exception cref="BO.NegativeAmount"></exception>
-        public BO.BoCart updateItem(BO.BoCart cart, int amount, int id)
+        public BO.BoCart UpdateItem(BO.BoCart cart, int amount, int id)
         {
             
             foreach (var item in cart.Items)
@@ -100,7 +100,7 @@ namespace BlImplementation
         /// <exception cref="BO.MissingCustomerName"></exception>
         /// <exception cref="BO.MissingCustomerStreet"></exception>
         /// <exception cref="BO.EmailAddressProblem"></exception>
-        public void Order_Confirmation(BO.BoCart cart, DO.Order costumer)
+        public void OrderConfirmation(BO.BoCart cart, DO.Order costumer)
         {   
             BO.BoOrderItem newOrderItem = new BO.BoOrderItem();
 
@@ -123,8 +123,10 @@ namespace BlImplementation
                         break;
                     }
                 }
-                catch {}
-                throw new BO.NotExist("Product does not exist in the store");
+                catch (Exception)
+                {
+                    throw new BO.NotExist("Product does not exist in the store");
+                }
 
 
                 //צריך לעשות בדיקה אם המוצר בכלל לא קיים בחנות

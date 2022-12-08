@@ -157,9 +157,56 @@ namespace BlTest
                         break;
                     case 2:
                         Console.WriteLine("BoCart: Please Choose one choice:");
-                        //........
-                        //........
-                        //........
+                        Console.WriteLine("1 - Add product to the cart");
+                        Console.WriteLine("2 - Update a Product for the buyer (from cart)");
+                        Console.WriteLine("3 - Confirm / make an order");
+                        Choice2 = int.Parse(Console.ReadLine()!);
+                        while (Choice2 != 0)
+                        {
+                            switch (Choice2)
+                            {
+                                case 1:
+                                    try
+                                    {
+                                        Console.WriteLine("Please Enter the ID of the order to get:");
+                                        int id = int.Parse(Console.ReadLine()!);
+                                        IEnumerable<BoCart> carts = (IEnumerable<BoCart>)BL.BoCart.AddItem(UserCart, id);
+                                    }
+                                    catch (Exception Error)
+                                    {
+                                        Console.WriteLine(Error.Message);
+                                    }
+                                    break;
+                                case 2:
+                                    try
+                                    {
+                                        Console.WriteLine("Please Enter the ID of the order to get:");
+                                        int id = int.Parse(Console.ReadLine()!);
+
+                                        Console.WriteLine("Please Enter amount of product:");
+                                        int amount = int.Parse(Console.ReadLine()!);
+
+                                        IEnumerable<BoCart> carts = (IEnumerable<BoCart>)BL.BoCart.UpdateItem(UserCart, amount, id);
+                                    }
+                                    catch (Exception Error)
+                                    {
+                                        Console.WriteLine(Error.Message);
+
+                                    }
+                                    break;
+                                case 3:
+                                    try
+                                    {
+
+                                    }
+                                    catch (Exception Error)
+                                    {
+                                        Console.WriteLine(Error.Message);
+
+                                    }
+                                    break;
+                            }
+                        }
                         break;
                     case 3:
                         Console.WriteLine("BoOrder: Please Choose one choice:");
@@ -262,6 +309,7 @@ namespace BlTest
 
 
 
-                        }
+            }
+        }
     }
 }
