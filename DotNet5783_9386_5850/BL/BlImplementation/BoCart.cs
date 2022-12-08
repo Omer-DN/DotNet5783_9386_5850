@@ -1,6 +1,5 @@
 ﻿using BlApi;
 
-
 namespace BlImplementation
 {
     internal class BoCart : IBoCart
@@ -113,13 +112,13 @@ namespace BlImplementation
                     if (check_product.InStock < item.Amount)
                     {
                         throw new BO.ProductNotEnoughStock("Not enough of this product in stock");
-                        newOrderItem.ID = BO.BoOrderItem.lastID++;
+                       /* newOrderItem.ID = BO.BoOrderItem.lastID++;
                         newOrderItem.ProductID = item.ID;
                         newOrderItem.Amount = item.Amount;
                         newOrderItem.Name = item.Name;
                         newOrderItem.Price = item.Price;
                         newOrderItem.TotalPrice = item.Price * newOrderItem.Amount;
-                        cart.TotalPrice += item.Price;
+                        cart.TotalPrice += item.Price;*/
                         break;
                     }
                 }
@@ -147,6 +146,7 @@ namespace BlImplementation
             order.OrderDate = DateTime.Now;
             order.ShipDate = DateTime.MinValue;
             order.DeliveryDate = DateTime.MinValue;
+            
 
             
             foreach(var item in cart.Items)
@@ -155,10 +155,32 @@ namespace BlImplementation
                 productToOrder.ProductID = item.ID;
                 productToOrder.Amount = item.Amount;
                 productToOrder.Price += item.Price * item.Amount;
+                productToOrder.ID = order.ID;
+            
             }
+            
 
         }
 
+        public IEnumerable<BO.BoCart> GetBoCarts()
+        {
+            throw new NotImplementedException();
+        }
+
+        BO.BoOrder IBoCart.AddItem(BO.BoCart item, int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        BO.BoOrder IBoCart.UpdateItem(BO.BoCart item, int amount, int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public BO.BoOrder OrderConfirmation(BO.BoCart item, int id)
+        {
+            throw new NotImplementedException();
+        }
     }
     
 }
