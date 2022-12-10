@@ -99,66 +99,84 @@ namespace BlImplementation
         /// <exception cref="BO.MissingCustomerName"></exception>
         /// <exception cref="BO.MissingCustomerStreet"></exception>
         /// <exception cref="BO.EmailAddressProblem"></exception>
-        public void OrderConfirmation(BO.BoCart cart, DO.Order costumer)
+        public void OrderConfirmation(BO.BoCart cart, string customerName, string customerEmail, string customerAdress)
         {   
             BO.BoOrderItem newOrderItem = new BO.BoOrderItem();
+
+            if (customerName == null)
+                throw new BO.MissingCustomerName("Name does not exist in the system");
+
+            if (customerAdress == null)
+                throw new BO.MissingCustomerStreet("There is no street in the system");
+
+            if (customerEmail == null)
+                throw new BO.MissingCustomerStreet("The customer's email address is missing");
+
+            if (!string.Equals(customerEmail[-10], "@gmail.com"))
+                throw new BO.EmailAddressProblem("Problem with the customer's email address");
+            double TotalPrice_ = 0;
+            DO.Product product = new();
 
             foreach (var item in cart.Items)
             {
                 try
                 {
-                    DO.Product check_product = Dal.Product.Get(item.ID);
+                    product = Dal.Product.Get(item.ProductID);
 
-                    if (check_product.InStock < item.Amount)
-                    {
-                        throw new BO.ProductNotEnoughStock("Not enough of this product in stock");
-                       /* newOrderItem.ID = BO.BoOrderItem.lastID++;
-                        newOrderItem.ProductID = item.ID;
-                        newOrderItem.Amount = item.Amount;
-                        newOrderItem.Name = item.Name;
-                        newOrderItem.Price = item.Price;
-                        newOrderItem.TotalPrice = item.Price * newOrderItem.Amount;
-                        cart.TotalPrice += item.Price;*/
-                        break;
-                    }
                 }
                 catch (Exception)
                 {
                     throw new BO.NotExist("Product does not exist in the store");
                 }
 
-
-                //צריך לעשות בדיקה אם המוצר בכלל לא קיים בחנות
+                if (item.Amount <= 0)
+                    throw new BO.productOutOfStock(item.Name + " must be greater than zero");
+                if (product.InStock < item.Amount)
+                    throw new BO.productOutOfStock($"The product {item.Name} (ID:) {item.ProductID} is out of stock");
+                if (item.Price != product.Price)
+                    throw new BO.productOutOfStock($"price in cart of {item.Name} not match to price in Data Surce");
+                if (item.TotalPrice != (item.Amount * product.Price))
+                    throw new BO.productOutOfStock($"Total price of {item.ProductID} not match to Price and Amount in Cart");
+                TotalPrice_ += item.TotalPrice;
             }
-            if (string.IsNullOrEmpty(costumer.CostumerName))
-                throw new BO.MissingCustomerName("Name does not exist in the system");
 
-            if(string.IsNullOrEmpty(costumer.CostumerAdress))
-                throw new BO.MissingCustomerStreet("There is no street in the system");
+             if (TotalPrice_ != cart.TotalPrice)
+                throw new BO.WrongOrderDetails("Total price in cart not match to prices and Amont of all item in cart");
 
-            if (string.IsNullOrEmpty(costumer.CostumerEmail))
-                throw new BO.MissingCustomerStreet("The customer's email address is missing");
-
-            if (!string.Equals(costumer.CostumerEmail[-10], "@gmail.com"))
-                throw new BO.EmailAddressProblem("Problem with the customer's email address");
-
-            DO.Order order = new DO.Order();
-            order.OrderDate = DateTime.Now;
-            order.ShipDate = DateTime.MinValue;
-            order.DeliveryDate = DateTime.MinValue;
-            
-
-            
-            foreach(var item in cart.Items)
+            DO.Order order = new()
             {
-                DO.OrderItem productToOrder = new DO.OrderItem();
-                productToOrder.ProductID = item.ID;
-                productToOrder.Amount = item.Amount;
-                productToOrder.Price += item.Price * item.Amount;
-                productToOrder.ID = order.ID;
-            
+                CostumerName = customerName,
+                CostumerAdress = customerAdress,
+                CostumerEmail = customerEmail,
+                OrderDate = DateTime.Now,
+                ShipDate = null,
+                DeliveryDate = null
+            };
+
+            try
+            {
+                //try to add order to data sirce in Dal
+                int orderId = Dal.Order.Add(order);
+                //create orderItem in Dal and update amount of product
+                DO.OrderItem orderItem = new();
+                foreach (var item in cart.Items)
+                {
+                    //create an orderItem for dall and add it
+                    orderItem.OrderID = orderId;
+                    orderItem.ProductID = item.ProductID;
+                    orderItem.Amount = item.Amount;
+                    orderItem.Price = item.Price;
+                    int orderItemId = Dal.OrderItem.Add(orderItem);
+                    //update amount of product in Dak
+                    product = Dal.Product.Get(item.ProductID);
+                    product.InStock -= item.Amount;
+                    Dal.Product.Update(product);
+                }
             }
-            
+            catch (Exception error)
+            {
+                throw new BO.WrongProductDetails(error.Message);
+            }
 
         }
 
