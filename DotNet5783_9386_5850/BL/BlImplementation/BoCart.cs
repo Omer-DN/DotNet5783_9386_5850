@@ -2,9 +2,9 @@
 
 namespace BlImplementation
 {
-    internal class BoCart : IBoCart
+    internal class Bocart:IBoCart
     {
-        private DalApi.IDal Dal;
+        private DalApi.IDal Dal = new DalList.Dal.DalList();
         /// <summary>
         /// Adding a product to the shopping cart
         /// </summary>
@@ -177,28 +177,6 @@ namespace BlImplementation
             {
                 throw new BO.WrongProductDetails(error.Message);
             }
-
-        }
-
-        public IEnumerable<BO.BoCart> GetBoCarts()
-        {
-            throw new NotImplementedException();
-        }
-
-        BO.BoOrder IBoCart.AddItem(BO.BoCart item, int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        BO.BoOrder IBoCart.UpdateItem(BO.BoCart item, int amount, int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public BO.BoOrder OrderConfirmation(BO.BoCart item, int id)
-        {
-            throw new NotImplementedException();
         }
     }
-
 }
