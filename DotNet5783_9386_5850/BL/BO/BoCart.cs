@@ -7,18 +7,18 @@ namespace BO
     /// </summary>
     public class BoCart
     {
-        public string? CostumerName { get; set; }
-        public string? CostumerEmail { get; set; }
-        public string? CostumerAdress { get; set; }
+        public string? CustumerName { get; set; }
+        public string? CustumerEmail { get; set; }
+        public string? CustumerAdress { get; set; }
         public List<BoOrderItem>?  Items { get; set; }
         public double TotalPrice { get; set; }
         public override string ToString()
         {
             return
             $@"
-            Costumer Name - {CostumerName} 
-            Costumer Email - {CostumerEmail}
-            Costumer Adress - {CostumerAdress}
+            Costumer Name - {CustumerName} 
+            Costumer Email - {CustumerEmail}
+            Costumer Adress - {CustumerAdress}
             List Of Items: {Items} 
             Total Price: {TotalPrice}";
         }

@@ -1,16 +1,18 @@
 ﻿using DalApi;
 using BlApi;
-using DO;
 using BO;
+using DO;
+using BlImplementation;
 
 namespace BlTest
 {
     internal class Program
     {
+        static BO.Cart cart = new Cart();
         static void Main(string[] args)
         {
             IBl BL = new Bl();
-            BoCart UserCart = new BoCart();
+            BoCart user = new BoCart();
             Console.WriteLine("Welcome, Please Choose one choice from the Menu:");
             Console.WriteLine("1 - Check the BoProduct Class");
             Console.WriteLine("2 - Check the BoCart Class");
@@ -68,7 +70,7 @@ namespace BlTest
                                     id = int.Parse(Console.ReadLine()!);
                                     try
                                     {
-                                        BoProductItem newProductitem = BL.BoProduct.BuyerGetProduct(UserCart, id);
+                                        BoProductItem newProductitem = BL.BoProduct.BuyerGetProduct(user, id);
                                         Console.WriteLine("Product found!");
                                         Console.WriteLine(newProductitem);
                                     }
@@ -156,9 +158,27 @@ namespace BlTest
                         }
                         break;
                     case 2:
+                        string? name, adress, email;
+                        int productId, amount;
+                        //Creates a user entity with input from the user
+                        Console.WriteLine("Please enter the customer's name");
+                        name = Console.ReadLine();
+                        Console.WriteLine("Please enter the customer's Email");
+                        email = Console.ReadLine();
+                        Console.WriteLine("Please enter the customer's adress");
+                        adress = Console.ReadLine();
+                        user.CustumerName = name;
+                        user.CustumerAdress = adress;
+                        user.CustumerEmail = email;
+                        user.Items = new List<BoOrderItem>();
+                        user.TotalPrice = 0;
+
+                        bool success = false;
+                        bool exit = false;
+
                         Console.WriteLine("BoCart: Please Choose one choice:");
-                        Console.WriteLine("1 - Add product to the cart");
-                        Console.WriteLine("2 - Update a Product for the buyer (from cart)");
+                        Console.WriteLine("1 - Add product to the user");
+                        Console.WriteLine("2 - Update a Product for the buyer (from user)");
                         Console.WriteLine("3 - Confirm / make an order");
                         Choice2 = int.Parse(Console.ReadLine()!);
                         while (Choice2 != 0)
@@ -170,7 +190,9 @@ namespace BlTest
                                     {
                                         Console.WriteLine("Please Enter the ID of the order to get:");
                                         int id = int.Parse(Console.ReadLine()!);
-                                        IEnumerable<BoCart> carts = (IEnumerable<BoCart>)BL.BoCart.AddItem(UserCart, id);
+                                        IEnumerable<BoCart> carts = (IEnumerable<BoCart>)BL.BoCart.AddItem(user, id);
+                                        user = BL.BoCart.AddItem(user, productId) 
+                                        Console.WriteLine(user);
                                     }
                                     catch (Exception Error)
                                     {
@@ -184,25 +206,31 @@ namespace BlTest
                                         int id = int.Parse(Console.ReadLine()!);
 
                                         Console.WriteLine("Please Enter amount of product:");
-                                        int amount = int.Parse(Console.ReadLine()!);
+                                        int amountOfItem = int.Parse(Console.ReadLine()!);
 
-                                        IEnumerable<BoCart> carts = (IEnumerable<BoCart>)BL.BoCart.UpdateItem(UserCart, amount, id);
+                                        IEnumerable<BoCart> carts = (IEnumerable<BoCart>)BL.BoCart.UpdateItem(user, amountOfItem, id);
+                                        Console.WriteLine(carts);
                                     }
                                     catch (Exception Error)
                                     {
                                         Console.WriteLine(Error.Message);
-
                                     }
                                     break;
                                 case 3:
                                     try
                                     {
-
+                                        Console.WriteLine("Please enter the customer's name");
+                                        name = Console.ReadLine();
+                                        Console.WriteLine("Please enter the customer's email");
+                                        email = Console.ReadLine();
+                                        Console.WriteLine("Please enter the customer's adress");
+                                        adress = Console.ReadLine();
+                                        BL.BoCart.OrderConfirmation(user, name, email, adress);
+                                        Console.WriteLine("The ordr has been orderd succsesufy");
                                     }
                                     catch (Exception Error)
                                     {
                                         Console.WriteLine(Error.Message);
-
                                     }
                                     break;
                             }

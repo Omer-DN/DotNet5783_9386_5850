@@ -4,7 +4,7 @@ namespace BlImplementation
 {
     internal class BoCart : IBoCart
     {
-        private DalApi.IDal Dal ;
+        private DalApi.IDal Dal;
         /// <summary>
         /// Adding a product to the shopping cart
         /// </summary>
@@ -37,10 +37,10 @@ namespace BlImplementation
             {
                 //If the product is out of stock
                 DO.Product check_product = Dal.Product.Get(id);
-                if(check_product.InStock != 0)
+                if (check_product.InStock != 0)
                 {
                     BO.BoOrderItem newItem = new BO.BoOrderItem();
-                    newItem.ProductID =id;
+                    newItem.ProductID = id;
                     newItem.Amount = 1;
                     newItem.ID = BO.BoOrderItem.lastID++;
                     newItem.Name = check_product.Name;
@@ -62,10 +62,10 @@ namespace BlImplementation
         /// <exception cref="BO.NegativeAmount"></exception>
         public BO.BoCart UpdateItem(BO.BoCart cart, int amount, int id)
         {
-            
+
             foreach (var item in cart.Items)
             {
-                if(item.ID == id)
+                if (item.ID == id)
                 {
                     if (item.Amount < amount)
                     {
@@ -84,7 +84,7 @@ namespace BlImplementation
                         item.TotalPrice -= item.Price * item.Amount;
                         item.Amount = amount;
                     }
-                    if(amount < 0)
+                    if (amount < 0)
                         throw new BO.NegativeAmount("can't be a negative amount");
                 }
             }
@@ -100,7 +100,7 @@ namespace BlImplementation
         /// <exception cref="BO.MissingCustomerStreet"></exception>
         /// <exception cref="BO.EmailAddressProblem"></exception>
         public void OrderConfirmation(BO.BoCart cart, string customerName, string customerEmail, string customerAdress)
-        {   
+        {
             BO.BoOrderItem newOrderItem = new BO.BoOrderItem();
 
             if (customerName == null)
@@ -140,7 +140,7 @@ namespace BlImplementation
                 TotalPrice_ += item.TotalPrice;
             }
 
-             if (TotalPrice_ != cart.TotalPrice)
+            if (TotalPrice_ != cart.TotalPrice)
                 throw new BO.WrongOrderDetails("Total price in cart not match to prices and Amont of all item in cart");
 
             DO.Order order = new()
@@ -200,5 +200,5 @@ namespace BlImplementation
             throw new NotImplementedException();
         }
     }
-    
+
 }
