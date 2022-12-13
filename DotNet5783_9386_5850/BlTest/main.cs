@@ -216,7 +216,7 @@ while (Choice1 != 0)
                             email = Console.ReadLine();
                             Console.WriteLine("Please enter the customer's adress");
                             adress = Console.ReadLine();
-                            BL.BoCart.OrderConfir(user, name, email, adress);
+                            BL.BoCart.OrderConfirmation(user, name, email, adress);
                             Console.WriteLine("The ordr has been orderd succsesufy");
                         }
                         catch (Exception Error)
