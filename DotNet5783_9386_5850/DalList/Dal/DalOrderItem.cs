@@ -5,7 +5,7 @@ using DalApi;
 
 namespace DalList;
 
-internal class DalOrderItem:IOrderItem
+public class DalOrderItem:IOrderItem
 {
     public int Add(OrderItem Orderitem)
     {

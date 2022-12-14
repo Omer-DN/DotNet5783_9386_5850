@@ -17,10 +17,10 @@ namespace BO
         {
             return
             $@"
-            ID = {ID}: {ID} 
+            ID : {ID} 
             Name: {Name} 
             Price: {Price}
-            Category: {category}";
+            Category: {Category}";
         }
 
     }

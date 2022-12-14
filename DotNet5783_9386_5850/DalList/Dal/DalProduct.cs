@@ -18,7 +18,7 @@ public class DalProduct:IProduct
             if (i.ID == product.ID)
                 throw new idAlreadyExist("This product already exists in the system");
         }
-        product.ID = DataSource.getlastProductId();
+        //product.ID = DataSource.getlastProductId(); //stage 1
         DataSource.listOfProducts.Add(product);
         return product.ID;
     }

@@ -12,7 +12,7 @@ namespace BlApi
         public void AddProduct(BO.BoProduct product);
         public void DeleteProduct(int id);
         public void UpdateProduct(BO.BoProduct product);
-        public BO.BoProduct Create(string name, double price, BO.Enums.Category category, int instock);
+        public BO.BoProduct Create(int id, string name, double price, BO.Enums.Category category, int instock);
 
 
     }

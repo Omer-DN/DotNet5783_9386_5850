@@ -21,8 +21,8 @@ namespace BO
             ID = {ID}
             Name: {Name}
             Price: {Price}
-            category - {category} 
-            Amount in stock: {Amount}
+            category - {Category} 
+            Amount in Cart: {Amount}
             InStock: {InStock}";
         }
 

@@ -2,7 +2,7 @@
 
 namespace BlImplementation
 {
-    internal class Bocart:IBoCart
+    internal class BoCart:IBoCart
     {
         private DalApi.IDal Dal = new DalList.Dal.DalList();
         /// <summary>

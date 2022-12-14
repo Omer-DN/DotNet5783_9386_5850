@@ -1,12 +1,12 @@
 ﻿using BlApi;
-using DalApi;
+
 
 
 namespace BlImplementation
 {
     internal class BoProduct : IBoProduct
     {
-        private DalApi.IDal Dal;
+        private DalApi.IDal Dal = new DalList.Dal.DalList() ;
 
         public IEnumerable<BO.BoProductForList> GetListOfProducts()
         {
@@ -19,7 +19,7 @@ namespace BlImplementation
                 newItem.ID = item.ID;
                 newItem.Name = item.Name;
                 newItem.Price = item.Price;
-                newItem.category = (BO.Enums.Category)item.Category;
+                newItem.Category = (BO.Enums.Category)item.Category;
                 newList.Add(newItem);
             }
             return newList;
@@ -46,12 +46,13 @@ namespace BlImplementation
             BO.BoProductItem newProductItem = new BO.BoProductItem();
             if (id > 0)
             {
-                newProductItem.Name = Dal.Product.Get(id).Name;
-                newProductItem.ID = Dal.Product.Get(id).ID;
-                newProductItem.Price = Dal.Product.Get(id).Price;
-                if (Dal.Product.Get(id).InStock > 0)
+                DO.Product dataProduct = Dal.Product!.Get(id);
+                newProductItem.Name = dataProduct.Name;
+                newProductItem.ID = dataProduct.ID;
+                newProductItem.Price = dataProduct.Price;
+                if (dataProduct.InStock > 0)
                     newProductItem.InStock = true;
-                newProductItem.category = (BO.Enums.Category)Dal.Product.Get(id).Category;
+                newProductItem.Category = (BO.Enums.Category)dataProduct.Category;
                 bool inCart = false;
                 foreach (var item in cart.Items)
                 {
@@ -72,7 +73,8 @@ namespace BlImplementation
 
         public void AddProduct(BO.BoProduct product)
         {
-            if (product.ID > 0 && product.Name != "" && product.InStock >= 0 && product.Price >= 0)
+            if (product.ID >0 && product.Name != "" && ((int)product.Category>0 && (int)product.Category < 6)
+                && product.InStock >= 0 && product.Price >= 0)
             {
                 DO.Product newProduct = new DO.Product();
                 newProduct.ID = product.ID;
@@ -84,10 +86,12 @@ namespace BlImplementation
             }
             else
             {
-                if (product.ID <= 0) throw new BO.WrongProductDetails("Error. The ID of the product is Wrong");
-                if (product.Name == "") throw new BO.WrongProductDetails("Error. The Name of the product is Wrong");
-                if (product.InStock < 0) throw new BO.WrongProductDetails("Error. The In-Stock of the product is Wrong");
-                if (product.Price < 0) throw new BO.WrongProductDetails("Error. The Price of the product is Wrong");
+                if((int)product.Category < 1 || (int)product.Category > 5)
+                    throw new BO.WrongProductDetails("Error. The category of the product must be 1-5 number");
+                if (product.ID <= 0) throw new BO.WrongProductDetails("Error. The ID of the product cannot be negative or zero");
+                if (product.Name == "") throw new BO.WrongProductDetails("Error. The Name of the product cant be empty");
+                if (product.InStock < 0) throw new BO.WrongProductDetails("Error. The number in-Stock of the product cannot be negative");
+                if (product.Price < 0) throw new BO.WrongProductDetails("Error. The Price of the product cannot be negative");
             }
         }
 
@@ -124,9 +128,10 @@ namespace BlImplementation
             }
         }
 
-        public BO.BoProduct Create(string name, double price, BO.Enums.Category category, int instock)
+        public BO.BoProduct Create(int id,string name, double price, BO.Enums.Category category, int instock)
         {
             BO.BoProduct newProduct = new BO.BoProduct();
+            newProduct.ID = id;
             newProduct.Name = name;
             newProduct.Price = price;
             newProduct.Category = category;

@@ -5,7 +5,7 @@ namespace BlImplementation
 {
     internal class BoOrder : IBoOrder
     {
-        private DalApi.IDal Dal;
+        private DalApi.IDal Dal = new DalList.Dal.DalList();
 
         public IEnumerable<BO.BoOrderForList> GetListOfOrders()
         {

@@ -32,7 +32,7 @@ internal class DataSource
 
     static DataSource()
     {
-        s_initialize();
+        //s_initialize();
     }
 
     public static void InitializeProduct(Product parameter)

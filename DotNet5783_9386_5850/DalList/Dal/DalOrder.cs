@@ -5,7 +5,7 @@ using static DalList.DataSource;
 using DalApi;
 namespace DalList;
 
-internal class DalOrder : IOrder
+public class DalOrder : IOrder
 {
     public int Add(Order order)
     {
