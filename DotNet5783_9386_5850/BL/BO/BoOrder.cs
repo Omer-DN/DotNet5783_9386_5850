@@ -18,7 +18,7 @@ namespace BO
         public DateTime? ShipDate { get; set; }
         public DateTime? DeliveryDate { get; set; }
         public DateTime? PaymentDate { get; set; }
-        public List<BoOrderItem>? Items { get; set; }
+        public List<BoOrderItem?>? Items { get; set; }
         public double TotalPrice { get; set; }
         public override string ToString()
         {

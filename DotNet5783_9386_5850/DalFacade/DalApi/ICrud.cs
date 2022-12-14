@@ -9,6 +9,6 @@ namespace DalApi
         public void Update(T obj);
         public void Delete(int id);
         public T Get(int id);
-        public IEnumerable<T> GetList();
+        public IEnumerable<T?>? GetList();
     }
 }
