@@ -6,7 +6,7 @@ namespace BlApi
 {
     public interface IBoProduct
     {
-        public IEnumerable<BO.BoProductForList> GetListOfProducts();
+        public IEnumerable<BO.BoProductForList>? GetListOfProducts();
         public BO.BoProduct ManagerGetProduct(int id);
         public BO.BoProductItem BuyerGetProduct(BO.BoCart cart, int id);
         public void AddProduct(BO.BoProduct product);
