@@ -8,7 +8,7 @@ public interface IProduct : ICrud<Product>
     //methods for Product only:
     public Product Create(string name, double price, Category category, int instock)
     {
-        Product newProduct = new Product();
+        Product newProduct = new ();
         newProduct.Name = name;
         newProduct.Price = price;
         newProduct.Category = category;

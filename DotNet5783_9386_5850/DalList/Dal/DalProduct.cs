@@ -10,13 +10,14 @@ public class DalProduct:IProduct
 {
     public int Add(Product product)
     {
-        foreach (Product i in listOfProducts)
-        {
-            if (i.ID == product.ID)
-                throw new idAlreadyExist("This product already exists in the system");
-        }
+        if(!(listOfProducts== null))
+            foreach (Product i in listOfProducts)
+            {
+               if (i.ID == product.ID)
+                    throw new idAlreadyExist("This product already exists in the system");
+            }
         //product.ID = DataSource.getlastProductId(); //stage 1
-        DataSource.listOfProducts.Add(product);
+        listOfProducts.Add(product);
         return product.ID;
     }
 

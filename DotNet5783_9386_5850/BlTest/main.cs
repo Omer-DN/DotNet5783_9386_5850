@@ -10,6 +10,7 @@ internal class Program
     {
         //Cart cart = new();
         IBl BL = new Bl();
+        BoProduct NewProduct = new();
         BoCart cart = new();
         //cart.Items = new List<BoOrderItem>();
         Console.WriteLine("Welcome, Please Choose one choice from the Menu:");
@@ -56,8 +57,8 @@ internal class Program
                                     category = (BO.Enums.Category)int.Parse(Console.ReadLine()!); category--;
                                     Console.WriteLine("Please select quantity in stock for the product:");
                                     instock = int.Parse(Console.ReadLine()!);
-                                    BoProduct newProduct = BL.BoProduct.Create(id, name_p, price, category, instock);
-                                    BL.BoProduct.AddProduct(newProduct);
+                                    NewProduct = BL.BoProduct.Create(id, name_p, price, category, instock);
+                                    BL.BoProduct.AddProduct(NewProduct);
                                     Console.WriteLine("The product has been successfully added!");
                                 }
                                 catch (Exception Error)
@@ -120,7 +121,7 @@ internal class Program
                                     category = (BO.Enums.Category)int.Parse(Console.ReadLine()!);
                                     Console.WriteLine("Please select quantity in stock for the product:");
                                     instock = int.Parse(Console.ReadLine()!);
-                                    BoProduct NewProduct = BL.BoProduct.Create(id, name_p, price, category, instock);
+                                    NewProduct = BL.BoProduct.Create(id, name_p, price, category, instock);
                                     NewProduct.ID = productToUpdate.ID;
                                     BL.BoProduct.UpdateProduct(NewProduct);
                                     Console.WriteLine("The product has been successfully updated!");
@@ -189,7 +190,7 @@ internal class Program
                     }
                     bool isOK = false;
 
-                    Console.WriteLine("Please Choose one choice:\n" +
+                    Console.WriteLine("\nPlease Choose one choice:\n" +
                         "1 - Add product to cart\n" +
                         "2 - Update a Product\n" +
                         "3 - Confirm order\n" +
@@ -209,11 +210,7 @@ internal class Program
                                     if (isOK)
                                     {
                                         cart = BL.BoCart.AddItem(cart, productId);
-                                        //foreach (BoOrderItem item in cart.Items)
-                                        //{
-                                        //    Console.WriteLine(item);
-                                        //}
-                                        Console.WriteLine(cart.Items);
+                                        Console.WriteLine(cart);
                                     }
                                     else
                                         throw new DataRequestFailed("ID muse be int");
@@ -236,14 +233,6 @@ internal class Program
                                     break;
 
 
-                                //int id = int.Parse(Console.ReadLine()!);
-
-                                //int amountOfItem = int.Parse(Console.ReadLine()!);
-
-                                //IEnumerable<BoCart> carts = (IEnumerable<BoCart>)BL.BoCart.UpdateItem(cart, amountOfItem, id);
-                                //Console.WriteLine(carts);
-
-
                                 case 3:
                                     try
                                     {
@@ -262,8 +251,14 @@ internal class Program
                                     }
                                     break;
                             }
-
+                            Console.WriteLine("\nPlease Choose one choice:\n" +
+                            "1 - Add product to cart\n" +
+                            "2 - Update a Product\n" +
+                            "3 - Confirm order\n" +
+                            "0 - Exit\n");
+                            Choice2 = int.Parse(Console.ReadLine()!);
                         }
+                        
 
                     }
                     catch (Exception e)
