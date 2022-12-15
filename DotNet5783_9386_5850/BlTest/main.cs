@@ -166,7 +166,7 @@ while (Choice1 != 0)
             try
             {
                 //Creates a user entity with input from the user
-                Console.WriteLine("Please enter the customer's name_p");
+                Console.WriteLine("Please enter the customer's name");
                 name = Console.ReadLine();
                 Console.WriteLine("Please enter the customer's Email");
                 email = Console.ReadLine();
