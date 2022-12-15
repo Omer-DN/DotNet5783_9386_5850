@@ -54,7 +54,7 @@ internal class Program
                                     price = double.Parse(Console.ReadLine()!);
                                     Console.WriteLine("Please enter Product's category:");
                                     Console.WriteLine("1 - vegetables, 2 - Meat, 3 - Legumes, 4 - DairyProducts, 5 - CleanProducts");
-                                    category = (BO.Enums.Category)int.Parse(Console.ReadLine()!); category--;
+                                    category = (BO.Enums.Category)int.Parse(Console.ReadLine()!);/* category--;*/
                                     Console.WriteLine("Please select quantity in stock for the product:");
                                     instock = int.Parse(Console.ReadLine()!);
                                     NewProduct = BL.BoProduct.Create(id, name_p, price, category, instock);
@@ -157,7 +157,7 @@ internal class Program
                         Console.WriteLine("5 - Update a Product from the store");
                         Console.WriteLine("6 - Delete a Product from the store");
                         Console.WriteLine("0 - Exit");
-                        Choice2 = int.Parse(Console.ReadLine()!);
+                        Choice2 = int.Parse(Console.ReadLine());
                     }
                     Console.WriteLine("Welcome, Please Choose one choice from the Menu:");
                     Console.WriteLine("1 - Check the BoProduct Class");

@@ -5,6 +5,7 @@ namespace BlImplementation
     internal class BoCart:IBoCart
     {
         private DalApi.IDal Dal = new DalList.Dal.DalList();
+        DO.Product detailproduct = new();
         /// <summary>
         /// Adding a product to the shopping cart
         /// </summary>
@@ -14,7 +15,6 @@ namespace BlImplementation
         /// <exception cref="BO.ProductOutOfStock"></exception>
         public BO.BoCart AddItem(BO.BoCart cart, int id)
         {
-            DO.Product detailproduct = new ();
             try
             {
                 detailproduct = Dal.Product.Get(id);
