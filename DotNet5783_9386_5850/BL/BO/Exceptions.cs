@@ -5,12 +5,10 @@ namespace BO
     /// <summary>
     /// List of exceptions
     /// </summary>
-    public class productOutOfStock : Exception
+    public class ProductOutOfStock : Exception
     {
-        public productOutOfStock (string error) : base(error) { }
-
+        public ProductOutOfStock (string error) : base(error) { }
     }
-
     public class WrongProductDetails : Exception
     {
         public WrongProductDetails(string error) : base(error) { }
@@ -61,6 +59,11 @@ namespace BO
         public class NotExist : Exception
     {
         public NotExist(string error) : base(error) { }
+    }
+
+        public class DataRequestFailed: Exception
+    {
+        public DataRequestFailed(string error) : base(error) { } 
     }
 
 }
