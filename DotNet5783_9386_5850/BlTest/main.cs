@@ -209,10 +209,11 @@ internal class Program
                                     if (isOK)
                                     {
                                         cart = BL.BoCart.AddItem(cart, productId);
-                                        foreach (BoOrderItem item in cart.Items)
-                                        {
-                                            Console.WriteLine(item);
-                                        }
+                                        //foreach (BoOrderItem item in cart.Items)
+                                        //{
+                                        //    Console.WriteLine(item);
+                                        //}
+                                        Console.WriteLine(cart.Items);
                                     }
                                     else
                                         throw new DataRequestFailed("ID muse be int");

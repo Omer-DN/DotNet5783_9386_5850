@@ -1,9 +1,6 @@
 ﻿
 
 using DO;
-
-using static DO.Enums;
-
 using static DalList.DataSource;
 using DalApi;
 

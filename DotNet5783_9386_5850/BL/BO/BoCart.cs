@@ -10,7 +10,7 @@ namespace BO
         public string? CustumerName { get; set; }
         public string? CustumerEmail { get; set; }
         public string? CustumerAdress { get; set; }
-        public List<BoOrderItem>  Items { get; set; }
+        public List<BoOrderItem>?  Items { get; set; }
         public double TotalPrice { get; set; }
         public override string ToString()
         {

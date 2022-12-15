@@ -14,7 +14,7 @@ namespace BlImplementation
         /// <exception cref="BO.ProductOutOfStock"></exception>
         public BO.BoCart AddItem(BO.BoCart cart, int id)
         {
-            DO.Product detailproduct = new DO.Product();
+            DO.Product detailproduct = new ();
             try
             {
                 detailproduct = Dal.Product.Get(id);
