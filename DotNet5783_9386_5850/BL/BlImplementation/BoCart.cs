@@ -55,46 +55,6 @@ namespace BlImplementation
             return cart;
         }
 
-        //    bool findID = false;
-        //    foreach (var item in cart.Items)
-        //    {
-        //        //If the product exists, update the list
-        //        if (item.ID == id)
-        //        {
-        //            DO.Product check_product = Dal.Product.Get(id);
-        //            if (check_product.InStock != 0)
-        //            {
-        //                findID = true;
-        //                item.Amount++;
-        //                item.TotalPrice += check_product.Price;
-        //                cart.TotalPrice += check_product.Price;
-        //                break;
-        //            }
-        //            else
-        //                throw new BO.ProductOutOfStock("this product arn't in the stock");
-        //        }
-        //    }
-        //    if (!findID)
-        //    {
-        //        //If the product is out of stock
-        //        DO.Product check_product = Dal.Product.Get(id);
-        //        if (check_product.InStock != 0)
-        //        {
-        //            BO.BoOrderItem newItem = new BO.BoOrderItem();
-        //            newItem.ProductID = id;
-        //            newItem.Amount = 1;
-        //            newItem.ID = BO.BoOrderItem.lastID++;
-        //            newItem.Name = check_product.Name;
-        //            newItem.Price = check_product.Price;
-        //            newItem.TotalPrice = newItem.Price * newItem.Amount;
-        //            cart.TotalPrice += check_product.Price;
-
-        //        }
-        //    }
-        //    return cart;
-        //}
-
-
         /// <summary>
         /// Updating the quantity of a product in the shopping basket
         /// </summary>
@@ -139,34 +99,6 @@ namespace BlImplementation
             }
             return cart;
         }
-
-        //    foreach (var item in cart.Items)
-        //    {
-        //        if (item.ID == id)
-        //        {
-        //            if (item.Amount < amount)
-        //            {
-        //                item.TotalPrice -= item.Price * item.Amount;
-        //                item.Amount = amount;
-        //                item.TotalPrice += item.Price * item.Amount;
-        //            }
-        //            if (item.Amount > amount)
-        //            {
-        //                item.TotalPrice -= item.Price * item.Amount;
-        //                item.Amount = amount;
-        //                item.TotalPrice += item.Price * item.Amount;
-        //            }
-        //            if (amount == 0)
-        //            {
-        //                item.TotalPrice -= item.Price * item.Amount;
-        //                item.Amount = amount;
-        //            }
-        //            if (amount < 0)
-        //                throw new BO.NegativeAmount("can't be a negative amount");
-        //        }
-        //    }
-        //    return cart;
-        //}
 
         /// <summary>
         /// Basket confirmation for order / placing an order
