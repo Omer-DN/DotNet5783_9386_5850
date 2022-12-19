@@ -22,7 +22,7 @@ namespace BO
             $@"
             ID = {ID}
             Name: {Name}
-            Product ID = {ID} 
+            Product ID = {ProductID} 
             Price: {Price}
             Amount: {Amount}
             Total Price: {TotalPrice}";

@@ -14,12 +14,19 @@ namespace BO
         public double TotalPrice { get; set; }
         public override string ToString()
         {
+            string itemsList = "";
+            foreach(var item in Items)
+            {
+                itemsList += item;
+                itemsList += "\n";
+            }
+
             return
             $@"
             Costumer Name - {CustumerName} 
             Costumer Email - {CustumerEmail}
             Costumer Adress - {CustumerAdress}
-            List Of Items: {Items} 
+            List Of Items: {itemsList} 
             Total Price: {TotalPrice}";
         }
 

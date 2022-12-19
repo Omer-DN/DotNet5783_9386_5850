@@ -31,17 +31,23 @@ namespace BlImplementation
 
             if (!cart.Items.Exists(x => x.ProductID == id))
             {
-                BO.BoOrderItem OrderItem = new BO.BoOrderItem()
-                {
+                BO.BoOrderItem OrderItem = new BO.BoOrderItem();
+                OrderItem.ID = BO.BoOrderItem.lastID++;
+                OrderItem.Name = detailproduct.Name;
+                OrderItem.ProductID = id;
+                OrderItem.Price = detailproduct.Price;
+                OrderItem.Amount = 1;
+                OrderItem.TotalPrice = detailproduct.Price;
+                /*{
                     ProductID = id,
                     Name = detailproduct.Name,
                     Amount = 1,
                     ID = 0,
                     Price = detailproduct.Price,
                     TotalPrice = detailproduct.Price
-                };
+                };*/
                 cart.Items.Add(OrderItem);
-                cart.TotalPrice = detailproduct.Price;
+                cart.TotalPrice += detailproduct.Price;
             }
             else
             {
