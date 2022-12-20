@@ -14,11 +14,17 @@ namespace BO
         public List<TrackingSteps?>? trackingSteps { get; set; }
         public override string ToString()
         {
+            string trackSteps = "";
+            foreach (var item in trackingSteps!)
+            {
+                trackSteps += item;
+                trackSteps += "\n";
+            }
             return
             $@"
             ID = {ID}
             Status - {Status} 
-            Tracking Steps: {trackingSteps}";
+            Tracking Steps: {trackSteps}";
         }
 
     }

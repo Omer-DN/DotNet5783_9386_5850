@@ -55,7 +55,7 @@ namespace BlImplementation
         private BO.BoOrder ConvertDOtoBO(DO.Order order)
         {
             BO.BoOrder newOrder = new BO.BoOrder();
-
+            newOrder.Items = new List<BO.BoOrderItem?>();
             newOrder.ID = order.ID;
             newOrder.CostumerName = order.CostumerName;
             newOrder.CostumerEmail = order.CostumerEmail;
@@ -91,6 +91,7 @@ namespace BlImplementation
                     newItem.Amount = orderItem.Amount;
                     newItem.TotalPrice = newItem.Price * newItem.Amount;
                     newOrder.Items.Add(newItem);
+                    newOrder.TotalPrice +=newItem.TotalPrice;
                 }
             }
             return newOrder;
@@ -181,6 +182,7 @@ namespace BlImplementation
             bool Exist = false;
             BO.BoOrder boOrder = new BO.BoOrder();
             BO.BoOrderTracking track = new BO.BoOrderTracking();
+            track.trackingSteps = new List<BO.TrackingSteps?>();
             foreach (var order in Dal.Order.GetList())
             {
                 if (order.ID == id)
@@ -189,18 +191,27 @@ namespace BlImplementation
                     boOrder = ConvertDOtoBO(order);
                     track.ID = order.ID;
                     track.Status = boOrder.Status;
-                    BO.TrackingSteps step1 = new BO.TrackingSteps();
-                    step1.Time = boOrder.OrderDate;
-                    step1.Status = BO.Enums.OrderStatus.Confirmed;
-                    track.trackingSteps.Add(step1);
-                    BO.TrackingSteps step2 = new BO.TrackingSteps();
-                    step2.Time = boOrder.ShipDate;
-                    step2.Status = BO.Enums.OrderStatus.Sent;
-                    track.trackingSteps.Add(step2);
-                    BO.TrackingSteps step3 = new BO.TrackingSteps();
-                    step3.Time = boOrder.DeliveryDate;
-                    step3.Status = BO.Enums.OrderStatus.Delivered;
-                    track.trackingSteps.Add(step3);
+                    if (boOrder.OrderDate != null)
+                    {
+                        BO.TrackingSteps step1 = new BO.TrackingSteps();
+                        step1.Time = boOrder.OrderDate;
+                        step1.Status = BO.Enums.OrderStatus.Confirmed;
+                        track.trackingSteps.Add(step1);
+                    }
+                    if (boOrder.ShipDate != null)
+                    {
+                        BO.TrackingSteps step2 = new BO.TrackingSteps();
+                        step2.Time = boOrder.ShipDate;
+                        step2.Status = BO.Enums.OrderStatus.Sent;
+                        track.trackingSteps.Add(step2);
+                    }
+                    if (boOrder.DeliveryDate != null)
+                    {
+                        BO.TrackingSteps step3 = new BO.TrackingSteps();
+                        step3.Time = boOrder.DeliveryDate;
+                        step3.Status = BO.Enums.OrderStatus.Delivered;
+                        track.trackingSteps.Add(step3);
+                    }
                     break;
                 }
             }

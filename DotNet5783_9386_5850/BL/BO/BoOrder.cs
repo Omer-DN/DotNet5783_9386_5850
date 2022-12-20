@@ -17,11 +17,16 @@ namespace BO
         public DateTime? OrderDate { get; set; }
         public DateTime? ShipDate { get; set; }
         public DateTime? DeliveryDate { get; set; }
-        public DateTime? PaymentDate { get; set; }
         public List<BoOrderItem?>? Items { get; set; }
         public double TotalPrice { get; set; }
         public override string ToString()
         {
+            string orderItems = "";
+            foreach (var item in Items!)
+            {
+                orderItems += item;
+                orderItems += "\n";
+            }
             return
             $@" ID = {ID}
             Costumer Name - {CostumerName} 
@@ -29,10 +34,9 @@ namespace BO
             Costumer Adress - {CostumerAdress}
             Order Date : {OrderDate}
             Order Status: {Status}
-            Payment Date: {PaymentDate}
             Ship Date: {ShipDate}
             Delivery Date: {DeliveryDate}
-            Items: {Items}
+            Items: {orderItems}
             Total Price:{TotalPrice}";
         }
 

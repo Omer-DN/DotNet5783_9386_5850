@@ -8,11 +8,9 @@ internal class Program
 {
     private static void Main(string[] args)
     {
-        //Cart cart = new();
         IBl BL = new Bl();
         BoProduct NewProduct = new();
         BoCart cart = new();
-        //cart.Items = new List<BoOrderItem>();
         Console.WriteLine("Welcome, Please Choose one choice from the Menu:");
         Console.WriteLine("1 - Check the BoProduct Class");
         Console.WriteLine("2 - Check the BoCart Class");
@@ -205,9 +203,6 @@ internal class Program
                                 case 1:
                                     Console.WriteLine("Please Enter the ID of the product you want to add to cart:");
                                     isOK = int.TryParse(Console.ReadLine(), out productId);
-
-                                    //IEnumerable<BoCart> carts = (IEnumerable<BoCart>)BL.BoCart.AddItem(cart, productId);
-
                                     if (isOK)
                                     {
                                         cart = BL.BoCart.AddItem(cart, productId);

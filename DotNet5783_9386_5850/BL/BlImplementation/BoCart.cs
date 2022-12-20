@@ -38,14 +38,7 @@ namespace BlImplementation
                 OrderItem.Price = detailproduct.Price;
                 OrderItem.Amount = 1;
                 OrderItem.TotalPrice = detailproduct.Price;
-                /*{
-                    ProductID = id,
-                    Name = detailproduct.Name,
-                    Amount = 1,
-                    ID = 0,
-                    Price = detailproduct.Price,
-                    TotalPrice = detailproduct.Price
-                };*/
+
                 cart.Items.Add(OrderItem);
                 cart.TotalPrice += detailproduct.Price;
             }
@@ -128,8 +121,7 @@ namespace BlImplementation
             if (customerEmail == null)
                 throw new BO.MissingCustomerStreet("The customer's email address is missing");
 
-          //  if (!string.Equals(customerEmail[-10], "@gmail.com"))
-          //      throw new BO.EmailAddressProblem("Problem with the customer's email address");
+
             double TotalPrice_ = 0;
             DO.Product product = new();
 
