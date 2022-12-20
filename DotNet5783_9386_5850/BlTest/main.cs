@@ -205,6 +205,7 @@ internal class Program
                                 case 1:
                                     Console.WriteLine("Please Enter the ID of the product you want to add to cart:");
                                     isOK = int.TryParse(Console.ReadLine(), out productId);
+
                                     //IEnumerable<BoCart> carts = (IEnumerable<BoCart>)BL.BoCart.AddItem(cart, productId);
 
                                     if (isOK)
@@ -228,7 +229,7 @@ internal class Program
                                     isOK = int.TryParse(Console.ReadLine(), out amount);
                                     if (!isOK)
                                         throw new DataRequestFailed("amount muse be int positive");
-                                    cart = BL.BoCart.UpdateItem(cart, productId, amount);
+                                    cart = BL.BoCart.UpdateItem(cart, amount, productId);
                                     Console.WriteLine(cart);
                                     break;
 
