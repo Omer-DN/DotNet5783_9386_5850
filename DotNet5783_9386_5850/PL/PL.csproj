@@ -12,4 +12,8 @@
     <UseCommonOutputDirectory>true</UseCommonOutputDirectory>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="BoCarts\" />
+  </ItemGroup>
+
 </Project>
