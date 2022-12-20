@@ -3,6 +3,7 @@
 using DO;
 using static DalList.DataSource;
 using DalApi;
+using System.Reflection.Metadata;
 
 namespace DalList;
 
@@ -54,13 +55,25 @@ public class DalProduct:IProduct
     }
 
     // return a List of current products in the store
-    public IEnumerable<Product> GetList()
-    {
+    public IEnumerable<Product> GetList(Func<Product, bool>? condition )
+    {    
         List<Product> products = new List<Product>();
-        foreach (Product i in listOfProducts)
+        if (condition == null) 
         {
-            products.Add(i);
+            foreach (Product i in listOfProducts)
+                products.Add(i);
         }
-        return products;
+        else
+            products = listOfProducts.FindAll(x => condition(x));
+           
+       return products;
+    }
+
+    public Product GetCond(int id, Func<Product, bool>? condition)
+    {
+        foreach (Product i in listOfProducts)
+            if (i.ID == id && condition(i))
+                return i;
+        throw new Exception("This product does not exist in the system");
     }
 }
