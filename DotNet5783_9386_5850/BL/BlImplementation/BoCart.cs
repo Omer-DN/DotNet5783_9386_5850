@@ -128,8 +128,8 @@ namespace BlImplementation
             if (customerEmail == null)
                 throw new BO.MissingCustomerStreet("The customer's email address is missing");
 
-            if (!string.Equals(customerEmail[-10], "@gmail.com"))
-                throw new BO.EmailAddressProblem("Problem with the customer's email address");
+          //  if (!string.Equals(customerEmail[-10], "@gmail.com"))
+          //      throw new BO.EmailAddressProblem("Problem with the customer's email address");
             double TotalPrice_ = 0;
             DO.Product product = new();
 
