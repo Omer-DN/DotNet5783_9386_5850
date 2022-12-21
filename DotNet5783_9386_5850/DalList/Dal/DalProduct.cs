@@ -15,7 +15,7 @@ public class DalProduct:IProduct
             foreach (Product i in listOfProducts)
             {
                if (i.ID == product.ID)
-                    throw new idAlreadyExist("This product already exists in the system");
+                    throw new IdAlreadyExist("This product already exists in the system");
             }
         //product.ID = DataSource.getlastProductId(); //stage 1
         listOfProducts.Add(product);
@@ -32,7 +32,7 @@ public class DalProduct:IProduct
                 return;
             }
         }
-        throw new idNotFound("This product does not exist in the system");
+        throw new IdNotFound("This product does not exist in the system");
     }
 
     public void Update(Product product)

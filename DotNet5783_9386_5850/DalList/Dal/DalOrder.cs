@@ -13,7 +13,7 @@ public class DalOrder : IOrder
         foreach (Order i in listOfOrders)
         {
             if (i.ID == order.ID)
-                throw new idNotFound("This product already exists in the system");
+                throw new IdNotFound("This product already exists in the system");
         }
         order.ID = getlastOrderId();
         listOfOrders.Add(order);
@@ -30,7 +30,7 @@ public class DalOrder : IOrder
                return;
             }
         }
-        throw new idNotFound("This order does not exist in the system");
+        throw new IdNotFound("This order does not exist in the system");
     }
 
     public void Update(Order order)
