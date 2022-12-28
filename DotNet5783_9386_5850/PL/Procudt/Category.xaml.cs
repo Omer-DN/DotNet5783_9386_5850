@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BlApi;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,9 +20,15 @@ namespace PL.Procudt
     /// </summary>
     public partial class Category : Window
     {
+        private IBl bl = new Bl();
         public Category()
         {
             InitializeComponent();
+            ProductListview.ItemsSource = bl.BoProduct.GetListOfProducts();
         }
+
+        
+        private void ShowProductButton_Click(object sender, RoutedEventArgs e)=> new Category().Show();
+        
     }
 }

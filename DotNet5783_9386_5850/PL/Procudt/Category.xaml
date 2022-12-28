@@ -18,9 +18,9 @@ VerticalAlignment="Stretch" Width="auto">
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <Grid>
-            <Label x:Name="Category" Content="Category : "/>
+            <Label x:Name="CategoryOfProduct" Content="Category : "/>
         </Grid>
-        <ComboBox x:Name="ProductSelector" Grid.Column="1"/>
+        <ComboBox x:Name="ProductListview" Grid.Column="1"/>
         <ListView x:Name="ListOfProduct" Grid.Row="1" d:ItemsSource="{d:SampleData ItemCount=5}">
             <ListView.View>
                 <GridView>
@@ -28,5 +28,6 @@ VerticalAlignment="Stretch" Width="auto">
                 </GridView>
             </ListView.View>
         </ListView>
+        <Button x:Name="Button" Grid.Column="1" Content="Add" HorizontalAlignment="Left" Margin="257,314,0,0" Grid.Row="1" VerticalAlignment="Top" Height="35" Width="102" Click="ShowProductButton_Click"/>
     </Grid>
 </Window>
