@@ -10,17 +10,17 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-
-namespace PL.BOProducts
+namespace ProductForList
 {
     /// <summary>
-    /// Interaction logic for ListOfProducts.xaml
+    /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class ListOfProducts : Window
+    public partial class MainWindow : Window
     {
-        public ListOfProducts()
+        public MainWindow()
         {
             InitializeComponent();
         }

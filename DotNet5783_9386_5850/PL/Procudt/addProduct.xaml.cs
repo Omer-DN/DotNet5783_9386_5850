@@ -12,14 +12,14 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace PL.BoOrders
+namespace PL.Procudt
 {
     /// <summary>
-    /// Interaction logic for ProductStatus.xaml
+    /// Interaction logic for addProduct.xaml
     /// </summary>
-    public partial class ProductStatus : Window
+    public partial class addProduct : Window
     {
-        public ProductStatus()
+        public addProduct()
         {
             InitializeComponent();
         }
