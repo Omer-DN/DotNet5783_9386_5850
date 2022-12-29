@@ -12,7 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-
+using DO;
 namespace PL.Procudt
 {
     /// <summary>
@@ -27,7 +27,7 @@ namespace PL.Procudt
         }
 
 
-        private void ShowProductButton_Click(object sender, RoutedEventArgs e) => new Category().Show();
+        //private void ShowProductButton_Click(object sender, RoutedEventArgs e) => new Category().Show();
        
 
         private void ProductListview_SelectionChanged(object sender, SelectionChangedEventArgs e)

@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="640" Width="800">
 
-    <Grid Name="UpGrid" HorizontalAlignment="Stretch" Height="auto" Grid.Row="0" VerticalAlignment="Stretch" Width="auto">
+    <Grid Name="UpGrid" HorizontalAlignment="Stretch" Height="auto" Grid.Row="0" VerticalAlignment="Stretch" Width="auto" Background="AliceBlue">
         <Button x:Name="Button" Content="WELCOME" HorizontalAlignment="Center" Margin="0,312,0,0" VerticalAlignment="Top" Height="54" Width="132" Click="ShowProductButton_Click"/>
     </Grid>
 </Window>
