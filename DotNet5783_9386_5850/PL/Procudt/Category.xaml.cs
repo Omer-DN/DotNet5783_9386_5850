@@ -27,8 +27,18 @@ namespace PL.Procudt
             ProductListview.ItemsSource = bl.BoProduct.GetListOfProducts();
         }
 
-        
-        private void ShowProductButton_Click(object sender, RoutedEventArgs e)=> new Category().Show();
-        
+
+        private void ShowProductButton_Click(object sender, RoutedEventArgs e) => new Category().Show();
+       
+
+        private void ProductListview_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void ListOfProduct_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }

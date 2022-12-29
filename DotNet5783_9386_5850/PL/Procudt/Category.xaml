@@ -6,28 +6,33 @@
         xmlns:local="clr-namespace:PL.Procudt"
         mc:Ignorable="d"
         Title="Category" Height="640" Width="800">
-    <Grid Name="UpGrid" HorizontalAlignment="Stretch" Height="auto" Grid.Row="0"
-VerticalAlignment="Stretch" Width="auto">
+
+
+    <Grid Name="UpGrid" HorizontalAlignment="Stretch" Height="auto" Grid.Row="0" VerticalAlignment="Stretch" Width="auto">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions >
+
         <Grid.RowDefinitions>
             <RowDefinition Height="40*"/>
             <RowDefinition Height="500*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
+
         <Grid>
             <Label x:Name="CategoryOfProduct" Content="Category : "/>
         </Grid>
-        <ComboBox x:Name="ProductListview" Grid.Column="1"/>
-        <ListView x:Name="ListOfProduct" Grid.Row="1" d:ItemsSource="{d:SampleData ItemCount=5}">
+
+        <ComboBox x:Name="ProductListview" Grid.Column="1" SelectionChanged="ProductListview_SelectionChanged" FontSize="18"/>
+        <ListView x:Name="ListOfProduct" Grid.Row="1">
             <ListView.View>
                 <GridView>
                     <GridViewColumn/>
                 </GridView>
             </ListView.View>
         </ListView>
-        <Button x:Name="Button" Grid.Column="1" Content="Add" HorizontalAlignment="Left" Margin="257,314,0,0" Grid.Row="1" VerticalAlignment="Top" Height="35" Width="102" Click="ShowProductButton_Click"/>
+        <Button x:Name="Button" Grid.Column="1" Content="Add" HorizontalAlignment="Left" Margin="188,447,0,0" Grid.Row="1" VerticalAlignment="Top" Height="60" Width="134" Click="ShowProductButton_Click"/>
     </Grid>
+
 </Window>
