@@ -6,31 +6,8 @@
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
         Title="MainWindow" Height="640" Width="800">
-    
+
     <Grid Name="UpGrid" HorizontalAlignment="Stretch" Height="auto" Grid.Row="0" VerticalAlignment="Stretch" Width="auto">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions >
-
-        <Grid.RowDefinitions>
-            <RowDefinition Height="40*"/>
-            <RowDefinition Height="500*"/>
-            <RowDefinition Height="Auto"/>
-        </Grid.RowDefinitions>
-
-        <Grid>
-            <Label x:Name="CategoryOfProduct" Content="Category : "/>
-        </Grid>
-
-        <ComboBox x:Name="ProductListview" Grid.Column="1" SelectionChanged="ProductListview_SelectionChanged" FontSize="18"/>
-        <ListView x:Name="ListOfProduct" Grid.Row="1">
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn/>
-                </GridView>
-            </ListView.View>
-        </ListView>
-        <Button x:Name="Button" Grid.Column="1" Content="Add" HorizontalAlignment="Left" Margin="189,304,0,0" Grid.Row="1" VerticalAlignment="Top" Height="54" Width="133" Click="ShowProductButton_Click"/>
+        <Button x:Name="Button" Content="WELCOME" HorizontalAlignment="Center" Margin="0,312,0,0" VerticalAlignment="Top" Height="54" Width="132" Click="ShowProductButton_Click"/>
     </Grid>
 </Window>

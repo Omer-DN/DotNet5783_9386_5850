@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL.Procudt"
         mc:Ignorable="d"
-        Title="Category" Height="640" Width="800">
+        Title="Choose Category" Height="640" Width="800">
 
 
     <Grid Name="UpGrid" HorizontalAlignment="Stretch" Height="auto" Grid.Row="0" VerticalAlignment="Stretch" Width="auto">
@@ -21,7 +21,7 @@
         </Grid.RowDefinitions>
 
         <Grid>
-            <Label x:Name="CategoryOfProduct" Content="Category : "/>
+            <Label x:Name="CategoryOfProduct" Content="Category :"/>
         </Grid>
 
         <ComboBox x:Name="ProductListview" Grid.Column="1" SelectionChanged="ProductListview_SelectionChanged" FontSize="18"/>
@@ -32,7 +32,7 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        <Button x:Name="Button" Grid.Column="1" Content="Add" HorizontalAlignment="Left" Margin="188,447,0,0" Grid.Row="1" VerticalAlignment="Top" Height="60" Width="134" Click="ShowProductButton_Click"/>
+        <Button x:Name="Button" Grid.Column="1" Content="Add" HorizontalAlignment="Left" Margin="188,447,0,0" Grid.Row="1" VerticalAlignment="Top" Height="60" Width="134" Click="ShowProductButton_Click" Background="#FFE22121"/>
     </Grid>
 
 </Window>

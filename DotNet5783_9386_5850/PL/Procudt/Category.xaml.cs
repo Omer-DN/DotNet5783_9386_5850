@@ -24,7 +24,6 @@ namespace PL.Procudt
         public Category()
         {
             InitializeComponent();
-            ProductListview.ItemsSource = bl.BoProduct.GetListOfProducts();
         }
 
 
@@ -33,12 +32,8 @@ namespace PL.Procudt
 
         private void ProductListview_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            ProductListview.ItemsSource = bl.BoProduct.GetListOfProducts();
         }
 
-        private void ListOfProduct_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
     }
 }

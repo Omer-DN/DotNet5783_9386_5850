@@ -1,4 +1,5 @@
 ﻿using BlApi;
+using PL.Procudt;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,11 +29,8 @@ namespace PL
             InitializeComponent();
         }
 
-        private void ShowProductButton_Click(object sender, RoutedEventArgs e) => new MainWindow().Show();
+        private void ShowProductButton_Click(object sender, RoutedEventArgs e) => new Category().Show();
 
-        private void ProductListview_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            Console.WriteLine("hey");
-        }
+        private void ProductListview_SelectionChanged(object sender, SelectionChangedEventArgs e) => Console.WriteLine("hey");
     }
 }
