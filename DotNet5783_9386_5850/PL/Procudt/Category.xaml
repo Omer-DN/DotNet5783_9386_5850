@@ -20,12 +20,10 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <Grid>
             <Label x:Name="CategoryOfProduct" Content="Category :"/>
-        </Grid>
 
         <ComboBox x:Name="ProductListview" Grid.Column="1" SelectionChanged="ProductListview_SelectionChanged" FontSize="18"/>
-        <ListView x:Name="ListOfProduct" Grid.Row="1" Background="AliceBlue">
+        <ListView x:Name="ListOfProduct" Grid.Row="1" Background="AliceBlue" SelectionChanged="ListOfProduct_SelectionChanged">
             <ListView.View>
                 <GridView>
                     <GridViewColumn/>

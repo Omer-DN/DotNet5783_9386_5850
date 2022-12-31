@@ -27,12 +27,13 @@ namespace PL.Procudt
         }
 
 
-        //private void ShowProductButton_Click(object sender, RoutedEventArgs e) => new Category().Show();
-       
+        private void ShowProductButton_Click(object sender, RoutedEventArgs e) => new Category().Show();
+
 
         private void ProductListview_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             ProductListview.ItemsSource = bl.BoProduct.GetListOfProducts();
+            Console.WriteLine(ProductListview.ItemsSource);
         }
 
     }

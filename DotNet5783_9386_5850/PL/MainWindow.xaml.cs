@@ -22,7 +22,7 @@ namespace PL
     /// </summary>
     public partial class MainWindow : Window
     {
-        private IBl bl = new Bl();
+        //private IBl bl = new Bl();
 
         public MainWindow()
         {
@@ -31,6 +31,5 @@ namespace PL
 
         private void ShowProductButton_Click(object sender, RoutedEventArgs e) => new Category().Show();
 
-        private void ProductListview_SelectionChanged(object sender, SelectionChangedEventArgs e) => Console.WriteLine("hey");
     }
 }
