@@ -49,14 +49,30 @@ public class DalOrderItem:IOrderItem
         throw new Exception("This order item does not exist in the system");
     }
 
+    public OrderItem GetCond(int id, Func<OrderItem, bool>? condition)
+    {
+        foreach (OrderItem i in listOfOrderItems)
+            if (i.ID == id && condition(i))
+                return i;
+        throw new Exception("This order item does not exist in the system");
+    }
+
     // return a List of current order items in all the orders of the store
-    public IEnumerable<OrderItem> GetList()
+    public IEnumerable<OrderItem> GetList(Func<OrderItem, bool>? condition)
     {
         List<OrderItem> orderItems = new List<OrderItem>();
-        foreach (OrderItem i in listOfOrderItems)
+        if (condition == null)
         {
-            orderItems.Add(i);
+            foreach (OrderItem i in listOfOrderItems)
+            {
+                orderItems.Add(i);
+            }
+        }
+        else
+        {
+            orderItems = listOfOrderItems.FindAll(x => condition(x));
         }
         return orderItems;
     }
+
 }

@@ -52,17 +52,30 @@ public class DalOrder : IOrder
         throw new Exception("This order does not exist in the system");
 
     }
+    public Order GetCond(int id, Func<Order, bool>? condition)
+    {
+        foreach (Order i in listOfOrders)
+            if (i.ID == id && condition!(i))
+                return i;
+        throw new Exception("This order does not exist in the system");
+    }
 
     // return a List of current orders in the store
-    public IEnumerable<Order> GetList()
+    public IEnumerable<Order> GetList(Func<Order, bool>? condition)
     {
         List<Order> orders = new List<Order>();
-        foreach(Order i in listOfOrders)
+        if (condition == null)
         {
-            orders.Add(i);
+            foreach (Order i in listOfOrders)
+            {
+                orders.Add(i);
+            }
+        }
+        else
+        {
+            orders = listOfOrders.FindAll(x => condition(x));
         }
         return orders;
-
     }
 
 
