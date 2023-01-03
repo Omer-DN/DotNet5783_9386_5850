@@ -12,17 +12,21 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-
-namespace PL.BOProducts
+namespace PL.Procudt
 {
     /// <summary>
-    /// Interaction logic for ListOfProducts.xaml
+    /// Interaction logic for addProduct.xaml
     /// </summary>
-    public partial class ListOfProducts : Window
+    public partial class addProduct : Window
     {
-        public ListOfProducts()
+        public addProduct()
         {
             InitializeComponent();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("hey");
         }
     }
 }

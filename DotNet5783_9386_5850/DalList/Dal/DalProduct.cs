@@ -3,6 +3,7 @@
 using DO;
 using static DalList.DataSource;
 using DalApi;
+using System.Reflection.Metadata;
 
 namespace DalList;
 
@@ -14,7 +15,7 @@ public class DalProduct:IProduct
             foreach (Product i in listOfProducts)
             {
                if (i.ID == product.ID)
-                    throw new idAlreadyExist("This product already exists in the system");
+                    throw new IdAlreadyExist("This product already exists in the system");
             }
         //product.ID = DataSource.getlastProductId(); //stage 1
         listOfProducts.Add(product);
@@ -31,7 +32,7 @@ public class DalProduct:IProduct
                 return;
             }
         }
-        throw new idNotFound("This product does not exist in the system");
+        throw new IdNotFound("This product does not exist in the system");
     }
 
     public void Update(Product product)
@@ -62,21 +63,25 @@ public class DalProduct:IProduct
     }
 
     // return a List of current products in the store
-
-    public IEnumerable<Product> GetList(Func<Product, bool>? condition)
-    {
+    public IEnumerable<Product> GetList(Func<Product, bool>? condition )
+    {    
         List<Product> products = new List<Product>();
-        if (condition == null)
+        if (condition == null) 
         {
             foreach (Product i in listOfProducts)
-            {
                 products.Add(i);
-            }
         }
         else
-        {
             products = listOfProducts.FindAll(x => condition(x));
-        }
-        return products;
+           
+       return products;
+    }
+
+    public Product GetCond(int id, Func<Product, bool>? condition)
+    {
+        foreach (Product i in listOfProducts)
+            if (i.ID == id && condition(i))
+                return i;
+        throw new Exception("This product does not exist in the system");
     }
 }

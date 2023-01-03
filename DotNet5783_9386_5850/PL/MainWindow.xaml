@@ -5,8 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
+        Title="MainWindow" Height="640" Width="800">
 
+    <Grid Name="UpGrid" HorizontalAlignment="Stretch" Height="auto" Grid.Row="0" VerticalAlignment="Stretch" Width="auto">
+        <Button x:Name="Button" Content="WELCOME" HorizontalAlignment="Center" Margin="0,312,0,0" VerticalAlignment="Top" Height="54" Width="132" Click="ShowProductButton_Click"/>
     </Grid>
 </Window>

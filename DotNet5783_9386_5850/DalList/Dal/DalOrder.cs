@@ -13,7 +13,7 @@ public class DalOrder : IOrder
         foreach (Order i in listOfOrders)
         {
             if (i.ID == order.ID)
-                throw new idNotFound("This product already exists in the system");
+                throw new IdNotFound("This product already exists in the system");
         }
         order.ID = getlastOrderId();
         listOfOrders.Add(order);
@@ -30,7 +30,7 @@ public class DalOrder : IOrder
                return;
             }
         }
-        throw new idNotFound("This order does not exist in the system");
+        throw new IdNotFound("This order does not exist in the system");
     }
 
     public void Update(Order order)
@@ -66,6 +66,15 @@ public class DalOrder : IOrder
         List<Order> orders = new List<Order>();
         if (condition == null)
         {
+        foreach (Order i in listOfOrders)
+            orders.Add(i);
+        }
+        else
+            orders = listOfOrders.FindAll(x => condition(x));
+
+
+        if (condition == null)
+        {
             foreach (Order i in listOfOrders)
             {
                 orders.Add(i);
@@ -78,5 +87,11 @@ public class DalOrder : IOrder
         return orders;
     }
 
-
+    public Order GetCond(int id, Func<Order, bool>? condition)
+    {
+        foreach (Order i in listOfOrders)
+            if (i.ID == id && condition(i))
+                return i;
+        throw new Exception("This order does not exist in the system");
+    }
 }

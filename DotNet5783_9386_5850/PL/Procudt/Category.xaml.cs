@@ -1,5 +1,4 @@
 ﻿using BlApi;
-using PL.Procudt;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,25 +11,29 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace PL
+namespace PL.Procudt
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for Category.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class Category : Window
     {
         private IBl bl = new Bl();
-
-        public MainWindow()
+        public Category()
         {
             InitializeComponent();
         }
 
-        private void ShowProductButton_Click(object sender, RoutedEventArgs e) => new Category().Show();
 
-        private void ProductListview_SelectionChanged(object sender, SelectionChangedEventArgs e) => Console.WriteLine("hey");
+        private void ShowProductButton_Click(object sender, RoutedEventArgs e) => new Category().Show();
+       
+
+        private void ProductListview_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ProductListview.ItemsSource = bl.BoProduct.GetListOfProducts();
+        }
+
     }
 }
