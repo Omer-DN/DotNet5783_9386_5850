@@ -8,6 +8,22 @@ namespace BlImplementation
     {
         private DalApi.IDal Dal = new DalList.Dal.DalList() ;
 
+        public IEnumerable<BO.BoProductForList> CondGetListOfProducts(Func<DO.Product, bool>? condition)
+        {
+            IEnumerable<DO.Product> dataList = new List<DO.Product>();
+            dataList = Dal.Product.GetList(condition);
+            List<BO.BoProductForList> newList = new List<BO.BoProductForList>();
+            foreach (var item in dataList)
+            {
+                BO.BoProductForList newItem = new BO.BoProductForList();
+                newItem.ID = item.ID;
+                newItem.Name = item.Name;
+                newItem.Price = item.Price;
+                newItem.Category = (BO.Enums.Category)item.Category;
+                newList.Add(newItem);
+            }
+            return newList;
+        }
         public IEnumerable<BO.BoProductForList> GetListOfProducts()
         {
             IEnumerable<DO.Product> dataList = new List<DO.Product>();

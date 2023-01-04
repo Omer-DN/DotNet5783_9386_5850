@@ -77,11 +77,4 @@ public class DalProduct:IProduct
        return products;
     }
 
-    public Product GetCond(int id, Func<Product, bool>? condition)
-    {
-        foreach (Product i in listOfProducts)
-            if (i.ID == id && condition(i))
-                return i;
-        throw new Exception("This product does not exist in the system");
-    }
 }

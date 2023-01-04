@@ -87,11 +87,4 @@ public class DalOrder : IOrder
         return orders;
     }
 
-    public Order GetCond(int id, Func<Order, bool>? condition)
-    {
-        foreach (Order i in listOfOrders)
-            if (i.ID == id && condition(i))
-                return i;
-        throw new Exception("This order does not exist in the system");
-    }
 }

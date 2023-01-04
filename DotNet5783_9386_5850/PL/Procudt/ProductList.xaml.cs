@@ -1,4 +1,5 @@
-﻿using BlApi;
+﻿using BO;
+using BlApi;
 using DalList;
 using System;
 using System.Collections.Generic;
@@ -24,7 +25,11 @@ namespace PL.Product
     public partial class ProductList : Window
     {
         IBl bl = new Bl();
-
+        public ProductList()
+        {
+            InitializeComponent();
+            CategorySelector.ItemsSource = Enum.GetValues(typeof(BO.Enums.Category));
+        }
 
         private void ProductListview_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -33,7 +38,8 @@ namespace PL.Product
 
         private void CategorySelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            CategorySelector.ItemsSource = Enum.GetValues(typeof(BO.Enums.Category));
+            List<Product> list = new List<Product>();
+            list = bl.BoProduct.CondGetListOfProducts(x => x.Category == (BO.Enums.Category)e);
         }
   
     }

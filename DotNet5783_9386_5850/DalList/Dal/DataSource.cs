@@ -9,7 +9,7 @@ internal class DataSource
 {
     internal static List<Product> listOfProducts = new List<Product>(50);
     internal static List<Order> listOfOrders = new List<Order>(100);
-    internal static List<OrderItem?> listOfOrderItems = new List<OrderItem?>(200);
+    internal static List<OrderItem> listOfOrderItems = new List<OrderItem>(200);
     readonly Random rand = new Random();
 
     static internal int lastProductId = 100000;
