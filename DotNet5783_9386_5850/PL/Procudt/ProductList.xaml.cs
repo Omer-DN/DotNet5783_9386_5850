@@ -1,6 +1,8 @@
 ﻿using BlApi;
+using DalList;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,29 +14,24 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using DO;
-namespace PL.Procudt
+
+namespace PL.Product
 {
     /// <summary>
-    /// Interaction logic for Category.xaml
+    /// Interaction logic for ProductForList.xaml
+    /// Creates a product display window with the option to switch to the add or update window
     /// </summary>
-    public partial class Category : Window
+    public partial class ProductForList : Window
     {
-        private IBl bl = new Bl();
-        public Category()
-        {
-            InitializeComponent();
-        }
+        IBl bl = new Bl();
+        //public static ObservableCollection<BO.BoProductForList?>? productForLists;
 
-
-        private void ShowProductButton_Click(object sender, RoutedEventArgs e) => new Category().Show();
-
+        private void New_Order_Click(object sender, RoutedEventArgs e) => new DalProduct().Get();
 
         private void ProductListview_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             ProductListview.ItemsSource = bl.BoProduct.GetListOfProducts();
-            Console.WriteLine(ProductListview.ItemsSource);
-        }
 
+        }
     }
 }

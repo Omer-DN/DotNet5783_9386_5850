@@ -1,5 +1,6 @@
-﻿using BlApi;
+﻿using DO;
 using PL.Procudt;
+using PL.Product;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,14 +23,10 @@ namespace PL
     /// </summary>
     public partial class MainWindow : Window
     {
-        //private IBl bl = new Bl();
+        private BlApi.IBl? bl = BlApi.provider.Get();
 
-        public MainWindow()
-        {
-            InitializeComponent();
-        }
 
-        private void ShowProductButton_Click(object sender, RoutedEventArgs e) => new Category().Show();
-
+        private void NewOrder_Click(object sender, RoutedEventArgs e)=> new ProductForList().Show();
+ 
     }
 }
