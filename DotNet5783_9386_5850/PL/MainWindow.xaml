@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="640" Width="800">
     <Grid>
         <Image x:Name="BeckgroundImage"/>
         <Grid x:Name="Buttonse" Grid.Column="3"/>
@@ -24,7 +24,7 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-             <Button x:Name="NewOrder" Content="Admin" Grid.Row="2" Grid.Column="2"
+             <Button x:Name="NewOrder" Content="ENTER" Grid.Row="2" Grid.Column="2"
                     HorizontalAlignment="Center" VerticalAlignment="Top"  Background="SkyBlue" Foreground="Black"
                     Width="220" Height="51" FontSize="20" Margin="0,41,0,0" Click="NewOrder_Click"/>
 
