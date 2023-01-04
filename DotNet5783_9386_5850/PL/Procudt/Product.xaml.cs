@@ -15,18 +15,10 @@ using System.Windows.Shapes;
 namespace PL.Procudt
 {
     /// <summary>
-    /// Interaction logic for addProduct.xaml
+    /// Interaction logic for ProductList.xaml
     /// </summary>
-    public partial class addProduct : Window
+    public partial class Product : Window
     {
-        public addProduct()
-        {
-            InitializeComponent();
-        }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            MessageBox.Show("hey");
-        }
     }
 }

@@ -5,9 +5,30 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
-        Title="MainWindow" Height="640" Width="800">
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Image x:Name="BeckgroundImage"/>
+        <Grid x:Name="Buttonse" Grid.Column="3"/>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height = "auto"/>
+                <RowDefinition Height = "80"/>
+                <RowDefinition Height = "200"/>
+                <RowDefinition Height = "*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="170"/>
+                <ColumnDefinition Width="300"/>
+                <ColumnDefinition Width="300"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
 
-    <Grid Name="UpGrid" HorizontalAlignment="Stretch" Height="auto" Grid.Row="0" VerticalAlignment="Stretch" Width="auto">
-        <Button x:Name="Button" Content="WELCOME" HorizontalAlignment="Center" Margin="0,312,0,0" VerticalAlignment="Top" Height="54" Width="132" Click="ShowProductButton_Click"/>
+             <Button x:Name="NewOrder" Content="Admin" Grid.Row="2" Grid.Column="2"
+                    HorizontalAlignment="Center" VerticalAlignment="Top"  Background="SkyBlue" Foreground="Black"
+                    Width="220" Height="51" FontSize="20" Margin="0,41,0,0" Click="NewOrder_Click"/>
+
+
+        </Grid>
     </Grid>
 </Window>
