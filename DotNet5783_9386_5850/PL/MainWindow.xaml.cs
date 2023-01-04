@@ -25,8 +25,10 @@ namespace PL
     {
         private BlApi.IBl? bl = BlApi.provider.Get();
 
+        private void NewOrder_Click(object sender, RoutedEventArgs e) => new ProductList().Show();
 
-        private void NewOrder_Click(object sender, RoutedEventArgs e)=> new ProductForList().Show();
- 
+
+        //private void NewOrder_Click(object sender, RoutedEventArgs e) => new ProductList().Show();
+
     }
 }
