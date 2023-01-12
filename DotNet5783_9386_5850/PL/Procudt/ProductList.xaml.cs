@@ -39,7 +39,7 @@ namespace PL.Product
         private void CategorySelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             List<Product> list = new List<Product>();
-            list = bl.BoProduct.CondGetListOfProducts(x => x.Category == (BO.Enums.Category)e);
+           // list = bl.BoProduct.CondGetListOfProducts(x => x.Category == (BO.Enums.Category)e);
         }
   
     }
