@@ -1,6 +1,5 @@
 ﻿
 
-
 namespace BlApi
 {
     public interface IBoProduct

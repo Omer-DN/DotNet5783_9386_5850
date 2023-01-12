@@ -1,6 +1,4 @@
 ﻿
-
-
 namespace BlApi
 {
     public interface IBoOrder

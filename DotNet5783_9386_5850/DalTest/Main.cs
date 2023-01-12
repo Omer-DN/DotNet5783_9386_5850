@@ -1,7 +1,6 @@
 ﻿using DO;
 
 using static DO.Enums;
-using DalApi;
 
 
 namespace DalList
@@ -10,7 +9,7 @@ namespace DalList
     {
         static void Main(string[] args)
         {
-            IDal dal = new Dal.DalList();
+            DalApi.IDal? dal = DalApi.Factory.Get();
             Console.WriteLine("Welcome, Please Choose one choice from the Menu:");
             Console.WriteLine("1 - Check the DalProduct Class");
             Console.WriteLine("2 - Check the DalOrder Class");

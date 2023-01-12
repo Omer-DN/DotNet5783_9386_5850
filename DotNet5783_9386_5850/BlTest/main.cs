@@ -1,14 +1,11 @@
-﻿using DalApi;
-using BlApi;
-using BO;
-using DO;
-using BlImplementation;
+﻿using BO;
+
 
 internal class Program
 {
     private static void Main(string[] args)
     {
-        IBl BL = new Bl();
+        BlApi.IBl? bl = BlApi.Factory.Get();
         BoProduct NewProduct = new();
         BoCart cart = new();
         Console.WriteLine("Welcome, Please Choose one choice from the Menu:");
@@ -55,8 +52,8 @@ internal class Program
                                     category = (BO.Enums.Category)int.Parse(Console.ReadLine()!);/* category--;*/
                                     Console.WriteLine("Please select quantity in stock for the product:");
                                     instock = int.Parse(Console.ReadLine()!);
-                                    NewProduct = BL.BoProduct.Create(id, name_p, price, category, instock);
-                                    BL.BoProduct.AddProduct(NewProduct);
+                                    NewProduct = bl.BoProduct.Create(id, name_p, price, category, instock);
+                                    bl.BoProduct.AddProduct(NewProduct);
                                     Console.WriteLine("The product has been successfully added!");
                                 }
                                 catch (Exception Error)
@@ -70,7 +67,7 @@ internal class Program
                                 try
                                 {
                                     id = int.Parse(Console.ReadLine()!);
-                                    BoProductItem newProductitem = BL.BoProduct.BuyerGetProduct(cart, id);
+                                    BoProductItem newProductitem = bl.BoProduct.BuyerGetProduct(cart, id);
                                     Console.WriteLine("Product found!");
                                     Console.WriteLine(newProductitem);
                                 }
@@ -84,7 +81,7 @@ internal class Program
                                 try
                                 {
                                     id = int.Parse(Console.ReadLine()!);
-                                    BoProduct newProductitem = BL.BoProduct.ManagerGetProduct(id);
+                                    BoProduct newProductitem = bl.BoProduct.ManagerGetProduct(id);
                                     Console.WriteLine("Product found!");
                                     Console.WriteLine(newProductitem);
                                 }
@@ -95,7 +92,7 @@ internal class Program
                                 break;
                             case 4:
                                 Console.WriteLine("The Product list of the store:");
-                                IEnumerable<BoProductForList> products = BL.BoProduct.GetListOfProducts();
+                                IEnumerable<BoProductForList> products = bl.BoProduct.GetListOfProducts();
                                 foreach (BoProductForList product in products)
                                 {
                                     Console.WriteLine(product);
@@ -106,7 +103,7 @@ internal class Program
                                 try
                                 {
                                     id = int.Parse(Console.ReadLine()!);
-                                    BoProduct productToUpdate = BL.BoProduct.ManagerGetProduct(id);
+                                    BoProduct productToUpdate = bl.BoProduct.ManagerGetProduct(id);
                                     Console.WriteLine("Product found!");
                                     Console.WriteLine(productToUpdate);
                                     Console.WriteLine("Please Enter the details of the new product to update:");
@@ -119,9 +116,9 @@ internal class Program
                                     category = (BO.Enums.Category)int.Parse(Console.ReadLine()!);
                                     Console.WriteLine("Please select quantity in stock for the product:");
                                     instock = int.Parse(Console.ReadLine()!);
-                                    NewProduct = BL.BoProduct.Create(id, name_p, price, category, instock);
+                                    NewProduct = bl.BoProduct.Create(id, name_p, price, category, instock);
                                     NewProduct.ID = productToUpdate.ID;
-                                    BL.BoProduct.UpdateProduct(NewProduct);
+                                    bl.BoProduct.UpdateProduct(NewProduct);
                                     Console.WriteLine("The product has been successfully updated!");
                                 }
                                 catch (Exception Error)
@@ -134,7 +131,7 @@ internal class Program
                                 try
                                 {
                                     id = int.Parse(Console.ReadLine()!);
-                                    BL.BoProduct.DeleteProduct(id);
+                                    bl.BoProduct.DeleteProduct(id);
                                     Console.WriteLine("The product has been successfully deleted!");
                                 }
                                 catch (Exception Error)
@@ -205,7 +202,7 @@ internal class Program
                                     isOK = int.TryParse(Console.ReadLine(), out productId);
                                     if (isOK)
                                     {
-                                        cart = BL.BoCart.AddItem(cart, productId);
+                                        cart = bl.BoCart.AddItem(cart, productId);
                                         Console.WriteLine(cart);
                                     }
                                     else
@@ -224,7 +221,7 @@ internal class Program
                                     isOK = int.TryParse(Console.ReadLine(), out amount);
                                     if (!isOK)
                                         throw new DataRequestFailed("amount muse be int positive");
-                                    cart = BL.BoCart.UpdateItem(cart, amount, productId);
+                                    cart = bl.BoCart.UpdateItem(cart, amount, productId);
                                     Console.WriteLine(cart);
                                     break;
 
@@ -238,7 +235,7 @@ internal class Program
                                         email = Console.ReadLine();
                                         Console.WriteLine("Please enter the customer's adress");
                                         adress = Console.ReadLine();
-                                        BL.BoCart.OrderConfirmation(cart, name, email, adress);
+                                        bl.BoCart.OrderConfirmation(cart, name, email, adress);
                                         Console.WriteLine("The ordr has been orderd succsesufy");
                                     }
                                     catch (Exception Error)
@@ -289,7 +286,7 @@ internal class Program
                                 try
                                 {
                                     Console.WriteLine("The Orders list of the store:");
-                                    IEnumerable<BoOrderForList> orders = BL.BoOrder.GetListOfOrders();
+                                    IEnumerable<BoOrderForList> orders = bl.BoOrder.GetListOfOrders();
                                     foreach (BoOrderForList order in orders)
                                     {
                                         Console.WriteLine(order);
@@ -305,7 +302,7 @@ internal class Program
                                 try
                                 {
                                     int id = int.Parse(Console.ReadLine()!);
-                                    BoOrder order = BL.BoOrder.GetOrder(id);
+                                    BoOrder order = bl.BoOrder.GetOrder(id);
                                     Console.WriteLine("Order found!");
                                     Console.WriteLine(order);
                                 }
@@ -319,7 +316,7 @@ internal class Program
                                 try
                                 {
                                     int id = int.Parse(Console.ReadLine()!);
-                                    BL.BoOrder.UpdateShipping(id);
+                                    bl.BoOrder.UpdateShipping(id);
                                     Console.WriteLine("Order shipping date has updated to the current time!");
                                 }
                                 catch (Exception Error)
@@ -332,7 +329,7 @@ internal class Program
                                 try
                                 {
                                     int id = int.Parse(Console.ReadLine()!);
-                                    BL.BoOrder.UpdateDelivery(id);
+                                    bl.BoOrder.UpdateDelivery(id);
                                     Console.WriteLine("Order delivery date has updated to the current time!");
                                 }
                                 catch (Exception Error)
@@ -345,7 +342,7 @@ internal class Program
                                 try
                                 {
                                     int id = int.Parse(Console.ReadLine()!);
-                                    BoOrderTracking track = BL.BoOrder.Track(id);
+                                    BoOrderTracking track = bl.BoOrder.Track(id);
                                     Console.WriteLine(track);
                                 }
                                 catch (Exception Error)
