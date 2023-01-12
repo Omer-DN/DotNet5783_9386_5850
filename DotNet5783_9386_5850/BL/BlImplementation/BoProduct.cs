@@ -89,7 +89,7 @@ namespace BlImplementation
 
         public void AddProduct(BO.BoProduct product)
         {
-            if (product.ID >0 && product.Name != "" && ((int)product.Category>0 && (int)product.Category < 6)
+            if (product.ID >0 && product.Name != "" && ((int)product.Category>=0 && (int)product.Category < 5)
                 && product.InStock >= 0 && product.Price >= 0)
             {
                 DO.Product newProduct = new DO.Product();
@@ -102,7 +102,7 @@ namespace BlImplementation
             }
             else
             {
-                if((int)product.Category < 1 || (int)product.Category > 5)
+                if((int)product.Category < 0 || (int)product.Category > 4)
                     throw new BO.WrongProductDetails("Error. The category of the product must be 1-5 number");
                 if (product.ID <= 0) throw new BO.WrongProductDetails("Error. The ID of the product cannot be negative or zero");
                 if (product.Name == "") throw new BO.WrongProductDetails("Error. The Name of the product cant be empty");
