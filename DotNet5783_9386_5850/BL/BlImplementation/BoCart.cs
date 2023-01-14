@@ -4,7 +4,8 @@ namespace BlImplementation
 {
     internal class BoCart:IBoCart
     {
-        private DalApi.IDal Dal = new DalList.Dal.DalList();
+        private DalApi.IDal? dal = DalApi.Factory.Get();
+
         DO.Product detailproduct = new();
         /// <summary>
         /// Adding a product to the shopping cart
@@ -17,7 +18,7 @@ namespace BlImplementation
         {
             try
             {
-                detailproduct = Dal.Product.Get(id);
+                detailproduct = dal.Product.Get(id);
             }
             catch (Exception e)
             {
@@ -129,7 +130,7 @@ namespace BlImplementation
             {
                 try
                 {
-                    product = Dal.Product.Get(item.ProductID);
+                    product = dal.Product.Get(item.ProductID);
 
                 }
                 catch (Exception)
@@ -163,9 +164,9 @@ namespace BlImplementation
 
             try
             {
-                //try to add order to data sirce in Dal
-                int orderId = Dal.Order.Add(order);
-                //create orderItem in Dal and update amount of product
+                //try to add order to data sirce in dal
+                int orderId = dal.Order.Add(order);
+                //create orderItem in dal and update amount of product
                 DO.OrderItem orderItem = new();
                 foreach (var item in cart.Items)
                 {
@@ -174,11 +175,11 @@ namespace BlImplementation
                     orderItem.ProductID = item.ProductID;
                     orderItem.Amount = item.Amount;
                     orderItem.Price = item.Price;
-                    int orderItemId = Dal.OrderItem.Add(orderItem);
+                    int orderItemId = dal.OrderItem.Add(orderItem);
                     //update amount of product in Dak
-                    product = Dal.Product.Get(item.ProductID);
+                    product = dal.Product.Get(item.ProductID);
                     product.InStock -= item.Amount;
-                    Dal.Product.Update(product);
+                    dal.Product.Update(product);
                 }
             }
             catch (Exception error)

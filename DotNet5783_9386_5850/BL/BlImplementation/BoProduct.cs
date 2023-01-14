@@ -6,12 +6,13 @@ namespace BlImplementation
 {
     internal class BoProduct : IBoProduct
     {
-        private DalApi.IDal Dal = new DalList.Dal.DalList() ;
+        private DalApi.IDal? dal = DalApi.Factory.Get();
+
 
         public IEnumerable<BO.BoProductForList> CondGetListOfProducts(Func<DO.Product, bool>? condition)
         {
             IEnumerable<DO.Product> dataList = new List<DO.Product>();
-            dataList = Dal.Product.GetList(condition);
+            dataList = dal?.Product.GetList(condition);
             List<BO.BoProductForList> newList = new List<BO.BoProductForList>();
             foreach (var item in dataList)
             {
@@ -27,7 +28,7 @@ namespace BlImplementation
         public IEnumerable<BO.BoProductForList> GetListOfProducts()
         {
             IEnumerable<DO.Product> dataList = new List<DO.Product>();
-            dataList = Dal.Product.GetList();
+            dataList = dal?.Product.GetList();
             List<BO.BoProductForList> newList = new List<BO.BoProductForList>();
             foreach (var item in dataList)
             {
@@ -46,11 +47,11 @@ namespace BlImplementation
             BO.BoProduct newProduct = new BO.BoProduct();
             if (id > 0)
             {
-                newProduct.ID = Dal.Product.Get(id).ID;
-                newProduct.Name = Dal.Product.Get(id).Name;
-                newProduct.Price = Dal.Product.Get(id).Price;
-                newProduct.InStock = Dal.Product.Get(id).InStock;
-                newProduct.Category = (BO.Enums.Category)Dal.Product.Get(id).Category;
+                newProduct.ID = dal.Product.Get(id).ID;
+                newProduct.Name = dal.Product.Get(id).Name;
+                newProduct.Price = dal.Product.Get(id).Price;
+                newProduct.InStock = dal.Product.Get(id).InStock;
+                newProduct.Category = (BO.Enums.Category)dal.Product.Get(id).Category;
             }
             else
                 throw new BO.WrongProductDetails("this ID is Wrong");
@@ -62,7 +63,7 @@ namespace BlImplementation
             BO.BoProductItem newProductItem = new BO.BoProductItem();
             if (id > 0)
             {
-                DO.Product dataProduct = Dal.Product!.Get(id);
+                DO.Product dataProduct = dal.Product!.Get(id);
                 newProductItem.Name = dataProduct.Name;
                 newProductItem.ID = dataProduct.ID;
                 newProductItem.Price = dataProduct.Price;
@@ -98,7 +99,7 @@ namespace BlImplementation
                 newProduct.Price = product.Price;
                 newProduct.Category = (DO.Enums.Category)product.Category;
                 newProduct.InStock = product.InStock;
-                Dal.Product.Add(newProduct);
+                dal?.Product.Add(newProduct);
             }
             else
             {
@@ -113,14 +114,14 @@ namespace BlImplementation
 
         public void DeleteProduct(int id)
         {
-            foreach (var orderItem in Dal.OrderItem.GetList())
+            foreach (var orderItem in dal?.OrderItem.GetList())
             {
                 if (id == orderItem.ProductID)
                 {
                     throw new BO.productCantBeDeleted("Error. This product is already Exist in one of the Orders");
                 }
             }
-            Dal.Product.Delete(id);
+            dal?.Product.Delete(id);
         }
 
         public void UpdateProduct(BO.BoProduct product)
@@ -133,7 +134,7 @@ namespace BlImplementation
                 newProduct.Price = product.Price;
                 newProduct.Category = (DO.Enums.Category)product.Category;
                 newProduct.InStock = product.InStock;
-                Dal.Product!.Update(newProduct);
+                dal?.Product!.Update(newProduct);
             }
             else
             {

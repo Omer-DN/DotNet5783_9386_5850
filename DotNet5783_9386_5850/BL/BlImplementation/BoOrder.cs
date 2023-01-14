@@ -5,12 +5,13 @@ namespace BlImplementation
 {
     internal class BoOrder : IBoOrder
     {
-        private DalApi.IDal Dal = new DalList.Dal.DalList();
+        private DalApi.IDal? dal = DalApi.Factory.Get();
+
 
         public IEnumerable<BO.BoOrderForList> GetListOfOrders()
         {
             IEnumerable<DO.Order> dataList = new List<DO.Order>();
-            dataList = Dal.Order.GetList();
+            dataList = dal?.Order.GetList();
             List<BO.BoOrderForList> newList = new List<BO.BoOrderForList>();
             foreach (var order in dataList)
             {
@@ -35,7 +36,7 @@ namespace BlImplementation
                 //count how much items there is in this order, and summarizes thier total price:
                 int numOfItems = 0;
                 double totalPrice = 0;
-                foreach (var productItem in Dal.OrderItem.GetList())
+                foreach (var productItem in dal?.OrderItem.GetList())
                 {
                     if (productItem.OrderID == order.ID)
                     {
@@ -79,13 +80,13 @@ namespace BlImplementation
             newOrder.DeliveryDate = order.DeliveryDate;
 
             //check and create the list of items for the order:
-            foreach (var orderItem in Dal.OrderItem.GetList())
+            foreach (var orderItem in dal?.OrderItem.GetList())
             {
                 if (orderItem.OrderID == order.ID)
                 {
                     BO.BoOrderItem newItem = new BO.BoOrderItem();
                     newItem.ID = orderItem.ID;
-                    newItem.Name = Dal.Product.Get(orderItem.ProductID).Name;
+                    newItem.Name = dal?.Product.Get(orderItem.ProductID).Name;
                     newItem.ProductID = orderItem.ProductID;
                     newItem.Price = orderItem.Price;
                     newItem.Amount = orderItem.Amount;
@@ -99,7 +100,7 @@ namespace BlImplementation
         public BO.BoOrder GetOrder(int id)
         {
             BO.BoOrder newOrder = new BO.BoOrder();
-            DO.Order dataOrder = Dal.Order.Get(id);
+            DO.Order dataOrder = dal.Order.Get(id);
             if (id > 0)
             {
                 newOrder = ConvertDOtoBO(dataOrder);
@@ -117,7 +118,7 @@ namespace BlImplementation
             BO.BoOrder newBoOrder = new BO.BoOrder();
 
             //Find the order in the data and save it
-            foreach (var order in Dal.Order.GetList())
+            foreach (var order in dal?.Order.GetList())
             {
                 if (order.ID == id)
                 {
@@ -134,7 +135,7 @@ namespace BlImplementation
             if (Exist)
             {
                 newDoOrder.ShipDate = DateTime.Now;
-                Dal.Order.Update(newDoOrder);
+                dal?.Order.Update(newDoOrder);
                 newBoOrder = ConvertDOtoBO(newDoOrder);
             }
             else
@@ -152,7 +153,7 @@ namespace BlImplementation
             BO.BoOrder newBoOrder = new BO.BoOrder();
 
             //Find the order in the data and save it
-            foreach (var order in Dal.Order.GetList())
+            foreach (var order in dal?.Order.GetList())
             {
                 if (order.ID == id)
                 {
@@ -168,7 +169,7 @@ namespace BlImplementation
             if (Exist)
             {
                 newDoOrder.DeliveryDate = DateTime.Now;
-                Dal.Order.Update(newDoOrder);
+                dal?.Order.Update(newDoOrder);
                 newBoOrder = ConvertDOtoBO(newDoOrder);
             }
             else
@@ -183,7 +184,7 @@ namespace BlImplementation
             BO.BoOrder boOrder = new BO.BoOrder();
             BO.BoOrderTracking track = new BO.BoOrderTracking();
             track.trackingSteps = new List<BO.TrackingSteps?>();
-            foreach (var order in Dal.Order.GetList())
+            foreach (var order in dal?.Order.GetList())
             {
                 if (order.ID == id)
                 {
