@@ -1,8 +1,8 @@
 ﻿
 using DalApi;
-namespace DalList.Dal
+namespace Dal
 {
-    internal public sealed class DalList : IDal
+    internal sealed class DalList : IDal
 
     {
         public IProduct Product => new DalProduct();

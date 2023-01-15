@@ -24,7 +24,7 @@ namespace PL.Product
     /// </summary>
     public partial class ProductList : Window
     {
-        IBl bl = new Bl();
+        BlApi.IBl? bl = BlApi.Factory.Get();
         public ProductList()
         {
             selectedProduct = new ObservableCollection<BO.BoProductForList?>(bl.BoProduct.GetListOfProducts());

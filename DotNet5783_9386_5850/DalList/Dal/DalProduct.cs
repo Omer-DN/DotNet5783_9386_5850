@@ -5,7 +5,7 @@ using static DalList.DataSource;
 using DalApi;
 using System.Reflection.Metadata;
 
-namespace DalList;
+namespace Dal;
 
 public class DalProduct:IProduct
 {

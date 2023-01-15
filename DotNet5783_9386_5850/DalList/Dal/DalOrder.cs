@@ -3,7 +3,7 @@
 using DO;
 using static DalList.DataSource;
 using DalApi;
-namespace DalList;
+namespace Dal;
 
 public class DalOrder : IOrder
 {

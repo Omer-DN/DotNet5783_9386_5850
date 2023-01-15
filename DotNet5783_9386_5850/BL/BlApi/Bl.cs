@@ -4,7 +4,7 @@ using BlImplementation;
 
 namespace BlApi
 {
-    internal public class Bl : IBl
+    public class Bl : IBl
     {
         public IBoCart BoCart => new BoCart();
         public IBoOrder BoOrder => new BoOrder();

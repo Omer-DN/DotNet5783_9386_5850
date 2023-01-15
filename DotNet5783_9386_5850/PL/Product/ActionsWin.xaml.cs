@@ -20,7 +20,7 @@ namespace PL.Product
     /// </summary>
     public partial class ActionsWin : Window
     {
-        IBl bl = new Bl();
+        BlApi.IBl? bl = BlApi.Factory.Get();
 
         public ActionsWin(int state, int id = 0)
         {
