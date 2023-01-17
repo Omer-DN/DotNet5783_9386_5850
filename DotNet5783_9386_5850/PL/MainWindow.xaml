@@ -10,6 +10,13 @@
         <Image x:Name="BeckgroundImage"/>
         <Grid x:Name="Buttonse" Grid.Column="3"/>
         <Grid>
+            <Grid.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF0EF0F8"/>
+                    <GradientStop Color="#FF17E078" Offset="1"/>
+                    <GradientStop Color="#FF16DA75" Offset="1"/>
+                </LinearGradientBrush>
+            </Grid.Background>
             <Grid.RowDefinitions>
                 <RowDefinition Height = "auto"/>
                 <RowDefinition Height = "80"/>
@@ -24,9 +31,9 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-             <Button x:Name="NewOrder" Content="ENTER" Grid.Row="2" Grid.Column="2"
-                    HorizontalAlignment="Center" VerticalAlignment="Top"  Background="SkyBlue" Foreground="Black"
-                    Width="220" Height="51" FontSize="20" Margin="0,41,0,0" Click="NewOrder_Click"/>
+            <Button x:Name="NewOrder" Content="WELCOME" Grid.Row="2" Grid.Column="2"
+                    HorizontalAlignment="Left" VerticalAlignment="Top"  Background="#FF4082DD" Foreground="Black"
+                    Width="220" Height="51" FontSize="24" Margin="105,149,0,0" Click="NewOrder_Click" Grid.ColumnSpan="2" FontFamily="Bodoni MT" FontWeight="Bold"/>
 
 
         </Grid>
