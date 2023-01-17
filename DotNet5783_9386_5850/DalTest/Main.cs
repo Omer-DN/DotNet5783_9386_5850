@@ -44,7 +44,7 @@ namespace DalList
                                     Console.WriteLine("Please Enter Product price:");
                                     price = double.Parse(Console.ReadLine());
                                     Console.WriteLine("Please enter Product's category:");
-                                    Console.WriteLine("1 - vegetables, 2 - Meat, 3 - Legumes, 4 - DairyProducts, 5 - CleanProducts");
+                                    Console.WriteLine("1 - Vegetables, 2 - Meat, 3 - Legumes, 4 - DairyProducts, 5 - CleanProducts");
                                     category = (Category)int.Parse(Console.ReadLine());
                                     Console.WriteLine("Please select quantity in stock for the product:");
                                     instock = int.Parse(Console.ReadLine());
@@ -98,7 +98,7 @@ namespace DalList
                                         Console.WriteLine("Please Enter Product price:");
                                         price = double.Parse(Console.ReadLine());
                                         Console.WriteLine("Please enter Product's category:");
-                                        Console.WriteLine("0 - vegetables, 1 - Meat, 2 - Legumes, 3 - DairyProducts, 4 - CleanProducts");
+                                        Console.WriteLine("0 - Vegetables, 1 - Meat, 2 - Legumes, 3 - DairyProducts, 4 - CleanProducts");
                                         category = (Category)int.Parse(Console.ReadLine());
                                         Console.WriteLine("Please select quantity in stock for the product:");
                                         instock = int.Parse(Console.ReadLine());
