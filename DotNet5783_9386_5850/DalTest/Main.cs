@@ -197,11 +197,14 @@ namespace DalList
                                 case 3:
                                     Console.WriteLine("The Orders list of the store:");
                                     IEnumerable<Order> orders = dal.Order.GetList();
-                                    foreach (Order order in orders)
-                                    {
-                                        Console.WriteLine("ID:{0}, Costumer Name:{1}, Costumer Email:{2}, Costumer Adress:{3}, Order Date:{4},Ship Date:{5}, Delivery Date:{6}",
-                                            order.ID, order.CostumerName, order.CostumerEmail, order.CostumerAdress, order.OrderDate, order.ShipDate, order.DeliveryDate);
-                                    }
+                                    orders?.ToList().ForEach(order => Console.WriteLine("ID:{0}, Costumer Name:{1}, Costumer Email:{2}, Costumer Adress:{3}, Order Date:{4},Ship Date:{5}, Delivery Date:{6}",
+                                    order.ID, order.CostumerName, order.CostumerEmail, order.CostumerAdress, order.OrderDate, order.ShipDate, order.DeliveryDate));
+
+                                    //foreach (Order order in orders)
+                                    //{
+                                    //    Console.WriteLine("ID:{0}, Costumer Name:{1}, Costumer Email:{2}, Costumer Adress:{3}, Order Date:{4},Ship Date:{5}, Delivery Date:{6}",
+                                    //        order.ID, order.CostumerName, order.CostumerEmail, order.CostumerAdress, order.OrderDate, order.ShipDate, order.DeliveryDate);
+                                    //}
                                     break;
                                 case 4:
                                     Console.WriteLine("Please Enter the ID of the order you want to update:");
@@ -313,13 +316,17 @@ namespace DalList
                                     }
                                     break;
                                 case 3:
-                                    Console.WriteLine("The Order Items list:");
-                                    IEnumerable<OrderItem> orderItems = dal.OrderItem.GetList();
-                                    foreach (OrderItem orderitems in orderItems)
-                                    {
-                                        Console.WriteLine("ID:{0}, Product ID:{1}, Product ID:{2}, Price:{3}, Amount:{4}",
-                                            orderitems.ID, orderitems.ProductID, orderitems.ProductID, orderitems.Price, orderitems.Amount);
-                                    }
+                                        Console.WriteLine("The Order Items list:");
+                                        var orderItems = dal.OrderItem.GetList();
+                                        orderItems.ToList().ForEach(orderitems => Console.WriteLine("ID:{0}, Product ID:{1}, Product ID:{2}, Price:{3}, Amount:{4}",
+                                        orderitems.ID, orderitems.ProductID, orderitems.ProductID, orderitems.Price, orderitems.Amount));
+                                //Console.WriteLine("The Order Items list:");
+                                //IEnumerable<OrderItem> orderItems = dal.OrderItem.GetList();
+                                //foreach (OrderItem orderitems in orderItems)
+                                //{
+                                //    Console.WriteLine("ID:{0}, Product ID:{1}, Product ID:{2}, Price:{3}, Amount:{4}",
+                                //        orderitems.ID, orderitems.ProductID, orderitems.ProductID, orderitems.Price, orderitems.Amount);
+                                //}
                                     break;
                                 case 4:
                                     Console.WriteLine("Please Enter the ID of the order you want to update:");
