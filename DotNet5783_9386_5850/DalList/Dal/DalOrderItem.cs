@@ -9,11 +9,19 @@ public class DalOrderItem:IOrderItem
 {
     public int Add(OrderItem Orderitem)
     {
-        if (listOfOrderItems.Any(x => x.ID == Orderitem.ID))
+        var duplicateItem = listOfOrderItems.GroupBy(x => x.ID)
+                                            .Where(g => g.Count() > 1)
+                                            .SelectMany(g => g)
+                                            .FirstOrDefault(x => x.ID == Orderitem.ID);
+        if (duplicateItem != null)
+        {
             throw new Exception("This order item already exists in the order items list");
+        }
+
         Orderitem.ID = getlastOrderItemId();
         listOfOrderItems.Add(Orderitem);
         return Orderitem.ID;
+
 
     }
     //{
@@ -78,13 +86,16 @@ public class DalOrderItem:IOrderItem
         throw new Exception("This order item does not exist in the system");
 }
 
-public OrderItem GetCond(int id, Func<OrderItem, bool>? condition)
+    public OrderItem GetCond(int id, Func<OrderItem, bool>? condition)
     //{
-    //    var orderItem = listOfOrderItems.FirstOrDefault(x => x.ID == id && condition(x));
+    //    var orderItem = (from i in listOfOrderItems
+    //                     let match = i.ID == id && condition(i)
+    //                     where match
+    //                     select i).FirstOrDefault();
     //    if (orderItem == null)
     //        throw new Exception("This order item does not exist in the system");
-    //    return orderItem;
-
+    //    else
+    //        return orderItem;
     //}
     {
         foreach (OrderItem i in listOfOrderItems)

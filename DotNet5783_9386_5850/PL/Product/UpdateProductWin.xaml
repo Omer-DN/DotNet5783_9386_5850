@@ -7,6 +7,12 @@
         mc:Ignorable="d"
         Title="Add Product" Height="416" Width="360">
     <Grid Height="416" VerticalAlignment="Top">
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                <GradientStop Color="Black"/>
+                <GradientStop Color="#FF18F0DF" Offset="0.022"/>
+            </LinearGradientBrush>
+        </Grid.Background>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="29*"/>
             <ColumnDefinition Width="61*"/>

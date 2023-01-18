@@ -13,11 +13,16 @@ public class DalProduct:IProduct
     {
         if (listOfProducts != null)
         {
-            if (listOfProducts.Any(i => i.ID == product.ID))
+            var productCheck = listOfProducts.
+                Select(i => i).
+                Where(i => i.ID == product.ID).
+                FirstOrDefault();
+            if (productCheck != null)
             {
                 throw new IdAlreadyExist("This product already exists in the system");
             }
         }
+
         //if(!(listOfProducts== null))
         //    foreach (Product i in listOfProducts)
         //    {
@@ -31,9 +36,18 @@ public class DalProduct:IProduct
     public void Delete(int id)
 
     {
-        if (!listOfProducts.Any(i => i.ID == id))
+        var product = listOfProducts.
+            Select(i => i).
+            Where(i => i.ID == id).
+            FirstOrDefault();
+        if (product == null)
+        {
             throw new IdNotFound("This product does not exist in the system");
-        listOfProducts.RemoveAll(i => i.ID == id);
+        }
+        else
+        {
+            listOfProducts.Remove(product);
+        }
 
         //foreach (Product i in listOfProducts)
         //{
@@ -58,31 +72,41 @@ public class DalProduct:IProduct
     }
 
     public Product Get(int id)
-    //{
-    //    var find_product = listOfProducts.FirstOrDefault(i => i.ID == id);
-    //    if (find_product == null)
-    //        throw new Exception("This product does not exist in the system");
-    //    else
-    //        return find_product;
-    //}
     {
-        foreach (Product i in listOfProducts)
-            if (i.ID == id)
-                return i;
-        throw new Exception("This product does not exist in the system");
+        var product = (from i in listOfProducts
+                       let match = i.ID == id
+                       where match
+                       select i).FirstOrDefault();
+        if (product == null)
+            throw new Exception("This product does not exist in the system");
+        else
+            return product;
+
+
     }
+    //{
+    //    foreach (Product i in listOfProducts)
+    //        if (i.ID == id)
+    //            return i;
+    //    throw new Exception("This product does not exist in the system");
+    //}
 
     public Product GetCond(int id, Func<Product, bool>? condition)
 
     {
-        try
-        {
-            return listOfProducts.First(i => i.ID == id && condition!(i));
-        }
-        catch (InvalidOperationException)
+        var product = (from i in listOfProducts
+                       let match = i.ID == id && condition!(i)
+                       where match
+                       select i).FirstOrDefault();
+        if (product == null)
         {
             throw new Exception("This product does not exist in the system");
         }
+        else
+        {
+            return product;
+        }
+
     }
     //{
     //    foreach (Product i in listOfProducts)
