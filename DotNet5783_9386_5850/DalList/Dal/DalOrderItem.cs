@@ -79,37 +79,35 @@ public class DalOrderItem:IOrderItem
     //}
 
     public OrderItem Get(int id)
-    {
-        var orderItem = listOfOrderItems.FirstOrDefault(i => i.ID == id);
-        if (orderItem != null)
-            return orderItem;
-        else
-            throw new Exception("This order item does not exist in the system");
-
-    }
-//        {
-//            foreach (OrderItem i in listOfOrderItems)
-//                if (i.ID == id)
-//                    return i;
-//            throw new Exception("This order item does not exist in the system");
-//}
-
-public OrderItem GetCond(int id, Func<OrderItem, bool>? condition)
-    {
-
-        var orderItem = listOfOrderItems.Where(i => i.ID == id).FirstOrDefault(condition);
-        if (orderItem != null)
-            return orderItem;
-        else
-            throw new Exception("This order item does not exist in the system");
-
-    }
     //{
-    //    foreach (OrderItem i in listOfOrderItems)
-    //        if (i.ID == id && condition(i))
-    //            return i;
-    //    throw new Exception("This order item does not exist in the system");
+    //    var orderItem = listOfOrderItems.FirstOrDefault(i => i.ID == id);
+    //    if (orderItem != null)
+    //        return orderItem;
+    //    else
+    //        throw new Exception("This order item does not exist in the system");
+
     //}
+        {
+            foreach (OrderItem i in listOfOrderItems)
+                if (i.ID == id)
+                    return i;
+            throw new Exception("This order item does not exist in the system");
+        }
+
+    public OrderItem GetCond(int id, Func<OrderItem, bool>? condition)
+
+    //    {
+    //        var item = listOfOrderItems.SingleOrDefault(i => i.ID == id && condition(i));
+    //        if (item == null)
+    //            throw new Exception("This order item does not exist in the system");
+    //        return item;
+    //    }
+    {
+        foreach (OrderItem i in listOfOrderItems)
+            if (i.ID == id && condition(i))
+                return i;
+        throw new Exception("This order item does not exist in the system");
+    }
 
     // return a List of current order items in all the orders of the store
     public IEnumerable<OrderItem> GetList(Func<OrderItem, bool>? condition)
