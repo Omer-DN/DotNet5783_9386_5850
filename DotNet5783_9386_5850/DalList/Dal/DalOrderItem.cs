@@ -87,15 +87,16 @@ public class DalOrderItem:IOrderItem
             throw new Exception("This order item does not exist in the system");
 
     }
-    //    {
-    //        foreach (OrderItem i in listOfOrderItems)
-    //            if (i.ID == id)
-    //                return i;
-    //        throw new Exception("This order item does not exist in the system");
-    //}
+//        {
+//            foreach (OrderItem i in listOfOrderItems)
+//                if (i.ID == id)
+//                    return i;
+//            throw new Exception("This order item does not exist in the system");
+//}
 
-    public OrderItem GetCond(int id, Func<OrderItem, bool>? condition)
+public OrderItem GetCond(int id, Func<OrderItem, bool>? condition)
     {
+
         var orderItem = listOfOrderItems.Where(i => i.ID == id).FirstOrDefault(condition);
         if (orderItem != null)
             return orderItem;
