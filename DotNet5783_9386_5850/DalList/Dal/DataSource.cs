@@ -44,11 +44,11 @@ internal class DataSource
         parameter.Category = (Category)r.Next(0, 5);
         switch (parameter.Category)
         {
-            case Category.vegetables:
+            case Category.Vegetables:
                 int number = r.Next(0, 10);
                 parameter.Name = "" + (Vegetables)number;
                 //I created a new variable of type vegetable,
-                //and it contains the index of that vegetable from "enum" vegetables.
+                //and it contains the index of that vegetable from "enum" Vegetables.
                 Vegetables otherVeg = (Vegetables)number;
                 //The price of the item is equal to the value of that vegetable,
                 //according to the index given in the new variable
