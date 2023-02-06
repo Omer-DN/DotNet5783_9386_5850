@@ -1,4 +1,6 @@
 ﻿using BlApi;
+using System.Globalization;
+using BO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,7 +24,7 @@ namespace PL.Product
     {
         BlApi.IBl? bl = BlApi.Factory.Get();
 
-        public ActionsWin(int state, int id = 0)
+        public ActionsWin(int state, BoProductForList selected = null)
         {
             InitializeComponent();
             Category_ComboBox.ItemsSource = Enum.GetValues(typeof(BO.Enums.Category));
@@ -30,45 +32,57 @@ namespace PL.Product
             {
                 Action_Button.Content = "Add";
                 Action_Button.Click += Add_Button_Click;
+                currentProduct = new BoProduct();
             }
             if (state == 1)
             {
                 Action_Button.Content = "Update";
                 Action_Button.Click += Update_Button_Click;
-                BO.BoProduct currentProduct = bl.BoProduct.ManagerGetProduct(id);
-                Category_ComboBox.SelectedItem = currentProduct.Category;
-                ID_textBox.Text = currentProduct.ID.ToString();
-                Name_textBox.Text = currentProduct.Name;
-                Price_textBox.Text = currentProduct.Price.ToString();
-                InStock_textBox.Text = currentProduct.InStock.ToString();
+                currentProduct = bl.BoProduct.ManagerGetProduct(selected.ID);
                 ID_textBox.IsReadOnly = true;
                 Name_textBox.IsReadOnly = true;
             }
         }
+
+
+
+
+
+        public BoProduct currentProduct
+        {
+            get { return (BoProduct)GetValue(currentProductProperty); }
+            set { SetValue(currentProductProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for MyProperty.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty currentProductProperty =
+            DependencyProperty.Register("currentProduct", typeof(BoProduct), typeof(ActionsWin), new PropertyMetadata(new BoProduct()));
+
+
+
+
         private void Add_Button_Click(object sender, RoutedEventArgs e)
         {
-            BO.BoProduct newProduct = new BO.BoProduct();
-            newProduct.ID = int.Parse(ID_textBox.Text);
-            newProduct.Name = Name_textBox.Text;
-            newProduct.Price = double.Parse(Price_textBox.Text);
-            newProduct.Category = Enum.Parse<BO.Enums.Category>(Category_ComboBox.Text);
-            newProduct.InStock = int.Parse(InStock_textBox.Text);
-            bl.BoProduct.AddProduct(newProduct);
-            ((ProductList)this.Owner).whichCategorySelected();
-            this.Close();
+            try
+            {
+                bl.BoProduct.AddProduct(currentProduct);
+                ((ProductList)this.Owner).whichCategorySelected();
+                this.Close();
+            }
+            catch(Exception ex)
+            { MessageBox.Show(ex.Message, "Error"); }
         }
 
         private void Update_Button_Click(object sender, RoutedEventArgs e)
         {
-            BO.BoProduct newProduct = new BO.BoProduct();
-            newProduct.ID = int.Parse(ID_textBox.Text);
-            newProduct.Name = Name_textBox.Text;
-            newProduct.Price = double.Parse(Price_textBox.Text);
-            newProduct.Category = Enum.Parse<BO.Enums.Category>(Category_ComboBox.Text);
-            newProduct.InStock = int.Parse(InStock_textBox.Text);
-            bl.BoProduct.UpdateProduct(newProduct);
-            ((ProductList)this.Owner).whichCategorySelected();
-            this.Close();
+            try
+            {
+                bl.BoProduct.UpdateProduct(currentProduct);
+                ((ProductList)this.Owner).whichCategorySelected();
+                this.Close();
+            }
+            catch(Exception ex)
+            { MessageBox.Show(ex.Message, "Error"); }
         }
 
         private void Cancel_Button_Click(object sender, RoutedEventArgs e)

@@ -1,0 +1,27 @@
+﻿<Window x:Class="PL.Order.ProdectDetailsWin"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PL.Order"
+        mc:Ignorable="d"
+        Title="ProdectDetailsWin" Height="415" Width="360"
+        DataContext="{Binding RelativeSource={RelativeSource Self}}">
+    <Grid DataContext="{Binding currentProduct}">
+        <Label x:Name="Title" Content="Product Details:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="58" Width="289" FontWeight="Bold" FontSize="23"/>
+        <Label x:Name="IDlabel" Content="ID:" HorizontalAlignment="Left" Margin="10,45,0,0" VerticalAlignment="Top" FontSize="24" Height="47" Width="116"/>
+        <Label x:Name="Name_label" Content="Name:" HorizontalAlignment="Left" Margin="10,94,0,0" VerticalAlignment="Top" FontSize="24" Height="47" Width="116"/>
+        <Label x:Name="Price_label" Content="Price:" HorizontalAlignment="Left" Margin="10,148,0,0" VerticalAlignment="Top" FontSize="24" Height="47" Width="116"/>
+        <Label x:Name="Category_label" Content="Category:" HorizontalAlignment="Left" Margin="10,200,0,0" VerticalAlignment="Top" FontSize="24" Height="47" Width="116"/>
+        <Label x:Name="InStock_label" Content="Amount:" HorizontalAlignment="Left" Margin="10,251,0,0" VerticalAlignment="Top" FontSize="24" Height="46" Width="116"/>
+        <Label Content="{Binding ID}" HorizontalAlignment="Left" Margin="154,50,0,0" VerticalAlignment="Top" Width="164" HorizontalContentAlignment="Center" FontSize="20"/>
+        <Label Content="{Binding Name}" HorizontalAlignment="Left" Margin="154,99,0,0" VerticalAlignment="Top" Width="164" HorizontalContentAlignment="Center" FontSize="20"/>
+        <Label Content="{Binding Price}" HorizontalAlignment="Left" Margin="154,148,0,0" VerticalAlignment="Top" Width="164" HorizontalContentAlignment="Center" FontSize="20" Height="47"/>
+        <Label Content="{Binding Category}" HorizontalAlignment="Left" Margin="154,205,0,0" VerticalAlignment="Top" Width="164" HorizontalContentAlignment="Center" FontSize="20"/>
+        <Label DataContext="{Binding }" Content="{Binding Amount}" HorizontalAlignment="Left" Margin="154,252,0,0" VerticalAlignment="Top" Width="164" HorizontalContentAlignment="Center" FontSize="20" Height="45"/>
+        <Label x:Name="IDlabel_Copy" Content="In Stock:" HorizontalAlignment="Left" Margin="10,303,0,0" VerticalAlignment="Top" FontSize="24" Height="47" Width="116"/>
+        <Label Content="{Binding InStock}" HorizontalAlignment="Left" Margin="154,303,0,0" VerticalAlignment="Top" Width="164" HorizontalContentAlignment="Center" FontSize="20"/>
+        <Button Content="OK" HorizontalAlignment="Left" Margin="210,350,0,0" VerticalAlignment="Top" Width="124" Height="24" Click="Button_Click"/>
+
+    </Grid>
+</Window>

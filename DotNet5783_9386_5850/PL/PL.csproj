@@ -13,14 +13,24 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Store Image.jpeg" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\BL\BL.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <Page Update="Product\ActionsWin.xaml">
+    <Resource Include="Store Image.jpeg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="Order\OrderUpdateWin.xaml">
       <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Update="Product\UpdateProductWin.xaml">
+    <Page Update="Product\ActionsWin.xaml">
       <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
     </Page>
   </ItemGroup>

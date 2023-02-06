@@ -6,26 +6,34 @@
         xmlns:local="clr-namespace:PL.Product"
         xmlns:DO="clr-namespace:DO;assembly=DalFacade" x:Class="PL.Product.ProductList"
         mc:Ignorable="d"
-        Title="ProductForList"  Height="450" Width="800"
+        Title="List Of Products"  Height="450" Width="800"
     DataContext="{Binding RelativeSource={RelativeSource Self}}">
 
     <Grid x:Name="MainGrid">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="144*"/>
+            <ColumnDefinition Width="270*"/>
+            <ColumnDefinition Width="266*"/>
+            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="118*"/>
+            <ColumnDefinition Width="0*"/>
+        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="40*"/>
             <RowDefinition Height="500*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <Grid x:Name="UpGrid" HorizontalAlignment="Stretch" Height="auto" Grid.Row="0" VerticalAlignment="Stretch" Width="auto">
+        <Grid x:Name="UpGrid" Height="auto" Grid.Row="0" Width="auto" Grid.ColumnSpan="5">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <ComboBox x:Name="CategorySelector" Grid.Column="1"  VerticalAlignment="Stretch" SelectionChanged="CategorySelector_SelectionChanged" />
+            <ComboBox x:Name="CategorySelector" ItemsSource="{Binding comboxOptions}" Grid.Column="1"  VerticalAlignment="Stretch" SelectedIndex="0" SelectionChanged="CategorySelector_SelectionChanged" />
         </Grid>
-        <Label Content="Category:" Grid.Column="0"  HorizontalAlignment="Left" Margin="10,0,0,0" Height="31" VerticalAlignment="Center" Width="230" FontSize="16" FontWeight="Bold" />
-        <ListView  x:Name="ProductListview" Margin="0,29,0,0" Grid.RowSpan="2" SelectionMode="Single" AllowDrop="True"
-                   d:ItemsSource="{d:SampleData ItemCount=5}" MouseDoubleClick="ProductListview_MouseDoubleClick" ItemsSource="{Binding selectedProduct, Mode=TwoWay}" >
+        <Label Content="Category:" Grid.Column="0"  HorizontalAlignment="Left" Margin="10,0,0,0" Height="31" VerticalAlignment="Center" Width="230" FontSize="16" FontWeight="Bold" Grid.ColumnSpan="2" />
+        <ListView  x:Name="ProductListview" Margin="0,29,-14,0" Grid.RowSpan="2" SelectionMode="Single" AllowDrop="True"
+                   d:ItemsSource="{d:SampleData ItemCount=5}" MouseDoubleClick="ProductListview_MouseDoubleClick" SelectedItem="{Binding selectedProduct, Mode=OneWayToSource}" ItemsSource="{Binding listByCategory, Mode=OneWay}" Grid.ColumnSpan="6" >
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="ID" Width="90" DisplayMemberBinding="{Binding ID}" />
@@ -34,11 +42,8 @@
                     <GridViewColumn Header="Price" Width="50" DisplayMemberBinding="{Binding Price}" />
                 </GridView>
             </ListView.View>
-            <ListView.DataContext>
-                <DO:Product/>
-            </ListView.DataContext>
         </ListView>
-        <Button x:Name="Add_Button" Content="Add" Grid.Row="2" HorizontalAlignment="Right" Margin="5" Padding="5" Click="Action_Button_Click" />
+        <Button x:Name="Add_Button" Content="Add Product" Grid.Row="2" HorizontalAlignment="Center" Margin="0,5,0,5" Padding="5" Click="Action_Button_Click" Width="96" Grid.Column="4" />
 
     </Grid>
 

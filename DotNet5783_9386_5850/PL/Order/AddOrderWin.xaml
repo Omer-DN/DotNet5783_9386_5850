@@ -1,0 +1,72 @@
+﻿<Window x:Class="PL.Order.AddOrderWin"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PL.Order"
+        xmlns:converters="clr-namespace:PL.Converters"
+        mc:Ignorable="d"
+        Title="AddOrderWin" Height="540" Width="850"
+        DataContext="{Binding RelativeSource={RelativeSource Self}}">
+    <Window.Resources>
+        <converters:IntToStringConverter x:Key="IntToStringConverter"/>
+        <converters:DoubleToStringConverter x:Key="DoubleToStringConverter"/>
+        <converters:CategoryToStringConverter x:Key="CategoryToStringConverter"/>
+        <converters:DateToStringConverter x:Key="DateToStringConverter"/>
+    </Window.Resources>
+    <Grid Height="520" VerticalAlignment="Top">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="49*"/>
+            <RowDefinition Height="55*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="369*"/>
+            <ColumnDefinition Width="481*"/>
+        </Grid.ColumnDefinitions>
+        <Grid Margin="140,176,10,211" Grid.RowSpan="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0*"/>
+                <RowDefinition/>
+                <RowDefinition Height="0*"/>
+            </Grid.RowDefinitions>
+            <Label Content="{Binding nowTime, Mode=TwoWay, Converter={StaticResource DateToStringConverter}}" HorizontalAlignment="Left" VerticalAlignment="Top" Height="70" Width="225" FontSize="16" Grid.Row="1" Margin="45,67,0,0" Grid.RowSpan="2"/>
+        </Grid>
+        <Grid Height="452" VerticalAlignment="Top" Margin="367,58,10,0" Grid.ColumnSpan="2" Grid.RowSpan="2">
+            <ListView Name="CartListView" d:ItemsSource="{d:SampleData ItemCount=5}" ItemsSource="{Binding orderItemsList, Mode=OneWay}">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="ID" Width="50" DisplayMemberBinding="{Binding ID}" />
+                        <GridViewColumn Header="Name" Width="100" DisplayMemberBinding="{Binding Name}" />
+                        <GridViewColumn Header="Product ID" Width="90" DisplayMemberBinding="{Binding ProductID}" />
+                        <GridViewColumn Header="Price" Width="50" DisplayMemberBinding="{Binding Price}" />
+                        <GridViewColumn Header="Amount" Width="80" DisplayMemberBinding="{Binding Amount}" />
+                        <GridViewColumn Header="Total Price" Width="100" DisplayMemberBinding="{Binding TotalPrice}" />
+                    </GridView>
+                </ListView.View>
+            </ListView>
+            <TextBox x:Name="ID_textBox" DataContext="{Binding newOrder}" Text="{Binding ID, Mode=TwoWay,Converter={StaticResource IntToStringConverter}}" HorizontalAlignment="Left" Margin="-181,15,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="164" Height="19"/>
+        </Grid>
+
+        <Grid DataContext="{Binding MyCart}" Margin="-2,0,-2,0" Grid.ColumnSpan="2" Grid.RowSpan="2">
+            <Label x:Name="Title" Content="Add Order" HorizontalAlignment="Left" Margin="26,10,0,0" VerticalAlignment="Top" Height="48" Width="288" FontWeight="Bold" FontSize="23"/>
+            <Label x:Name="IDlabel" Content="ID:" HorizontalAlignment="Left" Margin="10,64,0,0" VerticalAlignment="Top" FontSize="20" Height="38" Width="116"/>
+            <TextBox x:Name="CostumerName_textBox" Text="{Binding CustumerName, Mode=OneWayToSource}" HorizontalAlignment="Left" Margin="187,111,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="164" Height="19"/>
+            <Label x:Name="CostumerName_label" Content="Costumer Name:" HorizontalAlignment="Left" Margin="10,102,0,0" VerticalAlignment="Top" FontSize="20" Height="38" Width="160"/>
+            <Label x:Name="ListOfItems_label" Content="Add Items:" HorizontalAlignment="Left" Margin="126,297,0,0" VerticalAlignment="Top" FontSize="22" Height="38" Width="172" FontWeight="Bold"/>
+            <Button Content="Catalog" HorizontalAlignment="Left" Margin="126,340,0,0" VerticalAlignment="Top" Width="140" Height="28" FontSize="15" Click="Catalog_Button_Click"/>
+            <Label x:Name="TotalPrice_label" Content="Total Price:" HorizontalAlignment="Left" Margin="4,424,0,0" VerticalAlignment="Top" FontSize="20" Height="38" Width="116"/>
+            <Button x:Name="Action_Button" Content="Add Order" HorizontalAlignment="Left" Margin="237,478,0,0" VerticalAlignment="Top" Height="25" FontSize="15" Width="102" Click="Action_Button_Click" FontWeight="Bold"/>
+            <Button x:Name="Cancel_Button" Content="Cancel" HorizontalAlignment="Left" Margin="26,478,0,0" VerticalAlignment="Top" Height="25" FontSize="15" Width="102"/>
+            <TextBox x:Name="CostumerEmail_textBox" Text="{Binding CustumerEmail, Mode=OneWayToSource}" HorizontalAlignment="Left" Margin="187,154,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="164" Height="18"/>
+            <Label x:Name="CostumerEmail_label" Content="Costumer Email:" HorizontalAlignment="Left" Margin="10,144,0,0" VerticalAlignment="Top" FontSize="20" Height="40" Width="160"/>
+            <TextBox x:Name="CostumerAdress_textBox" Text="{Binding CustumerAdress, Mode=OneWayToSource}" HorizontalAlignment="Left" Margin="187,197,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="164" Height="19"/>
+            <Label x:Name="CostumerAdress_label" Content="Costumer Adress:" HorizontalAlignment="Left" Margin="9,188,0,0" VerticalAlignment="Top" FontSize="20" Height="39" Width="169"/>
+            <Label x:Name="OrderDate_lable" Content="Order Date:" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Center" FontSize="20" Height="40" Width="116"/>
+            <Label x:Name="Title_Copy" Content="Items In Cart" HorizontalAlignment="Left" Margin="403,4,0,0" VerticalAlignment="Top" Height="48" Width="288" FontWeight="Bold" FontSize="23"/>
+            <Label x:Name="Totalprice" HorizontalAlignment="Left" Margin="187,424,0,0" VerticalAlignment="Top" Width="162" FontSize="24" FontWeight="Bold" Height="38"/>
+        </Grid>
+    </Grid>
+
+
+
+</Window>

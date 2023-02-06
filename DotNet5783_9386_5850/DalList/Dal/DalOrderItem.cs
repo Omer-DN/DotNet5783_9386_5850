@@ -32,13 +32,15 @@ public class DalOrderItem:IOrderItem
 
     public void Update(OrderItem Orderitem)
     {
-        foreach (OrderItem i in listOfOrderItems)
+        bool found = false;
+        foreach (OrderItem i in listOfOrderItems.ToList())
             if (i.ID == Orderitem.ID)
             {
+                found = true;
                 var index = listOfOrderItems.FindIndex(i => i.ID == Orderitem.ID);
                 listOfOrderItems[index] = Orderitem;
             }
-        throw new Exception("This order item does not exist in the system");
+        if(found == false) throw new Exception("This order item does not exist in the system");
     }
 
     public OrderItem Get(int id)

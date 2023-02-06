@@ -1,0 +1,36 @@
+﻿using DO;
+using PL.Product;
+using PL.Product;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
+using System.Windows.Shapes;
+
+namespace PL
+{
+    /// <summary>
+    /// Interaction logic for ManagerWindow.xaml
+    /// </summary>
+    public partial class ManagerWindow : Window
+    {
+        public ManagerWindow()
+        {
+            InitializeComponent();
+        }
+
+        private void ListOfProducts_Click(object sender, RoutedEventArgs e) => new Product.ProductList().Show();
+
+        private void ListOfOrders_Click(object sender, RoutedEventArgs e) => new Order.OrderList("").Show();
+
+    }
+}

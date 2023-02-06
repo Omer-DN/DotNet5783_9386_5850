@@ -29,7 +29,21 @@ namespace BlImplementation
             {
                 throw new BO.ProductOutOfStock("Out of stock");
             }
+            if(cart.Items == null)
+            {
+                cart.Items = new List<BO.BoOrderItem>();
+                BO.BoOrderItem OrderItem = new BO.BoOrderItem();
+                OrderItem.ID = BO.BoOrderItem.lastID++;
+                OrderItem.Name = detailproduct.Name;
+                OrderItem.ProductID = id;
+                OrderItem.Price = detailproduct.Price;
+                OrderItem.Amount = 1;
+                OrderItem.TotalPrice = detailproduct.Price;
 
+                cart.Items.Add(OrderItem);
+                cart.TotalPrice += detailproduct.Price;
+
+            }
             if (!cart.Items.Exists(x => x.ProductID == id))
             {
                 BO.BoOrderItem OrderItem = new BO.BoOrderItem();
@@ -159,7 +173,7 @@ namespace BlImplementation
                 CostumerEmail = customerEmail,
                 OrderDate = DateTime.Now,
                 ShipDate = null,
-                DeliveryDate = null
+                DeliveryDate = null,
             };
 
             try

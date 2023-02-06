@@ -27,8 +27,8 @@ namespace BlImplementation
         }
         public IEnumerable<BO.BoProductForList> GetListOfProducts()
         {
-            IEnumerable<DO.Product> dataList = new List<DO.Product>();
-            dataList = dal?.Product.GetList();
+            IEnumerable<DO.Product>? dataList = new List<DO.Product>();
+            dataList = dal?.Product?.GetList();
             List<BO.BoProductForList> newList = new List<BO.BoProductForList>();
             foreach (var item in dataList)
             {
@@ -41,6 +41,52 @@ namespace BlImplementation
             }
             return newList;
         }
+
+        public IEnumerable<BO.BoProductItem?> GetProductsForCatalog()
+        {
+            IEnumerable<DO.Product>? dataList = new List<DO.Product>();
+            dataList = dal?.Product?.GetList();
+            List<BO.BoProductItem> newList = new List<BO.BoProductItem>();
+            foreach (var item in dataList)
+            {
+                BO.BoProductItem newItem = new BO.BoProductItem();
+                newItem.ID = item.ID;
+                newItem.Name = item.Name;
+                newItem.Price = item.Price;
+                newItem.Category = (BO.Enums.Category)item.Category;
+                newItem.Amount = 0;
+                if (dal?.Product.Get(item.ID).InStock > 0)
+                    newItem.InStock = true;
+                else
+                    newItem.InStock = false;
+                newList.Add(newItem);
+            }
+            return newList;
+        }
+
+        public IEnumerable<BO.BoProductItem> CondGetProductsForCatalog(Func<DO.Product, bool>? condition)
+        {
+            IEnumerable<DO.Product>? dataList = new List<DO.Product>();
+            dataList = dal?.Product?.GetList(condition);
+            List<BO.BoProductItem> newList = new List<BO.BoProductItem>();
+            foreach (var item in dataList)
+            {
+                BO.BoProductItem newItem = new BO.BoProductItem();
+                newItem.ID = item.ID;
+                newItem.Name = item.Name;
+                newItem.Price = item.Price;
+                newItem.Category = (BO.Enums.Category)item.Category;
+                newItem.Amount = 0;
+                if (dal?.Product.Get(item.ID).InStock > 0)
+                    newItem.InStock = true;
+                else
+                    newItem.InStock = false;
+                newList.Add(newItem);
+            }
+            return newList;
+        }
+
+
 
         public BO.BoProduct ManagerGetProduct(int id)
         {
@@ -90,8 +136,8 @@ namespace BlImplementation
 
         public void AddProduct(BO.BoProduct product)
         {
-            if (product.ID >0 && product.Name != "" && ((int)product.Category>=0 && (int)product.Category < 5)
-                && product.InStock >= 0 && product.Price >= 0)
+            if (product.ID >0 && product.Name != "" && ((int)product.Category>=0 && (int)product.Category < 6)
+                && product.InStock >= 0 && product.Price >= 0 )
             {
                 DO.Product newProduct = new DO.Product();
                 newProduct.ID = product.ID;
@@ -103,12 +149,12 @@ namespace BlImplementation
             }
             else
             {
-                if((int)product.Category < 0 || (int)product.Category > 4)
+                if((int)product.Category < 0 || (int)product.Category > 5)
                     throw new BO.WrongProductDetails("Error. The category of the product must be 1-5 number");
                 if (product.ID <= 0) throw new BO.WrongProductDetails("Error. The ID of the product cannot be negative or zero");
                 if (product.Name == "") throw new BO.WrongProductDetails("Error. The Name of the product cant be empty");
                 if (product.InStock < 0) throw new BO.WrongProductDetails("Error. The number in-Stock of the product cannot be negative");
-                if (product.Price < 0) throw new BO.WrongProductDetails("Error. The Price of the product cannot be negative");
+                if (product.Price < 0) throw new BO.WrongProductDetails("Error. The Price of the product is incorrect");
             }
         }
 

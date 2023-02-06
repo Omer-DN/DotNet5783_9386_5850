@@ -1,6 +1,4 @@
-﻿using DO;
-using PL.Product;
-using PL.Product;
+﻿using PL.Order;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +11,6 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace PL
@@ -23,12 +20,24 @@ namespace PL
     /// </summary>
     public partial class MainWindow : Window
     {
-        private BlApi.IBl? bl = BlApi.provider.Get();
+        public MainWindow()
+        {
+            InitializeComponent();
+        }
 
-        private void NewOrder_Click(object sender, RoutedEventArgs e) => new ProductList().Show();
+        private void Manager_Button_Click(object sender, RoutedEventArgs e)
+        {
+            new ManagerWindow().Show();
+        }
 
+        private void NewOrder_Button_Click(object sender, RoutedEventArgs e)
+        {
+            new AddOrderWin().Show();
+        }
 
-        //private void NewOrder_Click(object sender, RoutedEventArgs e) => new ProductList().Show();
-
+        private void TrackOrders_Button_Click(object sender, RoutedEventArgs e)
+        {
+            new OrderList("TrackOnly").Show();
+        }
     }
 }

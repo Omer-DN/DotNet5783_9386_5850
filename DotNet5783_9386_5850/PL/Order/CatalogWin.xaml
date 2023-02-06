@@ -1,0 +1,46 @@
+﻿<Window x:Class="PL.Order.CatalogWin"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PL.Order"
+        xmlns:converters="clr-namespace:PL.Converters"
+        mc:Ignorable="d"
+        Title="CatalogWin" Height="490" Width="420"
+        DataContext="{Binding RelativeSource={RelativeSource Self}}">
+    <Window.Resources>
+        <converters:IntToListByCategoryConverter x:Key="IntToListByCategoryConverter"/>
+    </Window.Resources>
+    <Grid Height="435" VerticalAlignment="Center">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="0*"/>
+        </Grid.RowDefinitions>
+        <ListView Name="productsListView" d:ItemsSource="{d:SampleData ItemCount=5}" SelectedItem="{Binding selectedProduct, Mode=OneWayToSource}" ItemsSource="{Binding whichCategorySelected, Mode=OneWay, Converter={StaticResource IntToListByCategoryConverter} }" Margin="0,44,0,37" MouseDoubleClick="productsListView_MouseDoubleClick">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="ID" Width="60" DisplayMemberBinding="{Binding ID}"/>
+                    <GridViewColumn Header="Name" Width="90" DisplayMemberBinding="{Binding Name}" />
+                    <GridViewColumn Header="Price" Width="50" DisplayMemberBinding="{Binding Price}" />
+                    <GridViewColumn Header="Category" Width="75" DisplayMemberBinding="{Binding Category}" />
+                    <GridViewColumn Header="InStock" Width="50" DisplayMemberBinding="{Binding InStock}" />
+                </GridView>
+            </ListView.View>
+            <ListView.GroupStyle>
+                <GroupStyle>
+                    <GroupStyle.HeaderTemplate>
+                        <DataTemplate>
+                            <TextBlock FontWeight="Bold" FontSize="14" Text="{Binding Name}"/>
+                        </DataTemplate>
+                    </GroupStyle.HeaderTemplate>
+                </GroupStyle>
+            </ListView.GroupStyle>
+        </ListView>
+        <Label Content="Category:" HorizontalAlignment="Left" VerticalAlignment="Top" Width="106" Height="44" FontWeight="Bold" FontSize="20"/>
+        <ComboBox Name="comboBox" IsReadOnly="True" Text="Please Select" ItemsSource="{Binding ComboxCategory}" HorizontalAlignment="Left" Margin="121,11,0,0" VerticalAlignment="Top" Width="125" SelectionChanged="ComboBox_SelectionChanged" Height="22"/>
+        <CheckBox Name="checkBox" Content="Show All Categories" HorizontalAlignment="Left" Margin="264,12,0,0" VerticalAlignment="Top" Height="32" Width="126" Checked="CheckBox_Checked" Unchecked="CheckBox_UnChecked"/>
+        <Button Content="Add Item To Cart" HorizontalAlignment="Left" Margin="281,398,0,0" Width="119" FontWeight="Bold" FontSize="14" Click="Button_Click"/>
+        <Label Content="*Double Click to See Product Details" HorizontalAlignment="Left" Margin="0,398,0,0" VerticalAlignment="Top" Width="218"/>
+
+    </Grid>
+</Window>

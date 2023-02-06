@@ -9,6 +9,8 @@ namespace BlApi
         public BO.BoOrder UpdateDelivery(int id);
         public BO.BoOrderTracking Track(int id);
 
+        public void UpdateOrder(BO.BoOrder order);
+
 
 
     }

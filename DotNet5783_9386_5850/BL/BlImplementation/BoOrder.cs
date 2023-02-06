@@ -1,4 +1,6 @@
 ﻿using BlApi;
+using BO;
+using DO;
 
 
 namespace BlImplementation
@@ -41,7 +43,7 @@ namespace BlImplementation
                     if (productItem.OrderID == order.ID)
                     {
                         numOfItems++;
-                        totalPrice += productItem.Price;
+                        totalPrice += (productItem.Price * productItem.Amount);
                     }
                 }
                 newItem.AmountOfItems = numOfItems;
@@ -110,7 +112,71 @@ namespace BlImplementation
             return newOrder;
         }
 
+        public void UpdateOrder(BO.BoOrder order)
+        {
+            bool Exist = false;
+            DO.Order newDoOrder = new DO.Order();
+            BO.BoOrder newBoOrder = new BO.BoOrder();
 
+            //Find the order in the data and save it
+            foreach (var Order in dal?.Order.GetList())
+            {
+                if (Order.ID == order.ID)
+                {
+                    Exist = true;
+                    break;
+                }
+            }
+            if (Exist && order.ID > 0 && order.CostumerName != "" && order.CostumerEmail != "" && order.CostumerAdress != "")
+            {
+                newDoOrder.ID = order.ID;
+                newDoOrder.CostumerName = order.CostumerName;
+                newDoOrder.CostumerEmail = order.CostumerEmail;
+                newDoOrder.CostumerAdress = order.CostumerAdress;
+                newDoOrder.OrderDate = order.OrderDate;
+                newDoOrder.ShipDate = order.ShipDate;
+                newDoOrder.DeliveryDate = order.DeliveryDate;
+                dal?.Order.Update(newDoOrder);
+
+                //update the OrderItems List in DataSource
+                bool found = false;
+                foreach(BO.BoOrderItem orderItem in order.Items)
+                {
+                    foreach (OrderItem listOrderItem in dal?.OrderItem.GetList())
+                    {
+                        if (listOrderItem.ID == orderItem.ID)
+                        {
+                            found = true;
+                            OrderItem newOrderItem = new OrderItem();
+                            newOrderItem.ID = listOrderItem.ID;
+                            newOrderItem.OrderID = order.ID;
+                            newOrderItem.ProductID = listOrderItem.ProductID;
+                            newOrderItem.Price = listOrderItem.Price;
+                            newOrderItem.Amount = orderItem.Amount;
+                            dal?.OrderItem.Update(newOrderItem);
+                        }
+                    }
+                    if(found=false)
+                    {
+                        OrderItem newOrderItem = new OrderItem();
+                        newOrderItem.OrderID = order.ID;
+                        newOrderItem.ProductID = orderItem.ProductID;
+                        newOrderItem.Price = orderItem.Price;
+                        newOrderItem.Amount = orderItem.Amount;
+                        dal?.OrderItem.Add(newOrderItem);
+                    }
+                }
+            }
+            else
+            {
+                if (!Exist) throw new BO.WrongOrderDetails("Error. the ID is not Exist");
+                if (order.ID <= 0) throw new BO.WrongProductDetails("Error. The ID of the order is Wrong");
+                if (order.CostumerName == "") throw new BO.WrongProductDetails("Error. The Costumer Name of the product is Wrong");
+                if (order.CostumerEmail == "") throw new BO.WrongProductDetails("Error. The Costumer Email of the product is Wrong");
+                if (order.CostumerAdress == "") throw new BO.WrongProductDetails("Error. The Costumer Adress of the product is Wrong");
+            }
+
+        }
         public BO.BoOrder UpdateShipping(int id)
         {
             bool Exist = false;

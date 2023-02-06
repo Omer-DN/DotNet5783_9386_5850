@@ -7,28 +7,11 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="640" Width="800">
     <Grid>
-        <Image x:Name="BeckgroundImage"/>
-        <Grid x:Name="Buttonse" Grid.Column="3"/>
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height = "auto"/>
-                <RowDefinition Height = "80"/>
-                <RowDefinition Height = "200"/>
-                <RowDefinition Height = "*" />
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="170"/>
-                <ColumnDefinition Width="300"/>
-                <ColumnDefinition Width="300"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
+        <Label Content="Welcome To The Store!" HorizontalAlignment="Left" Margin="48,26,0,0" VerticalAlignment="Top" Height="65" Width="442" FontSize="36" FontWeight="Bold"/>
+        <Image HorizontalAlignment="Center" Height="296" Margin="0,96,0,0" VerticalAlignment="Top" Width="390" Source="/Store Image.jpeg"/>
+        <Button Content="Manager" HorizontalAlignment="Left" Margin="91,456,0,0" VerticalAlignment="Top" Width="136" Height="30" FontWeight="Bold" FontSize="18" Click="Manager_Button_Click"/>
+        <Button Content="New Order" HorizontalAlignment="left" Margin="330,456,0,0" VerticalAlignment="Top" Width="136" Height="30" FontSize="18" FontWeight="Bold" Click="NewOrder_Button_Click"/>
+        <Button Content="Track Orders" HorizontalAlignment="Left" Margin="569,456,0,0" VerticalAlignment="Top" Width="136" Height="30" FontSize="18" FontWeight="Bold" Click="TrackOrders_Button_Click"/>
 
-             <Button x:Name="NewOrder" Content="ENTER" Grid.Row="2" Grid.Column="2"
-                    HorizontalAlignment="Center" VerticalAlignment="Top"  Background="SkyBlue" Foreground="Black"
-                    Width="220" Height="51" FontSize="20" Margin="0,41,0,0" Click="NewOrder_Click"/>
-
-
-        </Grid>
     </Grid>
 </Window>

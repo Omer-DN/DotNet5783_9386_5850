@@ -6,6 +6,9 @@ namespace BlApi
     {
         public IEnumerable<BO.BoProductForList> CondGetListOfProducts(Func<DO.Product, bool>? condition);
         public IEnumerable<BO.BoProductForList?> GetListOfProducts();
+        public IEnumerable<BO.BoProductItem?> GetProductsForCatalog();
+        public IEnumerable<BO.BoProductItem> CondGetProductsForCatalog(Func<DO.Product, bool>? condition);
+
         public BO.BoProduct ManagerGetProduct(int id);
         public BO.BoProductItem BuyerGetProduct(BO.BoCart cart, int id);
         public void AddProduct(BO.BoProduct product);

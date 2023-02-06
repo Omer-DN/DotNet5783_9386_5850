@@ -72,18 +72,6 @@ public class DalOrder : IOrder
         else
             orders = listOfOrders.FindAll(x => condition(x));
 
-
-        if (condition == null)
-        {
-            foreach (Order i in listOfOrders)
-            {
-                orders.Add(i);
-            }
-        }
-        else
-        {
-            orders = listOfOrders.FindAll(x => condition(x));
-        }
         return orders;
     }
 
