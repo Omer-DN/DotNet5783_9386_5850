@@ -2,6 +2,8 @@
 using DO;
 using static DalList.DataSource;
 using DalApi;
+using System.Linq;
+using DalList;
 
 namespace Dal;
 
@@ -16,12 +18,18 @@ public class DalOrderItem:IOrderItem
             .OrderBy(id => id)
             .ToList();
 
-        var lastOrderItemId = orderItemIds.Max() + 1;
+        if (listOfOrderItems.Count == 0)
+            DataSource.lastOrderId++;
+        else
+            DataSource.lastOrderId = orderItemIds.Max() + 1;
 
         var newOrderItem = new OrderItem
         {
             ID = lastOrderItemId,
-            // set other properties here
+            ProductID = Orderitem.ProductID,
+            OrderID = Orderitem.OrderID,
+            Price = Orderitem.Price,
+            Amount = Orderitem.Amount
         };
 
         listOfOrderItems.Add(newOrderItem);

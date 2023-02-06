@@ -88,7 +88,7 @@ public class DalOrder : IOrder
         listOfOrders.Where(x => condition(x)).ToList();
 
 
-        if (condition == null)
+       /* if (condition != null)
         {
             foreach (Order i in listOfOrders)
             {
@@ -99,7 +99,7 @@ public class DalOrder : IOrder
         {
             orders = listOfOrders.FindAll(x => condition(x));
         }
-        return orders;
+        return orders;*/
     }
 
 }
