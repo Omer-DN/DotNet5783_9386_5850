@@ -8,7 +8,7 @@ public static class Factory
 {
     public static IDal? Get()
     {
-        string dalType = s_dalName
+       string dalType = s_dalName
             ?? throw new DalConfigException($"DAL name is not extracted from the configuration");
         string dal = s_dalPackages[dalType]
            ?? throw new DalConfigException($"Package for {dalType} is not found in packages list");
@@ -29,4 +29,5 @@ public static class Factory
                    .GetValue(null) as IDal
             ?? throw new DalConfigException($"Class {dal} is not singleton or Instance property not found");
     }
+       
 }

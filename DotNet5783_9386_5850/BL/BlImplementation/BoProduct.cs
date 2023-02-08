@@ -1,13 +1,11 @@
 ﻿using BlApi;
-
-
+using DalApi;
 
 namespace BlImplementation
 {
     internal class BoProduct : IBoProduct
     {
         private DalApi.IDal? dal = DalApi.Factory.Get();
-
 
         public IEnumerable<BO.BoProductForList> CondGetListOfProducts(Func<DO.Product, bool>? condition)
         {

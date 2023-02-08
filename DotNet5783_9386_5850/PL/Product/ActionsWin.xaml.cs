@@ -90,5 +90,10 @@ namespace PL.Product
             ((ProductList)this.Owner).whichCategorySelected();
             this.Close();
         }
+
+        private void Action_Button_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

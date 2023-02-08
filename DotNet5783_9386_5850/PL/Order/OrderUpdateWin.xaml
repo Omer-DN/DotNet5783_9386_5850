@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:PL.Order"
         xmlns:converters="clr-namespace:PL.Converters"
         mc:Ignorable="d"
-        Title="Add Product" Height="650" Width="850"
+        Title="Update Order" Height="650" Width="891"
     DataContext="{Binding RelativeSource={RelativeSource Self}}">
     <Window.Resources>
         <converters:IntToStringConverter x:Key="IntToStringConverter"/>
@@ -14,8 +14,8 @@
         <converters:CategoryToStringConverter x:Key="CategoryToStringConverter"/>
         <converters:DateToStringConverter x:Key="DateToStringConverter"/>
     </Window.Resources>
-    <Grid Height="628" VerticalAlignment="Top" Margin="0,0,100,0">
-        <ListView x:Name="orderItemList" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="375,0,-89,0" ItemsSource="{Binding ItemsList, Mode=OneWay}">
+    <Grid Height="628" VerticalAlignment="Top" Margin="0,0,10,0">
+        <ListView x:Name="orderItemList" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="375,0,0,0" ItemsSource="{Binding ItemsList, Mode=OneWay}">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="ID" Width="50" DisplayMemberBinding="{Binding ID}" />
@@ -28,7 +28,7 @@
             </ListView.View>
         </ListView>
         <Grid>
-            <Grid DataContext="{Binding currentOrder}" Height="628" VerticalAlignment="Top" Margin="0,0,25,0">
+            <Grid DataContext="{Binding currentOrder}" Height="628" VerticalAlignment="Center">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="73*"/>
                     <ColumnDefinition Width="112*"/>

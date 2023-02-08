@@ -1,0 +1,1 @@
+﻿<?xml version="1.0" encoding="utf-8"?><ArrayOfOrderItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"><OrderItem><ID>100000</ID><ProductID>23543245</ProductID><OrderID>100000</OrderID><Price>34534</Price><Amount>1</Amount></OrderItem></ArrayOfOrderItem>

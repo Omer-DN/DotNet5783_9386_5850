@@ -36,7 +36,7 @@
         </ListView>
         <Button Content="Confirm Order" HorizontalAlignment="Left" Margin="450,326,0,0" VerticalAlignment="Top" Width="118" FontWeight="Bold" Click="Button_Click"/>
         <Label Content="Total Price:" HorizontalAlignment="Left" Margin="18,307,0,0" VerticalAlignment="Top" Width="113" FontSize="18" FontWeight="Bold"/>
-        <Label x:Name="TPLabel" DataContext="{Binding currentCart}" Content="{Binding TotalPrice}" HorizontalAlignment="Left" Margin="153,308,0,0" VerticalAlignment="Top" Width="55" FontSize="18" FontWeight="Bold"/>
+        <Label x:Name="TPLabel" DataContext="{Binding currentCart}" Content="{Binding TotalPrice}" HorizontalAlignment="Left" Margin="153,308,0,0" VerticalAlignment="Top" Width="150" FontSize="18" FontWeight="Bold"/>
 
     </Grid>
 </Window>
