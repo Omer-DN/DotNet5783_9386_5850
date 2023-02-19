@@ -44,6 +44,17 @@
             </ListView.View>
         </ListView>
         <Button x:Name="Add_Button" Content="Add Product" Grid.Row="2" HorizontalAlignment="Center" Margin="0,5,0,5" Padding="5" Click="Action_Button_Click" Width="96" Grid.Column="4" />
+        <Button x:Name="Delete_Button" Content="Delete" Grid.Row="2" HorizontalAlignment="Left" Margin="10,5,0,5" Padding="5" Click="Delete_Button_Click" Width="96">
+            <Button.Style>
+                <Style TargetType="Button">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding ElementName=ProductListview, Path=SelectedValue}" Value="{x:Null}">
+                            <Setter Property="Button.IsEnabled" Value="False"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
 
     </Grid>
 

@@ -127,25 +127,18 @@ namespace PL.Product
             asd.Owner = this;
             asd.Show();
 
-
-
-            /*int index = -1;
-            int i = 0;
-           foreach (BO.BoProductForList a in ((ListView)sender).ItemsSource)
-            {
-                if (i == ((ListView)sender).SelectedIndex)
-                    index = a.ID;
-                i++;
-            }
-            if (index != -1)
-            {
-                var asd = new ActionsWin(1, index);
-                asd.Owner = this;
-                asd.Show();
-            }
-            else
-                return;*/
         }
 
+        private void Delete_Button_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                bl.BoProduct.DeleteProduct(selectedProduct.ID);
+                productsList = new ObservableCollection<BO.BoProductForList?>(bl.BoProduct.GetListOfProducts());
+                ProductListview.ItemsSource = productsList;
+            }
+            catch(Exception ex)
+            { MessageBox.Show(ex.Message); }
+        }
     }
 }

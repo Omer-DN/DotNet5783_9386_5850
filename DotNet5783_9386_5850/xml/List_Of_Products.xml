@@ -1,1 +1,10 @@
-﻿<?xml version="1.0" encoding="utf-8"?><ArrayOfProduct xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"><Product><ID>23543245</ID><Name>efbefb</Name><Price>34534</Price><Category>Legumes</Category><InStock>23452</InStock></Product></ArrayOfProduct>
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfProduct xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Product>
+    <ID>23543245</ID>
+    <Name>efbefb</Name>
+    <Price>34534</Price>
+    <Category>Legumes</Category>
+    <InStock>23452</InStock>
+  </Product>
+</ArrayOfProduct>
