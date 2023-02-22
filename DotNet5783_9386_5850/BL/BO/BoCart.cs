@@ -15,7 +15,7 @@ namespace BO
         public override string ToString()
         {
             string itemsList = "";
-            foreach(var item in Items)
+            foreach(var item in Items!)
             {
                 itemsList += item;
                 itemsList += "\n";

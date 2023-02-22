@@ -7,38 +7,66 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 using System.Xml.Serialization;
+using static DO.Enums;
 
 namespace Dal
 {
     internal class XmlDataSource
     {
-        //internal static List<Order> listOfOrders = new List<Order>(100);
-        //internal static List<OrderItem> listOfOrderItems = new List<OrderItem>(200);
         internal static string fileNameListOfProducts = "../xml/List_Of_Products.xml";
         internal static string fileNameListOfOrders = "../xml/List_Of_Orders.xml";
         internal static string fileNameListOfOrderItems = "../xml/List_Of_OrderItems.xml";
+        internal static string fileNameConfig = "../xml/Config.xml";
         internal static XElement ProductRoot = new XElement("Products");
 
 
 
         readonly Random rand = new Random();
 
-        static internal int lastProductId = 100000;
-        static internal int lastOrderId = 100000;
-        static internal int lastOrderItemId = 100000;
-        internal static int numOfOrderItems;
+        static public Config loadConfig()
+        {
+            if (!File.Exists(fileNameConfig))
+            {
+                saveConfig(new Config());
+            }
+            Config config;
+            XmlSerializer x = new XmlSerializer(typeof(Config));
+            FileStream fs = new FileStream(fileNameConfig, FileMode.Open);
+            config = (Config)x.Deserialize(fs)!;
+            fs.Close();
+            return config;
 
-        static internal int getlastProductId()
-        {
-            return lastProductId++;
         }
-        static internal int getlastOrderId()
+
+        static public void saveConfig(Config config)
         {
-            return lastOrderId++;
+            XmlSerializer x = new XmlSerializer(config.GetType());
+            FileStream fs = new FileStream(fileNameConfig, FileMode.Create);
+            x.Serialize(fs, config);
+            fs.Close();
         }
-        static internal int getlastOrderItemId()
+
+
+        static public int getlastProductId()
         {
-            return lastOrderItemId++;
+            Config config = loadConfig();
+            int output = config.lastProductId++;
+            saveConfig(config);
+            return output;
+        }
+        static public int getlastOrderId()
+        {
+            Config config = loadConfig();
+            int output = config.lastOrderId++;
+            saveConfig(config);
+            return output;
+        }
+        static public int getlastOrderItemId()
+        {
+            Config config = loadConfig();
+            int output = config.lastOrderItemId++;
+            saveConfig(config);
+            return output;
         }
 
         //in Product we Using LinqToXml:
@@ -54,12 +82,6 @@ namespace Dal
                         Price = double.Parse(p.Element("Price")!.Value),
                         Category = (Enums.Category)Enum.Parse(typeof(Enums.Category), p.Element("Category")!.Value, true),
                         InStock = int.Parse(p.Element("InStock")!.Value)
-
-                        /*XmlSerializer x = new XmlSerializer(typeof(List<Product>));
-                        FileStream fs = new FileStream(fileNameListOfProducts, FileMode.Open);
-                        list = (List<Product>)x.Deserialize(fs);
-                        fs.Close();
-                        return list;*/
                     }).ToList();
             return list;
         }
@@ -91,14 +113,6 @@ namespace Dal
                 LoadData();
         }
 
-        /*static internal void saveListOfProducts(List<Product> list)
-        {
-            XmlSerializer x = new XmlSerializer(list.GetType());
-            FileStream fs = new FileStream(fileNameListOfProducts, FileMode.Create);
-            x.Serialize(fs, list);
-            fs.Close(); 
-        }*/
-
 
         //in Order And OrdeItem we use Xml Serialize:
         static internal List<Order> loadListOfOrders()
@@ -110,7 +124,7 @@ namespace Dal
             List<Order> list;
             XmlSerializer x = new XmlSerializer(typeof(List<Order>));
             FileStream fs = new FileStream(fileNameListOfOrders, FileMode.Open);
-            list = (List<Order>)x.Deserialize(fs);
+            list = (List<Order>)x.Deserialize(fs)!;
             fs.Close();
             return list;
         }
@@ -131,7 +145,7 @@ namespace Dal
             List<OrderItem> list;
             XmlSerializer x = new XmlSerializer(typeof(List<OrderItem>));
             FileStream fs = new FileStream(fileNameListOfOrderItems, FileMode.Open);
-            list = (List<OrderItem>)x.Deserialize(fs);
+            list = (List<OrderItem>)x.Deserialize(fs)!;
             fs.Close();
             return list;
         }

@@ -16,7 +16,7 @@ namespace BO
         {
             return $@"ID = {ID}
             Status - {Status} 
-            Tracking Steps: {string.Join("\n", trackingSteps.Select(i => i))}";
+            Tracking Steps: {string.Join("\n", trackingSteps!.Select(i => i))}";
         }
         //{
         //    string trackSteps = "";

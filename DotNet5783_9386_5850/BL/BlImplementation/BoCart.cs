@@ -18,7 +18,7 @@ namespace BlImplementation
         {
             try
             {
-                detailproduct = dal.Product.Get(id);
+                detailproduct = dal!.Product!.Get(id);
             }
             catch (Exception e)
             {
@@ -31,40 +31,38 @@ namespace BlImplementation
             }
             if(cart.Items == null)
             {
-                cart.Items = new List<BO.BoOrderItem>();
-                BO.BoOrderItem OrderItem = new BO.BoOrderItem();
-                OrderItem.ID = BO.BoOrderItem.lastID++;
-                OrderItem.Name = detailproduct.Name;
-                OrderItem.ProductID = id;
-                OrderItem.Price = detailproduct.Price;
-                OrderItem.Amount = 1;
-                OrderItem.TotalPrice = detailproduct.Price;
+                cart.Items = new List<BO.BoOrderItem>()!;
+                BO.BoOrderItem BoOrderItem = new BO.BoOrderItem();
+                BoOrderItem.Name = detailproduct.Name;
+                BoOrderItem.ProductID = id;
+                BoOrderItem.Price = detailproduct.Price;
+                BoOrderItem.Amount = 1;
+                BoOrderItem.TotalPrice = detailproduct.Price;
 
-                cart.Items.Add(OrderItem);
-                cart.TotalPrice += detailproduct.Price;
+                cart.Items.Add(BoOrderItem);
+                cart.TotalPrice += BoOrderItem.Price;
 
             }
-            if (!cart.Items.Exists(x => x.ProductID == id))
+            else if (!cart.Items.Exists(x => x!.ProductID == id))
             {
-                BO.BoOrderItem OrderItem = new BO.BoOrderItem();
-                OrderItem.ID = BO.BoOrderItem.lastID++;
-                OrderItem.Name = detailproduct.Name;
-                OrderItem.ProductID = id;
-                OrderItem.Price = detailproduct.Price;
-                OrderItem.Amount = 1;
-                OrderItem.TotalPrice = detailproduct.Price;
+                BO.BoOrderItem BoOrderItem = new BO.BoOrderItem();
+                BoOrderItem.Name = detailproduct.Name;
+                BoOrderItem.ProductID = id;
+                BoOrderItem.Price = detailproduct.Price;
+                BoOrderItem.Amount = 1;
+                BoOrderItem.TotalPrice = detailproduct.Price;
 
-                cart.Items.Add(OrderItem);
-                cart.TotalPrice += detailproduct.Price;
+                cart.Items.Add(BoOrderItem);
+                cart.TotalPrice += BoOrderItem.Price;
             }
             else
             {
-                int i = cart.Items.FindIndex(x => x.ProductID == id);
-                if (detailproduct.InStock < cart.Items[i].Amount + 1)
+                int i = cart.Items.FindIndex(x => x!.ProductID == id);
+                if (detailproduct.InStock < cart.Items[i]!.Amount + 1)
                     throw new BO.ProductOutOfStock("Out of stock");
-                cart.Items[i].Amount += 1;
-                cart.Items[i].TotalPrice += cart.Items[i].Price;
-                cart.TotalPrice += cart.Items[i].Price;
+                cart.Items[i]!.Amount += 1;
+                cart.Items[i]!.TotalPrice += cart.Items[i]!.Price;
+                cart.TotalPrice += cart.Items[i]!.Price;
             }
             return cart;
         }
@@ -79,14 +77,14 @@ namespace BlImplementation
         /// <exception cref="BO.NegativeAmount"></exception>
         public BO.BoCart UpdateItem(BO.BoCart cart, int amount, int id)
         {
-            int i = cart.Items.FindIndex(x => x.ProductID == id);
+            int i = cart.Items!.FindIndex(x => x!.ProductID == id);
             if (i < 0)
             {
                 throw new BO.ProductDoesNotExist("product not found");
             }
-            else if (cart.Items[i].Amount < amount)
+            else if (cart.Items[i]!.Amount < amount)
             {
-                int newItems = amount - cart.Items[i].Amount;
+                int newItems = amount - cart.Items[i]!.Amount;
                 for (int k = 0; k < newItems; k++)
                 {
                     try
@@ -101,15 +99,15 @@ namespace BlImplementation
             }
             else if (amount == 0)
             {
-                cart.TotalPrice -= cart.Items[i].TotalPrice;
+                cart.TotalPrice -= cart.Items[i]!.TotalPrice;
                 cart.Items.RemoveAt(i);
             }
             else
             {
-                int subItems = cart.Items[i].Amount - amount;
-                cart.Items[i].Amount = amount;
-                cart.Items[i].TotalPrice -= cart.Items[i].Price * subItems;
-                cart.TotalPrice = cart.Items[i].Price * subItems;
+                int subItems = cart.Items[i]!.Amount - amount;
+                cart.Items[i]!.Amount = amount;
+                cart.Items[i]!.TotalPrice -= cart.Items[i]!.Price * subItems;
+                cart.TotalPrice = cart.Items[i]!.Price * subItems;
             }
             return cart;
         }
@@ -140,11 +138,11 @@ namespace BlImplementation
             double TotalPrice_ = 0;
             DO.Product product = new();
 
-            foreach (var item in cart.Items)
+            foreach (var item in cart.Items!)
             {
                 try
                 {
-                    product = dal.Product.Get(item.ProductID);
+                    product = dal!.Product!.Get(item!.ProductID);
 
                 }
                 catch (Exception)
@@ -179,19 +177,19 @@ namespace BlImplementation
             try
             {
                 //try to add order to data sirce in dal
-                int orderId = dal.Order.Add(order);
+                int orderId = dal!.Order!.Add(order);
                 //create orderItem in dal and update amount of product
                 DO.OrderItem orderItem = new();
                 foreach (var item in cart.Items)
                 {
                     //create an orderItem for dall and add it
                     orderItem.OrderID = orderId;
-                    orderItem.ProductID = item.ProductID;
+                    orderItem.ProductID = item!.ProductID;
                     orderItem.Amount = item.Amount;
                     orderItem.Price = item.Price;
-                    int orderItemId = dal.OrderItem.Add(orderItem);
+                    int orderItemId = dal.OrderItem!.Add(orderItem);
                     //update amount of product in Dak
-                    product = dal.Product.Get(item.ProductID);
+                    product = dal.Product!.Get(item.ProductID);
                     product.InStock -= item.Amount;
                     dal.Product.Update(product);
                 }

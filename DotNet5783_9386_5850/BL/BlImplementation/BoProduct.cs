@@ -10,7 +10,7 @@ namespace BlImplementation
         public IEnumerable<BO.BoProductForList> CondGetListOfProducts(Func<DO.Product, bool>? condition)
         {
             IEnumerable<DO.Product> dataList = new List<DO.Product>();
-            dataList = dal?.Product.GetList(condition);
+            dataList = dal?.Product!.GetList(condition)!;
             List<BO.BoProductForList> newList = new List<BO.BoProductForList>();
             foreach (var item in dataList)
             {
@@ -28,7 +28,7 @@ namespace BlImplementation
             IEnumerable<DO.Product>? dataList = new List<DO.Product>();
             dataList = dal?.Product?.GetList();
             List<BO.BoProductForList> newList = new List<BO.BoProductForList>();
-            foreach (var item in dataList)
+            foreach (var item in dataList!)
             {
                 BO.BoProductForList newItem = new BO.BoProductForList();
                 newItem.ID = item.ID;
@@ -45,7 +45,7 @@ namespace BlImplementation
             IEnumerable<DO.Product>? dataList = new List<DO.Product>();
             dataList = dal?.Product?.GetList();
             List<BO.BoProductItem> newList = new List<BO.BoProductItem>();
-            foreach (var item in dataList)
+            foreach (var item in dataList!)
             {
                 BO.BoProductItem newItem = new BO.BoProductItem();
                 newItem.ID = item.ID;
@@ -53,7 +53,7 @@ namespace BlImplementation
                 newItem.Price = item.Price;
                 newItem.Category = (BO.Enums.Category)item.Category;
                 newItem.Amount = 0;
-                if (dal?.Product.Get(item.ID).InStock > 0)
+                if (dal?.Product!.Get(item.ID).InStock > 0)
                     newItem.InStock = true;
                 else
                     newItem.InStock = false;
@@ -67,7 +67,7 @@ namespace BlImplementation
             IEnumerable<DO.Product>? dataList = new List<DO.Product>();
             dataList = dal?.Product?.GetList(condition);
             List<BO.BoProductItem> newList = new List<BO.BoProductItem>();
-            foreach (var item in dataList)
+            foreach (var item in dataList!)
             {
                 BO.BoProductItem newItem = new BO.BoProductItem();
                 newItem.ID = item.ID;
@@ -75,7 +75,7 @@ namespace BlImplementation
                 newItem.Price = item.Price;
                 newItem.Category = (BO.Enums.Category)item.Category;
                 newItem.Amount = 0;
-                if (dal?.Product.Get(item.ID).InStock > 0)
+                if (dal?.Product!.Get(item.ID).InStock > 0)
                     newItem.InStock = true;
                 else
                     newItem.InStock = false;
@@ -91,7 +91,7 @@ namespace BlImplementation
             BO.BoProduct newProduct = new BO.BoProduct();
             if (id > 0)
             {
-                newProduct.ID = dal.Product.Get(id).ID;
+                newProduct.ID = dal!.Product!.Get(id).ID;
                 newProduct.Name = dal.Product.Get(id).Name;
                 newProduct.Price = dal.Product.Get(id).Price;
                 newProduct.InStock = dal.Product.Get(id).InStock;
@@ -107,7 +107,7 @@ namespace BlImplementation
             BO.BoProductItem newProductItem = new BO.BoProductItem();
             if (id > 0)
             {
-                DO.Product dataProduct = dal.Product!.Get(id);
+                DO.Product dataProduct = dal!.Product!.Get(id);
                 newProductItem.Name = dataProduct.Name;
                 newProductItem.ID = dataProduct.ID;
                 newProductItem.Price = dataProduct.Price;
@@ -115,9 +115,9 @@ namespace BlImplementation
                     newProductItem.InStock = true;
                 newProductItem.Category = (BO.Enums.Category)dataProduct.Category;
                 bool inCart = false;
-                foreach (var item in cart.Items)
+                foreach (var item in cart.Items!)
                 {
-                    if (item.ProductID == id)
+                    if (item!.ProductID == id)
                     {
                         newProductItem.Amount = item.Amount;
                         inCart = true;
@@ -134,7 +134,7 @@ namespace BlImplementation
 
         public void AddProduct(BO.BoProduct product)
         {
-            if (product.ID >0 && product.Name != "" && ((int)product.Category>=0 && (int)product.Category < 6)
+            if (product.ID >0 && product.Name != "" && ((int)product.Category! >= 0 && (int)product.Category < 6)
                 && product.InStock >= 0 && product.Price >= 0 )
             {
                 DO.Product newProduct = new DO.Product();
@@ -143,11 +143,11 @@ namespace BlImplementation
                 newProduct.Price = product.Price;
                 newProduct.Category = (DO.Enums.Category)product.Category;
                 newProduct.InStock = product.InStock;
-                dal?.Product.Add(newProduct);
+                dal?.Product!.Add(newProduct);
             }
             else
             {
-                if((int)product.Category < 0 || (int)product.Category > 5)
+                if((int)product.Category! < 0 || (int)product.Category > 5)
                     throw new BO.WrongProductDetails("Error. The category of the product must be 1-5 number");
                 if (product.ID <= 0) throw new BO.WrongProductDetails("Error. The ID of the product cannot be negative or zero");
                 if (product.Name == "") throw new BO.WrongProductDetails("Error. The Name of the product cant be empty");
@@ -158,14 +158,14 @@ namespace BlImplementation
 
         public void DeleteProduct(int id)
         {
-            foreach (var orderItem in dal?.OrderItem.GetList())
+            foreach (var orderItem in dal?.OrderItem!.GetList()!)
             {
                 if (id == orderItem.ProductID)
                 {
                     throw new BO.productCantBeDeleted("Error. This product is already Exist in one of the Orders");
                 }
             }
-            dal?.Product.Delete(id);
+            dal?.Product!.Delete(id);
         }
 
         public void UpdateProduct(BO.BoProduct product)
@@ -176,7 +176,7 @@ namespace BlImplementation
                 newProduct.ID = product.ID;
                 newProduct.Name = product.Name!;
                 newProduct.Price = product.Price;
-                newProduct.Category = (DO.Enums.Category)product.Category;
+                newProduct.Category = (DO.Enums.Category)product.Category!;
                 newProduct.InStock = product.InStock;
                 dal?.Product!.Update(newProduct);
             }

@@ -11,6 +11,8 @@ namespace BlApi
 
         public void UpdateOrder(BO.BoOrder order);
 
+        public BO.BoOrder GetOldestOrder();
+
 
 
     }

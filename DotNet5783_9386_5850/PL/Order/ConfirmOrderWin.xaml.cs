@@ -57,9 +57,9 @@ namespace PL.Order
         {
             try
             {
-                Button b = sender as Button;
-                bl.BoCart.UpdateItem(currentCart, ((BoOrderItem)b.CommandParameter).Amount + 1, ((BoOrderItem)b.CommandParameter).ProductID);
-                CartList = new ObservableCollection<BoOrderItem?>(currentCart.Items);
+                Button? b = sender as Button;
+                bl!.BoCart!.UpdateItem(currentCart, ((BoOrderItem)b!.CommandParameter).Amount + 1, ((BoOrderItem)b.CommandParameter).ProductID);
+                CartList = new ObservableCollection<BoOrderItem?>(currentCart.Items!);
                 OrderList.GetBindingExpression(ListView.ItemsSourceProperty).UpdateTarget();
                 TPLabel.GetBindingExpression(ContentProperty).UpdateTarget();
             }
@@ -71,9 +71,9 @@ namespace PL.Order
         {
             try
             {
-                Button b = sender as Button;
-                bl.BoCart.UpdateItem(currentCart, ((BoOrderItem)b.CommandParameter).Amount - 1, ((BoOrderItem)b.CommandParameter).ProductID);
-                CartList = new ObservableCollection<BoOrderItem?>(currentCart.Items);
+                Button? b = sender as Button;
+                bl!.BoCart!.UpdateItem(currentCart, ((BoOrderItem)b!.CommandParameter).Amount - 1, ((BoOrderItem)b.CommandParameter).ProductID);
+                CartList = new ObservableCollection<BoOrderItem?>(currentCart.Items!);
                 OrderList.GetBindingExpression(ListView.ItemsSourceProperty).UpdateTarget();
                 TPLabel.GetBindingExpression(ContentProperty).UpdateTarget();
             }
@@ -85,9 +85,9 @@ namespace PL.Order
         {
             try
             {
-                Button b = sender as Button;
-                bl.BoCart.UpdateItem(currentCart, 0, ((BoOrderItem)b.CommandParameter).ProductID);
-                CartList = new ObservableCollection<BoOrderItem?>(currentCart.Items);
+                Button? b = sender as Button;
+                bl!.BoCart!.UpdateItem(currentCart, 0, ((BoOrderItem)b!.CommandParameter).ProductID);
+                CartList = new ObservableCollection<BoOrderItem?>(currentCart.Items!);
                 OrderList.GetBindingExpression(ListView.ItemsSourceProperty).UpdateTarget();
                 TPLabel.GetBindingExpression(ContentProperty).UpdateTarget();
             }
@@ -99,10 +99,10 @@ namespace PL.Order
         {
             try
             {
-                bl.BoCart.OrderConfirmation(currentCart, currentCart.CustumerName, currentCart.CustumerEmail, currentCart.CustumerAdress);
+                bl!.BoCart!.OrderConfirmation(currentCart, currentCart.CustumerName!, currentCart.CustumerEmail!, currentCart.CustumerAdress!);
                 if (this.Owner.Owner != null)
                 {
-                    ((OrderList)this.Owner.Owner).ordersList = new ObservableCollection<BO.BoOrderForList?>(bl.BoOrder.GetListOfOrders());
+                    ((OrderList)this.Owner.Owner).ordersList = new ObservableCollection<BO.BoOrderForList?>(bl.BoOrder!.GetListOfOrders()!);
                     ((OrderList)this.Owner.Owner).OrderListview.GetBindingExpression(ListView.ItemsSourceProperty).UpdateTarget();
                 }
                 this.Close();

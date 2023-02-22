@@ -24,12 +24,9 @@ namespace PL.Order
 
         public TrackOrderWin(int id)
         {
-            MyOrderTrack = bl.BoOrder.Track(id);
+            MyOrderTrack = bl!.BoOrder!.Track(id);
             InitializeComponent();
         }
-
-
-
 
         public BoOrderTracking MyOrderTrack
         {

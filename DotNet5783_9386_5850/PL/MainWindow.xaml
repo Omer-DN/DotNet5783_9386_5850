@@ -12,6 +12,7 @@
         <Button Content="Manager" HorizontalAlignment="Left" Margin="91,456,0,0" VerticalAlignment="Top" Width="136" Height="30" FontWeight="Bold" FontSize="18" Click="Manager_Button_Click"/>
         <Button Content="New Order" HorizontalAlignment="left" Margin="330,456,0,0" VerticalAlignment="Top" Width="136" Height="30" FontSize="18" FontWeight="Bold" Click="NewOrder_Button_Click"/>
         <Button Content="Track Orders" HorizontalAlignment="Left" Margin="569,456,0,0" VerticalAlignment="Top" Width="136" Height="30" FontSize="18" FontWeight="Bold" Click="TrackOrders_Button_Click"/>
+        <Button Content="Simulator" HorizontalAlignment="Left" Margin="288,537,0,0" VerticalAlignment="Top" Width="220" Height="30" FontSize="18" FontWeight="Bold" Click="Simulator_Button_Click"/>
 
     </Grid>
 </Window>

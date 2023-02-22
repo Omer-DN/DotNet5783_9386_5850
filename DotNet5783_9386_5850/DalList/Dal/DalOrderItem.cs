@@ -35,16 +35,7 @@ public class DalOrderItem:IOrderItem
         listOfOrderItems.Add(newOrderItem);
 
         return newOrderItem.ID;
-
     }
-    //{
-    //    foreach (OrderItem i in listOfOrderItems)
-    //        if (i.ID == Orderitem.ID)
-    //            throw new Exception("This order item already exists in the order items list");
-    //Orderitem.ID = getlastOrderItemId();
-    //listOfOrderItems.Add(Orderitem);
-    //    return Orderitem.ID;
-    //}
 
     public void Delete(int id)
     {
@@ -53,17 +44,6 @@ public class DalOrderItem:IOrderItem
             throw new Exception("This order item does not exist in the system");
 
     }
-    //{
-    //    foreach (OrderItem i in listOfOrderItems)
-    //    {
-    //        if (i.ID == id)
-    //        {
-    //            listOfOrderItems.Remove(i);
-    //            return;
-    //        }
-    //    }
-    //    throw new Exception("This order item does not exist in the system");
-    //}
 
     public void Update(OrderItem Orderitem)
     {
@@ -77,25 +57,8 @@ public class DalOrderItem:IOrderItem
             }
         if(found == false) throw new Exception("This order item does not exist in the system");
     }
-    //{
-    //    foreach (OrderItem i in listOfOrderItems)
-    //        if (i.ID == Orderitem.ID)
-    //        {
-    //            var index = listOfOrderItems.FindIndex(i => i.ID == Orderitem.ID);
-    //listOfOrderItems[index] = Orderitem;
-    //        }
-    //    throw new Exception("This order item does not exist in the system");
-    //}
 
     public OrderItem Get(int id)
-    //{
-    //    var orderItem = listOfOrderItems.FirstOrDefault(i => i.ID == id);
-    //    if (orderItem != null)
-    //        return orderItem;
-    //    else
-    //        throw new Exception("This order item does not exist in the system");
-
-    //}
         {
             foreach (OrderItem i in listOfOrderItems)
                 if (i.ID == id)
@@ -104,16 +67,9 @@ public class DalOrderItem:IOrderItem
         }
 
     public OrderItem GetCond(int id, Func<OrderItem, bool>? condition)
-
-    //    {
-    //        var item = listOfOrderItems.SingleOrDefault(i => i.ID == id && condition(i));
-    //        if (item == null)
-    //            throw new Exception("This order item does not exist in the system");
-    //        return item;
-    //    }
     {
         foreach (OrderItem i in listOfOrderItems)
-            if (i.ID == id && condition(i))
+            if (i.ID == id && condition!(i))
                 return i;
         throw new Exception("This order item does not exist in the system");
     }
@@ -126,20 +82,5 @@ public class DalOrderItem:IOrderItem
     listOfOrderItems.Where(x => condition(x)).ToList();
 
     }
-    //{
-    //    List<OrderItem> orderItems = new List<OrderItem>();
-    //    if (condition == null)
-    //    {
-    //        foreach (OrderItem i in listOfOrderItems)
-    //        {
-    //            orderItems.Add(i);
-    //        }
-    //    }
-    //    else
-    //    {
-    //        orderItems = listOfOrderItems.FindAll(x => condition(x));
-    //    }
-    //    return orderItems;
-    //}
 
 }

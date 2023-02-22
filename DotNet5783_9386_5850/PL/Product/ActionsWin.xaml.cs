@@ -24,7 +24,7 @@ namespace PL.Product
     {
         BlApi.IBl? bl = BlApi.Factory.Get();
 
-        public ActionsWin(int state, BoProductForList selected = null)
+        public ActionsWin(int state, BoProductForList? selected = null)
         {
             InitializeComponent();
             Category_ComboBox.ItemsSource = Enum.GetValues(typeof(BO.Enums.Category));
@@ -38,7 +38,7 @@ namespace PL.Product
             {
                 Action_Button.Content = "Update";
                 Action_Button.Click += Update_Button_Click;
-                currentProduct = bl.BoProduct.ManagerGetProduct(selected.ID);
+                currentProduct = bl!.BoProduct!.ManagerGetProduct(selected!.ID);
                 ID_textBox.IsReadOnly = true;
                 Name_textBox.IsReadOnly = true;
             }
@@ -65,7 +65,7 @@ namespace PL.Product
         {
             try
             {
-                bl.BoProduct.AddProduct(currentProduct);
+                bl!.BoProduct!.AddProduct(currentProduct);
                 ((ProductList)this.Owner).whichCategorySelected();
                 this.Close();
             }
@@ -77,7 +77,7 @@ namespace PL.Product
         {
             try
             {
-                bl.BoProduct.UpdateProduct(currentProduct);
+                bl!.BoProduct!.UpdateProduct(currentProduct);
                 ((ProductList)this.Owner).whichCategorySelected();
                 this.Close();
             }

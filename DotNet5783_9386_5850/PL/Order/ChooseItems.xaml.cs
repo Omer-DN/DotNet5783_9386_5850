@@ -26,7 +26,7 @@ namespace PL.Order
         BlApi.IBl? bl = BlApi.Factory.Get();
         public ChooseItems()
         {
-            ProductsList = new ObservableCollection<BO.BoProductForList?>(bl.BoProduct.GetListOfProducts());
+            ProductsList = new ObservableCollection<BO.BoProductForList?>(bl!.BoProduct!.GetListOfProducts());
             InitializeComponent();
             CategorySelector.SelectedIndex = 0;
             CategorySelector.ItemsSource = Enum.GetValues(typeof(BO.Enums.Category));
@@ -50,11 +50,11 @@ namespace PL.Order
         public void whichCategorySelected()
         {
             if ((int)CategorySelector.SelectedItem == (int)BO.Enums.Category.None)
-                ProductListview.ItemsSource = bl.BoProduct.GetListOfProducts();
+                ProductListview.ItemsSource = bl!.BoProduct!.GetListOfProducts();
             else
             {
                 IEnumerable<BO.BoProductForList> list = new List<BO.BoProductForList>();
-                list = bl.BoProduct.CondGetListOfProducts(x => (int)x.Category == (int)CategorySelector.SelectedItem);
+                list = bl!.BoProduct!.CondGetListOfProducts(x => (int)x.Category == (int)CategorySelector.SelectedItem);
                 ProductListview.ItemsSource = list;
             }
         }

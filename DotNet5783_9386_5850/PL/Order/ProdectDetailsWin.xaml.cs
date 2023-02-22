@@ -27,7 +27,6 @@ namespace PL.Order
         }
 
 
-
         public BoProductItem currentProduct
         {
             get { return (BoProductItem)GetValue(currentProductProperty); }

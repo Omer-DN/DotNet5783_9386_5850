@@ -21,14 +21,6 @@ namespace PL.Converters
             }
             else
                 return int.Parse(value.ToString()!);
-            /*MessageBox.Show("The Price Must Be Positive Number", "Error");
-            return -1;
-            int ID = int.Parse(value.ToString()!);
-                if (ID != 0)
-                    return ID;
-                return "";
-                MessageBox.Show("The Price Must Be Positive Number", "Error");
-                return -1;*/
         }
         //convert from target property type to source property type
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
@@ -40,10 +32,6 @@ namespace PL.Converters
                 MessageBox.Show("The Number Must Be Positive Number and not Characters", "Error");
                 return 0;
             }
-            //if(Int32.TryParse(value,out int))
-            /*if(value!=null)
-                return value.ToString()!;
-            return string.Empty;*/
 
         }
 
@@ -72,9 +60,6 @@ namespace PL.Converters
                 MessageBox.Show("The Number Must Be Positive Number and not Characters", "Error");
                 return 0;
             }
-            /*if(value!=null)
-                return value.ToString()!;
-            return "0";*/
         }
     }
 

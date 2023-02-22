@@ -30,24 +30,8 @@ namespace PL.Order
             InitializeComponent();
             ComboxCategory = Enum.GetValues(typeof(BO.Enums.Category));
 
-           // CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(productsListView.ItemsSource);
-            //PropertyGroupDescription groupDescription = new PropertyGroupDescription("Category");
-           //view.GroupDescriptions.Add(groupDescription);
-
         }
 
-
-
-
-        /*public Array ComboxCategory
-        {
-            get { return (Array)GetValue(ComboxCategoryProperty); }
-            set { SetValue(ComboxCategoryProperty, value); }
-        }
-
-        // Using a DependencyProperty as the backing store for ComboxCategory.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty ComboxCategoryProperty =
-            DependencyProperty.Register("ComboxCategory", typeof(Array), typeof(CatalogWin));*/
         public Array ComboxCategory
         {
             get { return (Array)GetValue(ComboxCategoryProperty); }
@@ -121,8 +105,8 @@ namespace PL.Order
 
         private void productsListView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            if(((AddOrderWin)this.Owner).MyCart.Items.Find(x => x.ProductID == selectedProduct.ID)!=null)
-                selectedProduct.Amount = ((AddOrderWin)this.Owner).MyCart.Items.Find(x => x.ProductID == selectedProduct.ID).Amount;
+            if(((AddOrderWin)this.Owner).MyCart.Items!.Find(x => x!.ProductID == selectedProduct.ID)!=null)
+                selectedProduct.Amount = ((AddOrderWin)this.Owner).MyCart.Items!.Find(x => x!.ProductID == selectedProduct.ID)!.Amount;
             else selectedProduct.Amount = 0;
             new ProdectDetailsWin(selectedProduct).Show();
         }
@@ -131,22 +115,21 @@ namespace PL.Order
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            //((AddOrderWin)this.Owner).orderItemsList = new ObservableCollection<BO.BoOrderItem?>(((AddOrderWin)this.Owner).MyCart.Items);
             try
             {
                 if (((BoProductItem)productsListView.SelectedItem) != null)
                 {
                     if ((this.Owner).GetType() == typeof(AddOrderWin))
                     {
-                        bl.BoCart.AddItem(((AddOrderWin)this.Owner).MyCart, ((BoProductItem)productsListView.SelectedItem).ID);
-                        ((AddOrderWin)this.Owner).orderItemsList = new ObservableCollection<BoOrderItem?>(((AddOrderWin)this.Owner).MyCart.Items);
+                        bl!.BoCart!.AddItem(((AddOrderWin)this.Owner).MyCart, ((BoProductItem)productsListView.SelectedItem).ID);
+                        ((AddOrderWin)this.Owner).orderItemsList = new ObservableCollection<BoOrderItem?>(((AddOrderWin)this.Owner).MyCart.Items!);
                         ((AddOrderWin)this.Owner).CartListView.ItemsSource = ((AddOrderWin)this.Owner).orderItemsList;
                         ((AddOrderWin)this.Owner).Totalprice.Content = ((AddOrderWin)this.Owner).MyCart.TotalPrice;
                     }
                     else
                     {
-                        bl.BoCart.AddItem(((OrderUpdateWin)this.Owner).CurrentCart, ((BoProductItem)productsListView.SelectedItem).ID);
-                        ((OrderUpdateWin)this.Owner).ItemsList = new ObservableCollection<BoOrderItem?>(((OrderUpdateWin)this.Owner).CurrentCart.Items);
+                        bl!.BoCart!.AddItem(((OrderUpdateWin)this.Owner).CurrentCart, ((BoProductItem)productsListView.SelectedItem).ID);
+                        ((OrderUpdateWin)this.Owner).ItemsList = new ObservableCollection<BoOrderItem?>(((OrderUpdateWin)this.Owner).CurrentCart.Items!);
                         ((OrderUpdateWin)this.Owner).orderItemList.ItemsSource = ((OrderUpdateWin)this.Owner).ItemsList;
                         ((OrderUpdateWin)this.Owner).TPLabel.Content = ((OrderUpdateWin)this.Owner).CurrentCart.TotalPrice;
                     }

@@ -14,7 +14,7 @@ internal class Program
         Console.WriteLine("3 - Check the BoOrder Class");
         Console.WriteLine("0 - Exit");
         int Choice1, Choice2;
-        Choice1 = int.Parse(Console.ReadLine());
+        Choice1 = int.Parse(Console.ReadLine()!);
         while (Choice1 != 0)
         {
             switch (Choice1)
@@ -28,7 +28,7 @@ internal class Program
                     Console.WriteLine("5 - Update a Product from the store");
                     Console.WriteLine("6 - Delete a Product from the store");
                     Console.WriteLine("0 - Exit");
-                    Choice2 = int.Parse(Console.ReadLine());
+                    Choice2 = int.Parse(Console.ReadLine()!);
                     while (Choice2 != 0)
                     {
                         switch (Choice2)
@@ -52,7 +52,7 @@ internal class Program
                                     category = (BO.Enums.Category)int.Parse(Console.ReadLine()!);/* category--;*/
                                     Console.WriteLine("Please select quantity in stock for the product:");
                                     instock = int.Parse(Console.ReadLine()!);
-                                    NewProduct = bl.BoProduct.Create(id, name_p, price, category, instock);
+                                    NewProduct = bl!.BoProduct!.Create(id, name_p, price, category, instock);
                                     bl.BoProduct.AddProduct(NewProduct);
                                     Console.WriteLine("The product has been successfully added!");
                                 }
@@ -67,7 +67,7 @@ internal class Program
                                 try
                                 {
                                     id = int.Parse(Console.ReadLine()!);
-                                    BoProductItem newProductitem = bl.BoProduct.BuyerGetProduct(cart, id);
+                                    BoProductItem newProductitem = bl!.BoProduct!.BuyerGetProduct(cart, id);
                                     Console.WriteLine("Product found!");
                                     Console.WriteLine(newProductitem);
                                 }
@@ -81,7 +81,7 @@ internal class Program
                                 try
                                 {
                                     id = int.Parse(Console.ReadLine()!);
-                                    BoProduct newProductitem = bl.BoProduct.ManagerGetProduct(id);
+                                    BoProduct newProductitem = bl!.BoProduct!.ManagerGetProduct(id);
                                     Console.WriteLine("Product found!");
                                     Console.WriteLine(newProductitem);
                                 }
@@ -92,7 +92,7 @@ internal class Program
                                 break;
                             case 4:
                                 Console.WriteLine("The Product list of the store:");
-                                IEnumerable<BoProductForList> products = bl.BoProduct.GetListOfProducts();
+                                IEnumerable<BoProductForList> products = bl!.BoProduct!.GetListOfProducts()!;
                                 foreach (BoProductForList product in products)
                                 {
                                     Console.WriteLine(product);
@@ -103,7 +103,7 @@ internal class Program
                                 try
                                 {
                                     id = int.Parse(Console.ReadLine()!);
-                                    BoProduct productToUpdate = bl.BoProduct.ManagerGetProduct(id);
+                                    BoProduct productToUpdate = bl!.BoProduct!.ManagerGetProduct(id);
                                     Console.WriteLine("Product found!");
                                     Console.WriteLine(productToUpdate);
                                     Console.WriteLine("Please Enter the details of the new product to update:");
@@ -131,7 +131,7 @@ internal class Program
                                 try
                                 {
                                     id = int.Parse(Console.ReadLine()!);
-                                    bl.BoProduct.DeleteProduct(id);
+                                    bl!.BoProduct!.DeleteProduct(id);
                                     Console.WriteLine("The product has been successfully deleted!");
                                 }
                                 catch (Exception Error)
@@ -152,14 +152,14 @@ internal class Program
                         Console.WriteLine("5 - Update a Product from the store");
                         Console.WriteLine("6 - Delete a Product from the store");
                         Console.WriteLine("0 - Exit");
-                        Choice2 = int.Parse(Console.ReadLine());
+                        Choice2 = int.Parse(Console.ReadLine()!);
                     }
                     Console.WriteLine("Welcome, Please Choose one choice from the Menu:");
                     Console.WriteLine("1 - Check the BoProduct Class");
                     Console.WriteLine("2 - Check the BoCart Class");
                     Console.WriteLine("3 - Check the BoOrder Class");
                     Console.WriteLine("0 - Exit");
-                    Choice1 = int.Parse(Console.ReadLine());
+                    Choice1 = int.Parse(Console.ReadLine()!);
                     break;
                 case 2:
                     string? name, adress, email;
@@ -176,7 +176,7 @@ internal class Program
                         cart.CustumerName = name;
                         cart.CustumerAdress = adress;
                         cart.CustumerEmail = email;
-                        cart.Items = new List<BoOrderItem>();
+                        cart.Items = new List<BoOrderItem>()!;
                         cart.TotalPrice = 0;
                     }
                     catch (Exception Error)
@@ -202,7 +202,7 @@ internal class Program
                                     isOK = int.TryParse(Console.ReadLine(), out productId);
                                     if (isOK)
                                     {
-                                        cart = bl.BoCart.AddItem(cart, productId);
+                                        cart = bl!.BoCart!.AddItem(cart, productId);
                                         Console.WriteLine(cart);
                                     }
                                     else
@@ -221,7 +221,7 @@ internal class Program
                                     isOK = int.TryParse(Console.ReadLine(), out amount);
                                     if (!isOK)
                                         throw new DataRequestFailed("amount muse be int positive");
-                                    cart = bl.BoCart.UpdateItem(cart, amount, productId);
+                                    cart = bl!.BoCart!.UpdateItem(cart, amount, productId);
                                     Console.WriteLine(cart);
                                     break;
 
@@ -235,7 +235,7 @@ internal class Program
                                         email = Console.ReadLine();
                                         Console.WriteLine("Please enter the customer's adress");
                                         adress = Console.ReadLine();
-                                        bl.BoCart.OrderConfirmation(cart, name, email, adress);
+                                        bl!.BoCart!.OrderConfirmation(cart, name!, email!, adress!);
                                         Console.WriteLine("The ordr has been orderd succsesufy");
                                     }
                                     catch (Exception Error)
@@ -267,7 +267,7 @@ internal class Program
                     Console.WriteLine("2 - Check the BoCart Class");
                     Console.WriteLine("3 - Check the BoOrder Class");
                     Console.WriteLine("0 - Exit");
-                    Choice1 = int.Parse(Console.ReadLine());
+                    Choice1 = int.Parse(Console.ReadLine()!);
                     break;
                 case 3:
                     Console.WriteLine("BoOrder: Please Choose one choice:");
@@ -286,7 +286,7 @@ internal class Program
                                 try
                                 {
                                     Console.WriteLine("The Orders list of the store:");
-                                    IEnumerable<BoOrderForList> orders = bl.BoOrder.GetListOfOrders();
+                                    IEnumerable<BoOrderForList> orders = bl!.BoOrder!.GetListOfOrders()!;
                                     foreach (BoOrderForList order in orders)
                                     {
                                         Console.WriteLine(order);
@@ -302,7 +302,7 @@ internal class Program
                                 try
                                 {
                                     int id = int.Parse(Console.ReadLine()!);
-                                    BoOrder order = bl.BoOrder.GetOrder(id);
+                                    BoOrder order = bl!.BoOrder!.GetOrder(id);
                                     Console.WriteLine("Order found!");
                                     Console.WriteLine(order);
                                 }
@@ -316,7 +316,7 @@ internal class Program
                                 try
                                 {
                                     int id = int.Parse(Console.ReadLine()!);
-                                    bl.BoOrder.UpdateShipping(id);
+                                    bl!.BoOrder!.UpdateShipping(id);
                                     Console.WriteLine("Order shipping date has updated to the current time!");
                                 }
                                 catch (Exception Error)
@@ -329,7 +329,7 @@ internal class Program
                                 try
                                 {
                                     int id = int.Parse(Console.ReadLine()!);
-                                    bl.BoOrder.UpdateDelivery(id);
+                                    bl!.BoOrder!.UpdateDelivery(id);
                                     Console.WriteLine("Order delivery date has updated to the current time!");
                                 }
                                 catch (Exception Error)
@@ -342,7 +342,7 @@ internal class Program
                                 try
                                 {
                                     int id = int.Parse(Console.ReadLine()!);
-                                    BoOrderTracking track = bl.BoOrder.Track(id);
+                                    BoOrderTracking track = bl!.BoOrder!.Track(id);
                                     Console.WriteLine(track);
                                 }
                                 catch (Exception Error)
@@ -361,14 +361,14 @@ internal class Program
                         Console.WriteLine("4 - Update order delivery");
                         Console.WriteLine("5 - Track a order");
                         Console.WriteLine("0 - Exit");
-                        Choice2 = int.Parse(Console.ReadLine());
+                        Choice2 = int.Parse(Console.ReadLine()!);
                     }
                     Console.WriteLine("Welcome, Please Choose one choice from the Menu:");
                     Console.WriteLine("1 - Check the BoProduct Class");
                     Console.WriteLine("2 - Check the BoCart Class");
                     Console.WriteLine("3 - Check the BoOrder Class");
                     Console.WriteLine("0 - Exit");
-                    Choice1 = int.Parse(Console.ReadLine());
+                    Choice1 = int.Parse(Console.ReadLine()!);
                     break;
                 default:
                     Console.WriteLine("Please Enter correct number!");

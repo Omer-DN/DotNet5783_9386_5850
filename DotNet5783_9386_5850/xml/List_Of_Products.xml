@@ -1,10 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ArrayOfProduct xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <Product>
-    <ID>23543245</ID>
-    <Name>efbefb</Name>
-    <Price>34534</Price>
+<Products>
+  <student>
+    <ID>23423</ID>
+    <Name>dvefv</Name>
+    <Price>3453</Price>
     <Category>Legumes</Category>
-    <InStock>23452</InStock>
-  </Product>
-</ArrayOfProduct>
+    <InStock>34523</InStock>
+  </student>
+  <student>
+    <ID>235234</ID>
+    <Name>etbrtb</Name>
+    <Price>54645</Price>
+    <Category>CleanProducts</Category>
+    <InStock>78950</InStock>
+  </student>
+</Products>

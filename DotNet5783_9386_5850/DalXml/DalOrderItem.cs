@@ -15,21 +15,15 @@ internal class DalOrderItem : IOrderItem
     public int Add(OrderItem Orderitem)
     {
         List<OrderItem> listOfOrderItems = loadListOfOrderItems();
-        var orderItemIds = listOfOrderItems
-            .GroupBy(x => x.ID)
-            .Select(g => g.First())
-            .Select(i => i.ID)
-            .OrderBy(id => id)
-            .ToList();
+        if (listOfOrderItems.Any(i => i.ID == Orderitem.ID))
+        {
+            throw new Exception("This order item already exists in the order items list");
+        }
 
-        if (listOfOrderItems.Count == 0)
-            XmlDataSource.lastOrderId++;
-        else
-            XmlDataSource.lastOrderId = orderItemIds.Max() + 1;
-
+        Orderitem.ID = getlastOrderItemId();
         var newOrderItem = new OrderItem
         {
-            ID = lastOrderItemId,
+            ID = Orderitem.ID,
             ProductID = Orderitem.ProductID,
             OrderID = Orderitem.OrderID,
             Price = Orderitem.Price,
@@ -41,14 +35,6 @@ internal class DalOrderItem : IOrderItem
         return newOrderItem.ID;
 
     }
-    //{
-    //    foreach (OrderItem i in listOfOrderItems)
-    //        if (i.ID == Orderitem.ID)
-    //            throw new Exception("This order item already exists in the order items list");
-    //Orderitem.ID = getlastOrderItemId();
-    //listOfOrderItems.Add(Orderitem);
-    //    return Orderitem.ID;
-    //}
 
     public void Delete(int id)
     {
@@ -58,17 +44,6 @@ internal class DalOrderItem : IOrderItem
             throw new Exception("This order item does not exist in the system");
         saveListOfOrderItems(listOfOrderItems);
     }
-    //{
-    //    foreach (OrderItem i in listOfOrderItems)
-    //    {
-    //        if (i.ID == id)
-    //        {
-    //            listOfOrderItems.Remove(i);
-    //            return;
-    //        }
-    //    }
-    //    throw new Exception("This order item does not exist in the system");
-    //}
 
     public void Update(OrderItem Orderitem)
     {
@@ -84,25 +59,9 @@ internal class DalOrderItem : IOrderItem
         if (found == false) throw new Exception("This order item does not exist in the system");
         saveListOfOrderItems(listOfOrderItems);
     }
-    //{
-    //    foreach (OrderItem i in listOfOrderItems)
-    //        if (i.ID == Orderitem.ID)
-    //        {
-    //            var index = listOfOrderItems.FindIndex(i => i.ID == Orderitem.ID);
-    //listOfOrderItems[index] = Orderitem;
-    //        }
-    //    throw new Exception("This order item does not exist in the system");
-    //}
+
 
     public OrderItem Get(int id)
-    //{
-    //    var orderItem = listOfOrderItems.FirstOrDefault(i => i.ID == id);
-    //    if (orderItem != null)
-    //        return orderItem;
-    //    else
-    //        throw new Exception("This order item does not exist in the system");
-
-    //}
     {
         List<OrderItem> listOfOrderItems = loadListOfOrderItems();
         foreach (OrderItem i in listOfOrderItems)
@@ -112,17 +71,10 @@ internal class DalOrderItem : IOrderItem
     }
 
     public OrderItem GetCond(int id, Func<OrderItem, bool>? condition)
-
-    //    {
-    //        var item = listOfOrderItems.SingleOrDefault(i => i.ID == id && condition(i));
-    //        if (item == null)
-    //            throw new Exception("This order item does not exist in the system");
-    //        return item;
-    //    }
     {
         List<OrderItem> listOfOrderItems = loadListOfOrderItems();
         foreach (OrderItem i in listOfOrderItems)
-            if (i.ID == id && condition(i))
+            if (i.ID == id && condition!(i))
                 return i;
         throw new Exception("This order item does not exist in the system");
     }
@@ -136,21 +88,5 @@ internal class DalOrderItem : IOrderItem
     listOfOrderItems.Where(x => condition(x)).ToList();
 
     }
-    //{
-    //    List<OrderItem> orderItems = new List<OrderItem>();
-    //    if (condition == null)
-    //    {
-    //        foreach (OrderItem i in listOfOrderItems)
-    //        {
-    //            orderItems.Add(i);
-    //        }
-    //    }
-    //    else
-    //    {
-    //        orderItems = listOfOrderItems.FindAll(x => condition(x));
-    //    }
-    //    return orderItems;
-    //}
-
 }
 

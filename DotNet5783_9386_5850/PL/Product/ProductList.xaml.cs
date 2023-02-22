@@ -5,7 +5,6 @@ using System.Linq;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -30,13 +29,11 @@ namespace PL.Product
         BlApi.IBl? bl = BlApi.Factory.Get();
         public ProductList()
         {
-            productsList = new ObservableCollection<BO.BoProductForList?>(bl.BoProduct.GetListOfProducts());
+            productsList = new ObservableCollection<BO.BoProductForList?>(bl!.BoProduct!.GetListOfProducts());
             listByCategory = bl.BoProduct.GetListOfProducts()!;
             InitializeComponent();
             ProductListview.SelectedItem = selectedProduct;
             comboxOptions = Enum.GetValues(typeof(BO.Enums.Category)).Cast<BO.Enums.Category>().ToList();
-
-            
 
         }
 
@@ -74,11 +71,11 @@ namespace PL.Product
             try
             {
                 if ((int)CategorySelector.SelectedItem == (int)BO.Enums.Category.None)
-                    ProductListview.ItemsSource = bl.BoProduct.GetListOfProducts();
+                    ProductListview.ItemsSource = bl!.BoProduct!.GetListOfProducts();
                 else
                 {
                     IEnumerable<BO.BoProductForList> list = new List<BO.BoProductForList>();
-                    list = bl.BoProduct.CondGetListOfProducts(x => (int)x.Category == (int)CategorySelector.SelectedItem);
+                    list = bl!.BoProduct!.CondGetListOfProducts(x => (int)x.Category == (int)CategorySelector.SelectedItem);
                     ProductListview.ItemsSource = list;
                 }
             }
@@ -133,7 +130,7 @@ namespace PL.Product
         {
             try
             {
-                bl.BoProduct.DeleteProduct(selectedProduct.ID);
+                bl!.BoProduct!.DeleteProduct(selectedProduct.ID);
                 productsList = new ObservableCollection<BO.BoProductForList?>(bl.BoProduct.GetListOfProducts());
                 ProductListview.ItemsSource = productsList;
             }

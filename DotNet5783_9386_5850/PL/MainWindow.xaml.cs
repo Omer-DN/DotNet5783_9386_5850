@@ -39,5 +39,10 @@ namespace PL
         {
             new OrderList("TrackOnly").Show();
         }
+
+        private void Simulator_Button_Click(object sender, RoutedEventArgs e)
+        {
+            new SimulatorWin().Show();
+        }
     }
 }

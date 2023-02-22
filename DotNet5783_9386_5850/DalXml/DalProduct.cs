@@ -15,16 +15,6 @@ internal class DalProduct : IProduct
 {
     public int Add(Product product)
     {
-        /*List<Product> listOfProducts = loadListOfProduct();
-        if (!(listOfProducts == null))
-            foreach (Product i in listOfProducts)
-            {
-                if (i.ID == product.ID)
-                    throw new IdAlreadyExist("This product already exists in the system");
-            }
-        listOfProducts?.Add(product);
-        saveListOfProducts(listOfProducts);
-        return product.ID;*/
         LoadXmlFile();
         XElement ID = new XElement("ID", product.ID);
         XElement Name = new XElement("Name", product.Name);
@@ -37,23 +27,11 @@ internal class DalProduct : IProduct
     }
 
     public void Delete(int id)
-
     {
-        /* List<Product> listOfProducts = loadListOfProduct();
-         foreach (Product i in listOfProducts)
-         {
-             if (i.ID == id)
-             {
-                 listOfProducts.Remove(i);
-                 return;
-             }
-         }
-         throw new IdNotFound("This product does not exist in the system");
-         saveListOfProducts(listOfProducts);*/
         LoadXmlFile();
         XElement? productElement;
         productElement = (from p in ProductRoot.Elements()
-                          where Convert.ToInt32(p.Element("ID").Value) == id
+                          where Convert.ToInt32(p.Element("ID")!.Value) == id
                           select p).FirstOrDefault();
         productElement!.Remove();
         ProductRoot.Save(fileNameListOfProducts);
@@ -63,15 +41,6 @@ internal class DalProduct : IProduct
 
     public void Update(Product product)
     {
-        /*List<Product> listOfProducts = loadListOfProduct();
-        if (listOfProducts.Exists(x => x.ID == product.ID))
-        {
-            var index = listOfProducts.FindIndex(i => i.ID == product.ID);
-            listOfProducts[index] = product;
-            return;
-        }
-        throw new Exception("This product does not exist in the system");
-        saveListOfProducts(listOfProducts);*/
         LoadXmlFile();
         XElement? productElement = (from p in ProductRoot.Elements()
                                    where Convert.ToInt32(p.Element("ID")!.Value) == product.ID
@@ -87,12 +56,6 @@ internal class DalProduct : IProduct
 
     public Product Get(int id)
     {
-        /*List<Product> listOfProducts = loadListOfProduct();
-        foreach (Product i in listOfProducts)
-            if (i.ID == id)
-                return i;
-        throw new Exception("This product does not exist in the system");*/
-
         LoadXmlFile();
         Product product;
         product = (from p in ProductRoot.Elements()
@@ -106,7 +69,6 @@ internal class DalProduct : IProduct
                        InStock = int.Parse(p.Element("InStock")!.Value)
                    }).FirstOrDefault();
         return product;
-
     }
 
     public Product GetCond(int id, Func<Product, bool>? condition)
@@ -122,12 +84,6 @@ internal class DalProduct : IProduct
         else
             return product;
     }
-    //{
-    //    foreach (Product i in listOfProducts)
-    //        if (i.ID == id && condition!(i))
-    //            return i;
-    //    throw new Exception("This product does not exist in the system");
-    //}
 
     // return a List of current products in the store
     public IEnumerable<Product> GetList(Func<Product, bool>? condition)
@@ -138,17 +94,4 @@ internal class DalProduct : IProduct
         listOfProducts.ToList() :
         listOfProducts.Where(x => condition(x)).ToList();
     }
-    //{    
-    //    List<Product> products = new List<Product>();
-    //    if (condition == null) 
-    //    {
-    //        foreach (Product i in listOfProducts)
-    //            products.Add(i);
-    //    }
-    //    else
-    //        products = listOfProducts.FindAll(x => condition(x));
-
-    //   return products;
-    //}
-
 }

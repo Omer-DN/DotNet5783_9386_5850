@@ -28,7 +28,7 @@ namespace PL.Order
         BlApi.IBl? bl = BlApi.Factory.Get();
         public OrderList(string state)
         {
-            ordersList = new ObservableCollection<BO.BoOrderForList?>(bl.BoOrder.GetListOfOrders());
+            ordersList = new ObservableCollection<BO.BoOrderForList?>(bl!.BoOrder!.GetListOfOrders()!);
             InitializeComponent();
             if (state == "TrackOnly")
                 Add_Button.IsEnabled = false;
@@ -64,8 +64,6 @@ namespace PL.Order
             var Addwindow = new AddOrderWin();
             Addwindow.Owner = this;
             Addwindow.Show();
-            //ordersList = new ObservableCollection<BO.BoOrderForList?>(bl.BoOrder.GetListOfOrders());
-            //OrderListview.ItemsSource = ordersList;
         }
 
         private void OrderListview_MouseDoubleClick(object sender, MouseButtonEventArgs e)

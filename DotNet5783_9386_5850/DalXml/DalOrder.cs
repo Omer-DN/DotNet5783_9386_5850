@@ -20,12 +20,6 @@ internal class DalOrder : IOrder
         List<Order> listOfOrders = loadListOfOrders();
         if (listOfOrders.Any(x => x.ID == order.ID))
             throw new IdNotFound("This product already exists in the system");
-
-        //foreach (Order i in listOfOrders)
-        //{
-        //    if (i.ID == order.ID)
-        //        throw new IdNotFound("This product already exists in the system");
-        //}
         order.ID = getlastOrderId();
         listOfOrders.Add(order);
         saveListOfOrders(listOfOrders);
@@ -41,17 +35,6 @@ internal class DalOrder : IOrder
         saveListOfOrders(listOfOrders);
 
     }
-    //{
-    //    foreach (Order i in listOfOrders)
-    //    {
-    //        if (i.ID == id)
-    //        {
-    //           listOfOrders.Remove(i);
-    //           return;
-    //        }
-    //    }
-    //    throw new IdNotFound("This order does not exist in the system");
-    //}
 
     public void Update(Order order)
     {
@@ -60,10 +43,10 @@ internal class DalOrder : IOrder
         {
             var index = listOfOrders.FindIndex(i => i.ID == order.ID);
             listOfOrders[index] = order;
+            saveListOfOrders(listOfOrders);
             return;
         }
         throw new Exception("This order does not exist in the system");
-        saveListOfOrders(listOfOrders);
     }
 
     public Order Get(int id)
@@ -75,13 +58,6 @@ internal class DalOrder : IOrder
         throw new Exception("This order does not exist in the system");
     }
     public Order GetCond(int id, Func<Order, bool>? condition)
-    //{
-    //    var order = listOfOrders.FirstOrDefault(x => x.ID == id && condition !(x));
-    //    if (order == null)
-    //        throw new Exception("This order does not exist in the system");
-    //    return order;
-
-    //}
     {
         List<Order> listOfOrders = loadListOfOrders();
         foreach (Order i in listOfOrders)
@@ -97,20 +73,6 @@ internal class DalOrder : IOrder
         return (condition == null) ?
         listOfOrders.ToList() :
         listOfOrders.Where(x => condition(x)).ToList();
-
-
-        /* if (condition != null)
-         {
-             foreach (Order i in listOfOrders)
-             {
-                 orders.Add(i);
-             }
-         }
-         else
-         {
-             orders = listOfOrders.FindAll(x => condition(x));
-         }
-         return orders;*/
     }
 
 }
