@@ -5,11 +5,14 @@ using System.Data;
 
 namespace BlImplementation
 {
+    /// <summary>
+    /// Implementation of the Logic methods for the BoOrder entitie
+    /// </summary>
     internal class BoOrder : IBoOrder
     {
         private DalApi.IDal? dal = DalApi.Factory.Get();
 
-
+        //Method to Get the list Of Orders in the Store
         public IEnumerable<BO.BoOrderForList> GetListOfOrders()
         {
             IEnumerable<DO.Order> dataList = new List<DO.Order>();
@@ -99,6 +102,8 @@ namespace BlImplementation
             }
             return newOrder;
         }
+
+        //Method to Get Order in the Store
         public BO.BoOrder GetOrder(int id)
         {
             BO.BoOrder newOrder = new BO.BoOrder();
@@ -112,6 +117,7 @@ namespace BlImplementation
             return newOrder;
         }
 
+        //Method to update Order in the Store
         public void UpdateOrder(BO.BoOrder order)
         {
             bool Exist = false;
@@ -177,6 +183,8 @@ namespace BlImplementation
             }
 
         }
+
+        //Method to Update Order Shipping Date in the Store
         public BO.BoOrder UpdateShipping(int id)
         {
             bool Exist = false;
@@ -212,6 +220,7 @@ namespace BlImplementation
 
         }
 
+        //Method to Update Order Delivery Date in the Store
         public BO.BoOrder UpdateDelivery(int id)
         {
             bool Exist = false;
@@ -244,6 +253,7 @@ namespace BlImplementation
             return newBoOrder;
         }
 
+        //Method to Track Order in the Store
         public BO.BoOrderTracking Track(int id)
         {
             bool Exist = false;
@@ -291,7 +301,7 @@ namespace BlImplementation
         }
 
 
-
+        //Method to get the oldest Order in the Store
         public BO.BoOrder GetOldestOrder()
         {
             DO.Order newDoOrder = new DO.Order();

@@ -10,9 +10,12 @@ using DO;
 using System.Xml.Linq;
 using static Dal.XmlDataSource;
 
-
+/// <summary>
+/// /// Implementation of the ICRUD methods for the Product entitie USING XML FILES - LinqToXml
+/// </summary>
 internal class DalProduct : IProduct
 {
+    //Method to add product from the Store data
     public int Add(Product product)
     {
         LoadXmlFile();
@@ -26,6 +29,7 @@ internal class DalProduct : IProduct
         return product.ID;
     }
 
+    //Method to delete product from the Store data
     public void Delete(int id)
     {
         LoadXmlFile();
@@ -39,6 +43,7 @@ internal class DalProduct : IProduct
 
     }
 
+    //Method to update product from the Store data
     public void Update(Product product)
     {
         LoadXmlFile();
@@ -54,6 +59,7 @@ internal class DalProduct : IProduct
 
     }
 
+    //Method to get product from the Store data
     public Product Get(int id)
     {
         LoadXmlFile();
@@ -71,6 +77,7 @@ internal class DalProduct : IProduct
         return product;
     }
 
+    //Method to get product from the Store data that hold specific condition 
     public Product GetCond(int id, Func<Product, bool>? condition)
     {
         LoadXmlFile();
@@ -85,7 +92,7 @@ internal class DalProduct : IProduct
             return product;
     }
 
-    // return a List of current products in the store
+    //Method to get product list from the Store data that hold specific condition 
     public IEnumerable<Product> GetList(Func<Product, bool>? condition)
     {
         LoadXmlFile();

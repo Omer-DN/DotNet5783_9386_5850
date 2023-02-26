@@ -5,13 +5,20 @@
     <Name>dvefv</Name>
     <Price>3453</Price>
     <Category>Legumes</Category>
-    <InStock>34523</InStock>
+    <InStock>34521</InStock>
   </student>
   <student>
     <ID>235234</ID>
     <Name>etbrtb</Name>
     <Price>54645</Price>
     <Category>CleanProducts</Category>
-    <InStock>78950</InStock>
+    <InStock>78941</InStock>
+  </student>
+  <student>
+    <ID>2342</ID>
+    <Name>fewf</Name>
+    <Price>4444</Price>
+    <Category>Meat</Category>
+    <InStock>346345</InStock>
   </student>
 </Products>

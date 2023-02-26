@@ -2,6 +2,9 @@
 
 namespace DalApi
 {
+    /// <summary>
+    /// Class that make methods that Special only for the OrderItem entitie
+    /// </summary>
     public interface IOrderItem : ICrud<OrderItem>
     {
         //methods for OrderItem only:

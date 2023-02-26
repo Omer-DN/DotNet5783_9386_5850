@@ -2,6 +2,9 @@
 using DalApi;
 namespace Dal
 {
+    /// <summary>
+    /// Class that implement the IDal Interface and create an Object of an entitie
+    /// </summary>
     internal sealed class DalList : IDal
 
     {

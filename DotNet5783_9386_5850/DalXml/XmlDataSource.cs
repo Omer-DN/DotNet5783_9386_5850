@@ -11,8 +11,12 @@ using static DO.Enums;
 
 namespace Dal
 {
+    /// <summary>
+    /// Data Source class that works with Xml Files
+    /// </summary>
     internal class XmlDataSource
     {
+        //Static fileds that show the files names and Paths
         internal static string fileNameListOfProducts = "../xml/List_Of_Products.xml";
         internal static string fileNameListOfOrders = "../xml/List_Of_Orders.xml";
         internal static string fileNameListOfOrderItems = "../xml/List_Of_OrderItems.xml";
@@ -23,6 +27,7 @@ namespace Dal
 
         readonly Random rand = new Random();
 
+        //Method to load the config class from the file
         static public Config loadConfig()
         {
             if (!File.Exists(fileNameConfig))
@@ -38,6 +43,7 @@ namespace Dal
 
         }
 
+        //Method to save the config class to the file
         static public void saveConfig(Config config)
         {
             XmlSerializer x = new XmlSerializer(config.GetType());
@@ -47,6 +53,7 @@ namespace Dal
         }
 
 
+        //Methods to get the last ID that used to create new Product/Order/OrderItem and add 1 to it
         static public int getlastProductId()
         {
             Config config = loadConfig();
@@ -70,6 +77,8 @@ namespace Dal
         }
 
         //in Product we Using LinqToXml:
+
+        //Method to load and return the list of products on the store from the file
         static internal IEnumerable<Product> loadListOfProduct()
         {
             LoadXmlFile();
@@ -86,7 +95,7 @@ namespace Dal
             return list;
         }
 
-
+        //load the data from file
         static internal void LoadData()
         {
             try
@@ -98,13 +107,13 @@ namespace Dal
                 throw new Exception("File Upload Problem");
             }
         }
-
+        //create new file
         private static void CreateFiles()
         {
             ProductRoot = new XElement("Products");
             ProductRoot.Save(fileNameListOfProducts);
         }
-
+        //Method to check if file exist, if not - create new, if yes - load from it
         public static void LoadXmlFile()
         {
             if (!File.Exists(fileNameListOfProducts))
@@ -115,6 +124,8 @@ namespace Dal
 
 
         //in Order And OrdeItem we use Xml Serialize:
+
+        //Method to load and return the list of Orders on the store from the file
         static internal List<Order> loadListOfOrders()
         {
             if (!File.Exists(fileNameListOfOrders))
@@ -128,6 +139,8 @@ namespace Dal
             fs.Close();
             return list;
         }
+
+        //Method to save list of orders to the file
         static internal void saveListOfOrders(List<Order> list)
         {
             XmlSerializer x = new XmlSerializer(list.GetType());
@@ -136,6 +149,7 @@ namespace Dal
             fs.Close();
         }
 
+        //Method to load and return the list of Order Items on the store from the file
         static internal List<OrderItem> loadListOfOrderItems()
         {
             if (!File.Exists(fileNameListOfOrderItems))
@@ -149,6 +163,8 @@ namespace Dal
             fs.Close();
             return list;
         }
+
+        //Method to save list of order items to the file
         static internal void saveListOfOrderItems(List<OrderItem> list)
         {
             XmlSerializer x = new XmlSerializer(list.GetType());

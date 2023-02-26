@@ -3,6 +3,9 @@
 using static DO.Enums;
 
 namespace DalApi;
+/// <summary>
+/// Class that make methods that Special only for the Product entitie
+/// </summary>
 public interface IProduct : ICrud<Product>
 {
     //methods for Product only:

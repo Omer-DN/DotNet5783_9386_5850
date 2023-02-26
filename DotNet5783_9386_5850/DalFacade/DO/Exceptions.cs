@@ -2,6 +2,9 @@
 
 namespace DO
 {
+    /// <summary>
+    /// Class of Exceptions
+    /// </summary>
     public class IdNotFound :  Exception
     {
         public IdNotFound (string error) : base(error) { }

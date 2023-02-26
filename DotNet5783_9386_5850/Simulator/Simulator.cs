@@ -1,5 +1,8 @@
 ﻿namespace Simulator
 {
+    /// <summary>
+    /// Simulator class that create Thread that working on orders and make them progress
+    /// </summary>
     static public class Simulator
     {
         static readonly BlApi.IBl? bl = BlApi.Factory.Get();
@@ -9,6 +12,7 @@
 
         private static readonly Random random = new(DateTime.Now.Millisecond);
 
+        //Method that Activate the Thread that work on the Orders
         public static void Activate()
         {
             new Thread(() =>
@@ -16,7 +20,6 @@
                 isWork = true;
                 while (isWork)
                 {
-                    //int? id = bl?.BoOrder.GetOldestOrder().ID;
                     BO.BoOrder order = bl!.BoOrder!.GetOldestOrder();
 
                     if (order != null)
@@ -42,6 +45,8 @@
                 }
             }).Start();
         }
+
+        //Method that Shut Down the Thread that work on the Orders
         public static void ShutDown()
         { isWork = false; }
 

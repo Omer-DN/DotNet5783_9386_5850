@@ -22,6 +22,7 @@ namespace PL
 {
     /// <summary>
     /// Interaction logic for SimulatorWin.xaml
+    /// Window that Start the Simulator of the Program and the Timer
     /// </summary>
     public partial class SimulatorWin : Window
     {
@@ -101,13 +102,14 @@ namespace PL
             DependencyProperty.Register("UpdateProgress", typeof(double), typeof(SimulatorWin), new PropertyMetadata(null));
 
 
+        //Method called when there is no orders to handle - the simulator wait for more orders
         private void WaitForOrders()
         {
             Wait = true;
             backroundWorker.ReportProgress(2);
         }
 
-
+        //Method that update the screen on the timer
         private void SimulatorScreenUpdate(int x, int time, BO.BoOrder order)
         {
             Wait = false;
@@ -115,6 +117,7 @@ namespace PL
             backroundWorker.ReportProgress(x, tuple);
         }
 
+        //Event that called when user Start the Simulator and start working on orders
         private void Work(object? sender, DoWorkEventArgs? e)
         {
             Simulator.Simulator.Activate();
@@ -124,7 +127,7 @@ namespace PL
                 Thread.Sleep(50);
             }
         }
-
+        //Event that called from report progress
         private void UpdateTheScreen(Object? sender, ProgressChangedEventArgs? e)
         {
             if (e?.ProgressPercentage > 1000)
@@ -170,12 +173,14 @@ namespace PL
             }
         }
 
+        //Event that called when user Press at Stop Button to Stop the simulator
         private void StopSimulation_Click(object sender, RoutedEventArgs e)
         {
             backroundWorker.CancelAsync();
             Simulator.Simulator.ShutDown();
         }
 
+        //Event that called when the simulator is canceled
         private void Cancel(object? sender, RunWorkerCompletedEventArgs? e)
         {
             Simulator.Simulator.ShutDown();
@@ -187,6 +192,7 @@ namespace PL
             Simulator.Simulator.Wating -= WaitForOrders;
         }
 
+        //Event that called when user try to close simulation window - if simulation still working - wont let it close.
         private void Window_Closing(object sender, CancelEventArgs e)
         {
             if (backroundWorker.CancellationPending == false && TimerRun)

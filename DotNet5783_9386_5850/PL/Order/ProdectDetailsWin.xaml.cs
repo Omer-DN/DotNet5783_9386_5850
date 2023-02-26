@@ -17,6 +17,7 @@ namespace PL.Order
 {
     /// <summary>
     /// Interaction logic for ProdectDetailsWin.xaml
+    /// Window that shows the details of specific product
     /// </summary>
     public partial class ProdectDetailsWin : Window
     {
@@ -37,6 +38,8 @@ namespace PL.Order
         public static readonly DependencyProperty currentProductProperty =
             DependencyProperty.Register("currentProduct", typeof(BoProductItem), typeof(ProdectDetailsWin), new PropertyMetadata(new BoProductItem()));
 
+
+        //Event that called when user want to close the window
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             this.Close();

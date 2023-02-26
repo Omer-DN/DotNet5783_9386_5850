@@ -3,7 +3,7 @@
 
 namespace DO;
 /// <summary>
-/// Structure for order data
+/// Structure for the order entitie
 /// </summary>
 public struct Order
 {

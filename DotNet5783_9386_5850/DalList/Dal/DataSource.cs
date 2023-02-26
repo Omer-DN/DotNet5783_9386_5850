@@ -4,19 +4,29 @@ using DO;
 using static DO.Enums;
 
 namespace DalList;
+/// <summary>
+/// The Class Keep and store the program data in 3 kinds of Lists:
+/// List of Products
+/// List Of Orders
+/// List Of Order Items
+/// and make Initializeition for Stage 1
+/// </summary>
 
 internal class DataSource
 {
+    //the 3 list of Products,Orders, OrderItems
     internal static List<Product> listOfProducts = new List<Product>(50);
     internal static List<Order> listOfOrders = new List<Order>(100);
     internal static List<OrderItem> listOfOrderItems = new List<OrderItem>(200);
     readonly Random rand = new Random();
 
+    //static fields that show what the last id that used for each entity
     static internal int lastProductId = 100000;
     static internal int lastOrderId = 100000;
     static internal int lastOrderItemId = 100000;
     internal static int numOfOrderItems;
     
+    //methods to return last id and make it grow by one
     static internal int getlastProductId()
     {
         return lastProductId++;
@@ -30,11 +40,7 @@ internal class DataSource
         return lastOrderItemId++;
     }
 
-    static DataSource()
-    {
-        //s_initialize();
-    }
-
+    //some methods to Initialize the data for stage 1
     public static void InitializeProduct(Product parameter)
     {
 

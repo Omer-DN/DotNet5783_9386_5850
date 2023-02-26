@@ -2,6 +2,9 @@
 
 namespace DalApi
 {
+    /// <summary>
+    /// The Interface to create access to the data
+    /// </summary>
     public interface IDal
     {
         public IProduct? Product { get; }

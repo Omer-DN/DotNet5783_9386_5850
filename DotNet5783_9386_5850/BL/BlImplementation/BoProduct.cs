@@ -3,10 +3,14 @@ using DalApi;
 
 namespace BlImplementation
 {
+    /// <summary>
+    /// Implementation of the Logic methods for the BoProduct entitie
+    /// </summary>
     internal class BoProduct : IBoProduct
     {
         private DalApi.IDal? dal = DalApi.Factory.Get();
 
+        //Method to get list of Products from the store that holds specific condition
         public IEnumerable<BO.BoProductForList> CondGetListOfProducts(Func<DO.Product, bool>? condition)
         {
             IEnumerable<DO.Product> dataList = new List<DO.Product>();
@@ -23,6 +27,8 @@ namespace BlImplementation
             }
             return newList;
         }
+
+        //Method to get the list of Products from the store
         public IEnumerable<BO.BoProductForList> GetListOfProducts()
         {
             IEnumerable<DO.Product>? dataList = new List<DO.Product>();
@@ -40,6 +46,7 @@ namespace BlImplementation
             return newList;
         }
 
+        //Method to get list of Products for the catalog of the store
         public IEnumerable<BO.BoProductItem?> GetProductsForCatalog()
         {
             IEnumerable<DO.Product>? dataList = new List<DO.Product>();
@@ -62,6 +69,7 @@ namespace BlImplementation
             return newList;
         }
 
+        //Method to get list of Products for the catalog of the store that holds specific condition
         public IEnumerable<BO.BoProductItem> CondGetProductsForCatalog(Func<DO.Product, bool>? condition)
         {
             IEnumerable<DO.Product>? dataList = new List<DO.Product>();
@@ -85,7 +93,7 @@ namespace BlImplementation
         }
 
 
-
+        //Method to get product from the store for the manager list of products
         public BO.BoProduct ManagerGetProduct(int id)
         {
             BO.BoProduct newProduct = new BO.BoProduct();
@@ -102,6 +110,7 @@ namespace BlImplementation
             return newProduct;
         }
 
+        //Method to get product from the store for the buyer list of products
         public BO.BoProductItem BuyerGetProduct(BO.BoCart cart, int id)
         {
             BO.BoProductItem newProductItem = new BO.BoProductItem();
@@ -132,6 +141,7 @@ namespace BlImplementation
             return newProductItem;
         }
 
+        //Method to Add product to the store
         public void AddProduct(BO.BoProduct product)
         {
             if (product.ID >0 && product.Name != "" && ((int)product.Category! >= 0 && (int)product.Category < 6)
@@ -156,6 +166,7 @@ namespace BlImplementation
             }
         }
 
+        //Method to delete product to the store
         public void DeleteProduct(int id)
         {
             foreach (var orderItem in dal?.OrderItem!.GetList()!)
@@ -168,6 +179,7 @@ namespace BlImplementation
             dal?.Product!.Delete(id);
         }
 
+        //Method to Update product of the store
         public void UpdateProduct(BO.BoProduct product)
         {
             if (product.ID > 0 && product.Name != "" && product.InStock >= 0 && product.Price >= 0)
@@ -189,6 +201,7 @@ namespace BlImplementation
             }
         }
 
+        //Method to Create new Product
         public BO.BoProduct Create(int id,string name, double price, BO.Enums.Category category, int instock)
         {
             BO.BoProduct newProduct = new BO.BoProduct();

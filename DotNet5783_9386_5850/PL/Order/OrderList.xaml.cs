@@ -22,6 +22,7 @@ namespace PL.Order
 {
     /// <summary>
     /// Interaction logic for OrderList.xaml
+    /// Window that shows list of orders that exist in the store
     /// </summary>
     public partial class OrderList : Window
     {
@@ -59,6 +60,7 @@ namespace PL.Order
         public static readonly DependencyProperty ordersListProperty =
             DependencyProperty.Register("ordersList", typeof(ObservableCollection<BO.BoOrderForList?>), typeof(OrderList));
 
+        //Event that called when Manager Press at Add Order Button to Add Order to the store
         private void Add_Button_Click(object sender, RoutedEventArgs e)
         {
             var Addwindow = new AddOrderWin();
@@ -66,6 +68,7 @@ namespace PL.Order
             Addwindow.Show();
         }
 
+        //Event that called when manager Double click at specific order to view or Update order of the store
         private void OrderListview_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             if (Add_Button.IsEnabled)
@@ -76,6 +79,7 @@ namespace PL.Order
             }
         }
 
+        //Event that called when manager select click at Track order to track order in the store
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             var TrackWin = new TrackOrderWin(selectedOrder.ID);

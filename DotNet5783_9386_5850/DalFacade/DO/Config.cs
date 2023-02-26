@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace DO
 {
+    /// <summary>
+    /// Config Class To Save Last IDs to the XML file
+    /// </summary>
     public class Config
     {
         public int lastProductId { get; set; } = 100000;
