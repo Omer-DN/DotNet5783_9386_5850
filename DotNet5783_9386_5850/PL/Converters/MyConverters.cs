@@ -9,6 +9,9 @@ using System.Windows;
 
 namespace PL.Converters
 {
+    /// <summary>
+    /// Class of Converters for the PL Layer
+    /// </summary>
     public class IntToStringConverter : IValueConverter
     {
         //convert from source property type to target property type

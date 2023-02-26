@@ -11,10 +11,14 @@ using DO;
 using static Dal.XmlDataSource;
 
 
+/// <summary>
+/// Implementation of the ICRUD methods for the Order entitie USING XML FILES
+/// </summary>
 
 internal class DalOrder : IOrder
 {
 
+    //Method to add order to the Store data
     public int Add(Order order)
     {
         List<Order> listOfOrders = loadListOfOrders();
@@ -26,6 +30,7 @@ internal class DalOrder : IOrder
         return order.ID;
     }
 
+    //Method to delete order from the Store data
     public void Delete(int id)
     {
         List<Order> listOfOrders = loadListOfOrders();
@@ -36,6 +41,7 @@ internal class DalOrder : IOrder
 
     }
 
+    //Method to update order from the Store data
     public void Update(Order order)
     {
         List<Order> listOfOrders = loadListOfOrders();
@@ -49,6 +55,7 @@ internal class DalOrder : IOrder
         throw new Exception("This order does not exist in the system");
     }
 
+    //Method to get order from the Store data 
     public Order Get(int id)
     {
         List<Order> listOfOrders = loadListOfOrders();
@@ -57,6 +64,8 @@ internal class DalOrder : IOrder
                 return i;
         throw new Exception("This order does not exist in the system");
     }
+
+    //Method to get order from the Store data that hold specific condition 
     public Order GetCond(int id, Func<Order, bool>? condition)
     {
         List<Order> listOfOrders = loadListOfOrders();
@@ -66,7 +75,7 @@ internal class DalOrder : IOrder
         throw new Exception("This order does not exist in the system");
     }
 
-    // return a List of current orders in the store
+    // return a List of current orders in the store that hold specific condition 
     public IEnumerable<Order> GetList(Func<Order, bool>? condition)
     {
         List<Order> listOfOrders = loadListOfOrders();

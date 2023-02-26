@@ -2,6 +2,9 @@
 
 namespace BlImplementation
 {
+    /// <summary>
+    /// Implementation of the Logic methods for the BoCart entitie
+    /// </summary>
     internal class BoCart:IBoCart
     {
         private DalApi.IDal? dal = DalApi.Factory.Get();
@@ -107,7 +110,7 @@ namespace BlImplementation
                 int subItems = cart.Items[i]!.Amount - amount;
                 cart.Items[i]!.Amount = amount;
                 cart.Items[i]!.TotalPrice -= cart.Items[i]!.Price * subItems;
-                cart.TotalPrice = cart.Items[i]!.Price * subItems;
+                cart.TotalPrice -= cart.Items[i]!.Price * subItems;
             }
             return cart;
         }

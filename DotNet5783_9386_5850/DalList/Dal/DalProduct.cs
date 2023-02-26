@@ -7,8 +7,12 @@ using System.Reflection.Metadata;
 
 namespace Dal;
 
+/// <summary>
+/// Implementation of the ICRUD methods for the Product entitie
+/// </summary>
 public class DalProduct:IProduct
 {
+    //Method to add product from the Store data
     public int Add(Product product)
     {
         if (!(listOfProducts == null))
@@ -20,7 +24,7 @@ public class DalProduct:IProduct
         listOfProducts?.Add(product);
         return product.ID;
     }
-
+    //Method to delete product from the Store data
     public void Delete(int id)
 
     {
@@ -36,6 +40,7 @@ public class DalProduct:IProduct
         throw new IdNotFound("This product does not exist in the system");
     }
 
+    //Method to update product from the Store data
     public void Update(Product product)
     {
         if (listOfProducts.Exists(x => x.ID == product.ID))
@@ -47,6 +52,7 @@ public class DalProduct:IProduct
         throw new Exception("This product does not exist in the system");
     }
 
+    //Method to get product from the Store data
     public Product Get(int id)
     {
         foreach (Product i in listOfProducts)
@@ -55,6 +61,7 @@ public class DalProduct:IProduct
         throw new Exception("This product does not exist in the system");
     }
 
+    //Method to get product from the Store data that hold specific condition 
     public Product GetCond(int id, Func<Product, bool>? condition)
     {
         var product = (from i in listOfProducts
@@ -67,7 +74,7 @@ public class DalProduct:IProduct
             return product;
     }
 
-    // return a List of current products in the store
+    //Method to get product list from the Store data that hold specific condition 
     public IEnumerable<Product> GetList(Func<Product, bool>? condition )
 
     {

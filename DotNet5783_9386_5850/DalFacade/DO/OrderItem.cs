@@ -1,7 +1,9 @@
 ﻿
 
 namespace DO;
-
+/// <summary>
+/// Structure for the order item entitie
+/// </summary>
 public struct OrderItem
 {
     public int ID { get; set; }

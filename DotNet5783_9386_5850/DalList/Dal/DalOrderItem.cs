@@ -6,9 +6,12 @@ using System.Linq;
 using DalList;
 
 namespace Dal;
-
+/// <summary>
+/// Implementation of the ICRUD methods for the OrderItem entitie
+/// </summary>
 public class DalOrderItem:IOrderItem
 {
+    //Method to add Order Item to the Store data
     public int Add(OrderItem Orderitem)
     {
         var orderItemIds = listOfOrderItems
@@ -37,6 +40,7 @@ public class DalOrderItem:IOrderItem
         return newOrderItem.ID;
     }
 
+    //Method to delete Order Item from the Store data
     public void Delete(int id)
     {
         bool isRemoved = listOfOrderItems.Remove(listOfOrderItems.FirstOrDefault(x => x.ID == id));
@@ -45,6 +49,7 @@ public class DalOrderItem:IOrderItem
 
     }
 
+    //Method to update Order Item from the Store data
     public void Update(OrderItem Orderitem)
     {
         bool found = false;
@@ -58,6 +63,7 @@ public class DalOrderItem:IOrderItem
         if(found == false) throw new Exception("This order item does not exist in the system");
     }
 
+    //Method to get Order Item from the Store data
     public OrderItem Get(int id)
         {
             foreach (OrderItem i in listOfOrderItems)
@@ -66,6 +72,7 @@ public class DalOrderItem:IOrderItem
             throw new Exception("This order item does not exist in the system");
         }
 
+    //Method to get Order Item from the Store data that hold specific condition 
     public OrderItem GetCond(int id, Func<OrderItem, bool>? condition)
     {
         foreach (OrderItem i in listOfOrderItems)
@@ -74,7 +81,7 @@ public class DalOrderItem:IOrderItem
         throw new Exception("This order item does not exist in the system");
     }
 
-    // return a List of current order items in all the orders of the store
+    //Method to get Order Item list from the Store data that hold specific condition 
     public IEnumerable<OrderItem> GetList(Func<OrderItem, bool>? condition)
     {
         return (condition == null) ?

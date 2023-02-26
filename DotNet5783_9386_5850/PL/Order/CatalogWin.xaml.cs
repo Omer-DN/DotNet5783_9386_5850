@@ -19,6 +19,7 @@ namespace PL.Order
 {
     /// <summary>
     /// Interaction logic for CatalogWin.xaml
+    /// window that show the user the catalog of the store to choose items to add to the cart
     /// </summary>
     public partial class CatalogWin : Window
     {
@@ -83,12 +84,13 @@ namespace PL.Order
 
 
 
-
+        //Event that called when user change the category to show
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             whichCategorySelected = (int)((ComboBox)sender).SelectedItem;
         }
 
+        //Event that called when user want to see all the categories of the store by grouping view
         private void CheckBox_Checked(object sender, RoutedEventArgs e)
         {
             comboBox.SelectedIndex = whichCategorySelected = 0;
@@ -97,12 +99,14 @@ namespace PL.Order
             view.GroupDescriptions.Add(groupDescription);
         }
 
+        //Event that called when user want to return to see specific category
         private void CheckBox_UnChecked(object sender, RoutedEventArgs e)
         {
             CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(productsListView.ItemsSource);
             view.GroupDescriptions.Clear();
         }
 
+        //Event that called when user want to see to details of specific product on the catalog
         private void productsListView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             if(((AddOrderWin)this.Owner).MyCart.Items!.Find(x => x!.ProductID == selectedProduct.ID)!=null)
@@ -112,7 +116,7 @@ namespace PL.Order
         }
 
 
-
+        //Event that called when user want to add or update specific item from the catalog to the cart and check if we are on add state or update state
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             try

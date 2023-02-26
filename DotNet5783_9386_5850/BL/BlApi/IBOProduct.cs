@@ -2,6 +2,9 @@
 
 namespace BlApi
 {
+    /// <summary>
+    /// Class that make methods that Special only for the BoProduct entitie
+    /// </summary>
     public interface IBoProduct
     {
         public IEnumerable<BO.BoProductForList> CondGetListOfProducts(Func<DO.Product, bool>? condition);

@@ -3,7 +3,7 @@
 namespace BO
 {
     /// <summary>
-    /// List of exceptions
+    /// List of exceptions for the BO layer
     /// </summary>
     public class ProductOutOfStock : Exception
     {

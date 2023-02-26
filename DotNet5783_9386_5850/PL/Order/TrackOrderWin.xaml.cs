@@ -17,6 +17,7 @@ namespace PL.Order
 {
     /// <summary>
     /// Interaction logic for TrackOrderWin.xaml
+    /// Window that show the Tracking steps of specific order
     /// </summary>
     public partial class TrackOrderWin : Window
     {
@@ -38,6 +39,7 @@ namespace PL.Order
         public static readonly DependencyProperty MyOrderTrackProperty =
             DependencyProperty.Register("MyOrderTrack", typeof(BoOrderTracking), typeof(TrackOrderWin), new PropertyMetadata(new BoOrderTracking()));
 
+        //Event that called when user want to close the window
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             this.Close();

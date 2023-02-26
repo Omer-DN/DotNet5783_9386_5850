@@ -19,6 +19,10 @@ namespace PL.Product
 {
     /// <summary>
     /// Interaction logic for ProductList.xaml
+    /// create a window that:
+    /// Add product to store if state = 0
+    /// or Update specific Product of the store id stare = 1
+    /// 
     /// </summary>
     public partial class ActionsWin : Window
     {
@@ -28,12 +32,14 @@ namespace PL.Product
         {
             InitializeComponent();
             Category_ComboBox.ItemsSource = Enum.GetValues(typeof(BO.Enums.Category));
+            //if window is open as Add State:
             if(state == 0)
             {
                 Action_Button.Content = "Add";
                 Action_Button.Click += Add_Button_Click;
                 currentProduct = new BoProduct();
             }
+            //if window is open as Update State:
             if (state == 1)
             {
                 Action_Button.Content = "Update";
@@ -60,7 +66,7 @@ namespace PL.Product
 
 
 
-
+        //Event that called when user Press at Add Button to add Product to the store
         private void Add_Button_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -73,6 +79,7 @@ namespace PL.Product
             { MessageBox.Show(ex.Message, "Error"); }
         }
 
+        //Event that called when user Press at Update Button to Update Product of the store
         private void Update_Button_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -85,15 +92,12 @@ namespace PL.Product
             { MessageBox.Show(ex.Message, "Error"); }
         }
 
+        //Event that called when user Press at Cancel Button to Close the window
         private void Cancel_Button_Click(object sender, RoutedEventArgs e)
         {
             ((ProductList)this.Owner).whichCategorySelected();
             this.Close();
         }
 
-        private void Action_Button_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
     }
 }

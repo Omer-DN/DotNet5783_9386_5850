@@ -19,6 +19,7 @@ namespace PL.Order
 {
     /// <summary>
     /// Interaction logic for ConfirmOrderWin.xaml
+    /// Window that Confirm the new order that user creat and add options to change the amount of products in cart or delete the product
     /// </summary>
     public partial class ConfirmOrderWin : Window
     {
@@ -52,7 +53,7 @@ namespace PL.Order
         public static readonly DependencyProperty CartListProperty =
             DependencyProperty.Register("CartList", typeof(ObservableCollection<BoOrderItem?>), typeof(OrderUpdateWin));
 
-
+        //Event that called when user want to add 1 amount to specific product on the cart
         private void PluseButton(object sender, RoutedEventArgs e)
         {
             try
@@ -67,6 +68,7 @@ namespace PL.Order
             { MessageBox.Show(ex.Message, "Error"); }
         }
 
+        //Event that called when user want to subtract 1 amount to specific product on the cart
         private void MinusButton(object sender, RoutedEventArgs e)
         {
             try
@@ -81,6 +83,7 @@ namespace PL.Order
             { MessageBox.Show(ex.Message, "Error"); }
         }
 
+        //Event that called when user want to delete to specific product from the cart
         private void DeleteButton(object sender, RoutedEventArgs e)
         {
             try
@@ -95,6 +98,7 @@ namespace PL.Order
             { MessageBox.Show(ex.Message, "Error"); }
         }
 
+        //Event that called when user want to final confirm the order and add it to the store
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             try

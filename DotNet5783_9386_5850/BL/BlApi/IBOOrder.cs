@@ -1,6 +1,9 @@
 ﻿
 namespace BlApi
 {
+    /// <summary>
+    /// Class that make methods that Special only for the BoOrder entitie
+    /// </summary>
     public interface IBoOrder
     {
         public IEnumerable<BO.BoOrderForList?>? GetListOfOrders();
@@ -10,6 +13,8 @@ namespace BlApi
         public BO.BoOrderTracking Track(int id);
 
         public void UpdateOrder(BO.BoOrder order);
+
+        public BO.BoOrder GetOldestOrder();
 
 
 

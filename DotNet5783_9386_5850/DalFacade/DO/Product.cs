@@ -2,7 +2,9 @@
 using static DO.Enums;
 
 namespace DO;
-
+/// <summary>
+/// Structure for the Product entitie
+/// </summary>
 public struct Product
 {
     public int ID { get; set; }

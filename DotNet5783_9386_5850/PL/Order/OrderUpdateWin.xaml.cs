@@ -23,6 +23,7 @@ namespace PL.Order
 {
     /// <summary>
     /// Interaction logic for ProductList.xaml
+    /// Window that make an option to update spcific order in the store
     /// </summary>
     public partial class OrderUpdateWin : Window
     {
@@ -37,7 +38,6 @@ namespace PL.Order
             orderItemList.ItemsSource = ItemsList;
 
         }
-
 
 
         public BoCart CurrentCart
@@ -71,14 +71,14 @@ namespace PL.Order
         public static readonly DependencyProperty orderItemsListProperty =
             DependencyProperty.Register("ItemsList", typeof(ObservableCollection<BO.BoOrderItem?>), typeof(OrderUpdateWin));
 
-
+        //Event that called when user want to cancel and close the window
         private void Cancel_Button_Click(object sender, RoutedEventArgs e)
         {
             ((ProductList)this.Owner).whichCategorySelected();
             this.Close();
         }
 
-
+        //Event that called when user want to update the order in the store
         private void Update_Button_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -93,14 +93,15 @@ namespace PL.Order
             { MessageBox.Show(ex.Message, "Error"); }
         }
 
+        //Event that called when user want to change the products in the cart and open the catalog window
         private void Choose_Items_Button_Click(object sender, RoutedEventArgs e)
         {
-            //List<BoOrderItem> newItems = new List<BoOrderItem>();
             var window = new CatalogWin();
             window.Owner = this;
             window.Show();
         }
 
+        //Event that called when user want update the shipping of the order
         private void UpdateShip_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -113,6 +114,7 @@ namespace PL.Order
             { MessageBox.Show(ex.Message, "Error"); }
         }
 
+        //Event that called when user want update the delivery of the order
         private void UpdateDelivery_Click(object sender, RoutedEventArgs e)
         {
             try

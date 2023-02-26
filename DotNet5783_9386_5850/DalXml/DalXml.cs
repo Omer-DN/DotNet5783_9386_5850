@@ -12,6 +12,9 @@ using DO;
 using System.Diagnostics;
 using System.Security.Principal;
 
+/// <summary>
+/// Class that implement the IDal Interface and create an Object of an entitie
+/// </summary>
 sealed internal class DalXml : IDal
 {
     public IProduct Product { get; } = new DalProduct();

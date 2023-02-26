@@ -14,11 +14,13 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using PL.Product;
+using System.Data.Common;
 
 namespace PL.Order
 {
     /// <summary>
     /// Interaction logic for AddOrderWin.xaml
+    /// window that Add an Order to the Store
     /// </summary>
     public partial class AddOrderWin : Window
     {
@@ -47,7 +49,7 @@ namespace PL.Order
         public static readonly DependencyProperty nowTimeProperty =
             DependencyProperty.Register("nowTime", typeof(DateTime?), typeof(AddOrderWin));
 
-
+        
 
 
         public BoCart MyCart
@@ -90,6 +92,8 @@ namespace PL.Order
         public static readonly DependencyProperty orderItemsListProperty =
             DependencyProperty.Register("orderItemsList", typeof(ObservableCollection<BoOrderItem?>), typeof(OrderUpdateWin));
 
+
+        //Event that called when user click at Catalog button to view the catalog of the store and choose items
         private void Catalog_Button_Click(object sender, RoutedEventArgs e)
         {
             var CatalogWin = new CatalogWin();
@@ -97,6 +101,7 @@ namespace PL.Order
             CatalogWin.Show();
         }
 
+        //Event that called when user click at Add Order button to confirm and add the order to the store
         private void Action_Button_Click(object sender, RoutedEventArgs e)
         {
             var ConfrimWin = new ConfirmOrderWin(MyCart);

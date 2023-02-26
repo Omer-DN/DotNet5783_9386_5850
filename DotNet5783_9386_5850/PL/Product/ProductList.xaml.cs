@@ -22,7 +22,7 @@ namespace PL.Product
 {
     /// <summary>
     /// Interaction logic for ProductList.xaml
-    /// Creates a product display window with the option to swi0tch to the add or update window
+    /// Creates a product display window with the option to switch to the add or update window
     /// </summary>
     public partial class ProductList : Window
     {
@@ -61,11 +61,12 @@ namespace PL.Product
         public static readonly DependencyProperty listByCategoryProperty =
             DependencyProperty.Register("listByCategory", typeof(IEnumerable<BO.BoProductForList>), typeof(ProductList));
 
-
+        //Event that called when user choose category to show
         private void CategorySelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
            whichCategorySelected();
         }
+        //Method that change the view of the products list by specific category that choosen by the user
         public void whichCategorySelected()
         {
             try
@@ -83,6 +84,7 @@ namespace PL.Product
             { MessageBox.Show(ex.Message, "Error"); }
         }
 
+        //Event that called when user want to Add a Product to the store
         private void Action_Button_Click(object sender, RoutedEventArgs e)
         {
             var window = new ActionsWin(0);
@@ -117,7 +119,7 @@ namespace PL.Product
 
 
 
-
+        //Event that called when user want to Update a Product to the store
         private void ProductListview_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             var asd = new ActionsWin(1,selectedProduct);
@@ -126,6 +128,7 @@ namespace PL.Product
 
         }
 
+        //Event that called when user want to Delete a Product from the store
         private void Delete_Button_Click(object sender, RoutedEventArgs e)
         {
             try

@@ -9,9 +9,13 @@ using DalApi;
 using DO;
 using static Dal.XmlDataSource;
 
-
+/// <summary>
+/// Implementation of the ICRUD methods for the Order Item entitie USING XML FILES
+/// </summary>
 internal class DalOrderItem : IOrderItem
 {
+
+    //Method to add Order Item to the Store data
     public int Add(OrderItem Orderitem)
     {
         List<OrderItem> listOfOrderItems = loadListOfOrderItems();
@@ -36,6 +40,7 @@ internal class DalOrderItem : IOrderItem
 
     }
 
+    //Method to delete Order Item from the Store data
     public void Delete(int id)
     {
         List<OrderItem> listOfOrderItems = loadListOfOrderItems();
@@ -45,6 +50,8 @@ internal class DalOrderItem : IOrderItem
         saveListOfOrderItems(listOfOrderItems);
     }
 
+
+    //Method to update Order Item from the Store data
     public void Update(OrderItem Orderitem)
     {
         List<OrderItem> listOfOrderItems = loadListOfOrderItems();
@@ -60,7 +67,7 @@ internal class DalOrderItem : IOrderItem
         saveListOfOrderItems(listOfOrderItems);
     }
 
-
+    //Method to get Order Item from the Store data
     public OrderItem Get(int id)
     {
         List<OrderItem> listOfOrderItems = loadListOfOrderItems();
@@ -70,6 +77,7 @@ internal class DalOrderItem : IOrderItem
         throw new Exception("This order item does not exist in the system");
     }
 
+    //Method to get Order Item from the Store data that hold specific condition 
     public OrderItem GetCond(int id, Func<OrderItem, bool>? condition)
     {
         List<OrderItem> listOfOrderItems = loadListOfOrderItems();
@@ -79,7 +87,7 @@ internal class DalOrderItem : IOrderItem
         throw new Exception("This order item does not exist in the system");
     }
 
-    // return a List of current order items in all the orders of the store
+    //Method to get Order Item list from the Store data that hold specific condition 
     public IEnumerable<OrderItem> GetList(Func<OrderItem, bool>? condition)
     {
         List<OrderItem> listOfOrderItems = loadListOfOrderItems();
