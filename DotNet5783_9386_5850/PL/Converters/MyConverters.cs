@@ -17,27 +17,33 @@ namespace PL.Converters
         //convert from source property type to target property type
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (!int.TryParse(value.ToString()!, out int resulte))
-            {
-                MessageBox.Show("The Number Must Be Positive Number and not Characters", "Error");
-                return 0;
-            }
+            if (value.ToString() == "0")
+                return "";
             else
-                return int.Parse(value.ToString()!);
+                return value;
+
         }
         //convert from target property type to source property type
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (int.TryParse(value.ToString()!, out int resulte))
-                return resulte;
-            else
+            if (!(value.ToString()!).All(char.IsDigit))
             {
-                MessageBox.Show("The Number Must Be Positive Number and not Characters", "Error");
+                MessageBox.Show("The ID Must Be Positive Number and not Characters", "Error");
                 return 0;
             }
-
+            else
+            {
+                try
+                {
+                    return int.Parse(value.ToString()!);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("The ID is Too long", "Error");
+                    return 0;
+                }
+            }
         }
-
     }
 
     public class DoubleToStringConverter : IValueConverter
@@ -45,18 +51,15 @@ namespace PL.Converters
         //convert from source property type to target property type
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (double.TryParse(value.ToString()!, out double resulte))
-                return double.Parse(value.ToString()!);
+            if (value.ToString() == "0")
+                return "";
             else
-            {
-                MessageBox.Show("The Number Must Be Positive Number and not Characters", "Error");
-                return 0;
-            }
+                return value;
         }
         //convert from target property type to source property type
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if(double.TryParse(value.ToString()!, out double resulte))
+            if (double.TryParse(value.ToString()!, out double resulte))
                 return resulte;
             else
             {
@@ -85,7 +88,7 @@ namespace PL.Converters
         //convert from target property type to source property type
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if(value.ToString()! == "None")
+            if (value.ToString()! == "None")
             {
                 MessageBox.Show("Please Choose Specific Category", "Error");
                 return "vegetables";
@@ -124,7 +127,7 @@ namespace PL.Converters
                 return list = bl!.BoProduct!.GetProductsForCatalog()!;
             else
                 return list = bl!.BoProduct!.CondGetProductsForCatalog(x => (int)x.Category == (int)value);
-            
+
         }
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
@@ -133,3 +136,4 @@ namespace PL.Converters
 
     }
 }
+

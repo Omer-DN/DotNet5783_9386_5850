@@ -21,4 +21,32 @@
     <Category>Meat</Category>
     <InStock>346345</InStock>
   </student>
+  <student>
+    <ID>2342</ID>
+    <Name>dfwsf</Name>
+    <Price>234</Price>
+    <Category>Legumes</Category>
+    <InStock>2342</InStock>
+  </student>
+  <student>
+    <ID>2342</ID>
+    <Name>sdc</Name>
+    <Price>3223</Price>
+    <Category>CleanProducts</Category>
+    <InStock>2523</InStock>
+  </student>
+  <student>
+    <ID>23421</ID>
+    <Name>asd</Name>
+    <Price>234</Price>
+    <Category>Meat</Category>
+    <InStock>435345</InStock>
+  </student>
+  <student>
+    <ID>2352342</ID>
+    <Name>sdf</Name>
+    <Price>435</Price>
+    <Category>Legumes</Category>
+    <InStock>343</InStock>
+  </student>
 </Products>

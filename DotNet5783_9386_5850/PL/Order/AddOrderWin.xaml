@@ -53,7 +53,7 @@
             <Button Content="Catalog" HorizontalAlignment="Left" Margin="126,340,0,0" VerticalAlignment="Top" Width="140" Height="28" FontSize="15" Click="Catalog_Button_Click"/>
             <Label x:Name="TotalPrice_label" Content="Total Price:" HorizontalAlignment="Left" Margin="4,424,0,0" VerticalAlignment="Top" FontSize="20" Height="38" Width="116"/>
             <Button x:Name="Action_Button" Content="Add Order" HorizontalAlignment="Left" Margin="237,478,0,0" VerticalAlignment="Top" Height="25" FontSize="15" Width="102" Click="Action_Button_Click" FontWeight="Bold"/>
-            <Button x:Name="Cancel_Button" Content="Cancel" HorizontalAlignment="Left" Margin="26,478,0,0" VerticalAlignment="Top" Height="25" FontSize="15" Width="102"/>
+            <Button x:Name="Cancel_Button" Content="Cancel" HorizontalAlignment="Left" Margin="26,478,0,0" VerticalAlignment="Top" Height="25" FontSize="15" Width="102" Click="Cancel_Button_Click"/>
             <TextBox x:Name="CostumerEmail_textBox" Text="{Binding CustumerEmail, Mode=OneWayToSource}" HorizontalAlignment="Left" Margin="187,131,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="164" Height="18"/>
             <Label x:Name="CostumerEmail_label" Content="Costumer Email:" HorizontalAlignment="Left" Margin="10,120,0,0" VerticalAlignment="Top" FontSize="20" Height="40" Width="160"/>
             <TextBox x:Name="CostumerAdress_textBox" Text="{Binding CustumerAdress, Mode=OneWayToSource}" HorizontalAlignment="Left" Margin="187,183,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="164" Height="19"/>

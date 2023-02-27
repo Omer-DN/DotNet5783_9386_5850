@@ -24,6 +24,15 @@ internal class DalProduct : IProduct
         XElement Price = new XElement("Price", product.Price);
         XElement Category = new XElement("Category", product.Category);
         XElement InStock = new XElement("InStock", product.InStock);
+        foreach(XElement xelement in ProductRoot.Elements()) // check if the id is already exist in store
+        {
+            foreach(XElement xelement2 in xelement.Elements())
+            {
+                if(xelement2.Name == "ID")
+                    if((int)xelement2 == product.ID)
+                        throw new IdAlreadyExist("This ID already exists in the system");
+            }
+        }
         ProductRoot.Add(new XElement("student", ID, Name, Price, Category,InStock));
         ProductRoot.Save(fileNameListOfProducts);
         return product.ID;

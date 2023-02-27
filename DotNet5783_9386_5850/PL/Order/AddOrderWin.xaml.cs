@@ -108,5 +108,11 @@ namespace PL.Order
             ConfrimWin.Owner = this;
             ConfrimWin.Show();
         }
+
+        //Event that called when user want to close the window
+        private void Cancel_Button_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
     }
 }

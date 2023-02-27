@@ -16,7 +16,7 @@ public class DalProduct:IProduct
     public int Add(Product product)
     {
         if (!(listOfProducts == null))
-            foreach (Product i in listOfProducts)
+            foreach (Product i in listOfProducts)// check if the id is already exist in store
             {
                 if (i.ID == product.ID)
                     throw new IdAlreadyExist("This product already exists in the system");
