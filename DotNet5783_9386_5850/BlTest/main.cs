@@ -42,16 +42,22 @@ internal class Program
                                 try
                                 {
                                     Console.WriteLine("Please enter the Product ID:");
-                                    id = int.Parse(Console.ReadLine()!);
+                                    bool ok = int.TryParse(Console.ReadLine(), out id);
+                                    if (!ok)
+                                        throw new IOException("input is Wrong");
                                     Console.WriteLine("Please enter Product Name:");
                                     name_p = Console.ReadLine()!;
                                     Console.WriteLine("Please Enter Product price:");
-                                    price = double.Parse(Console.ReadLine()!);
+                                    ok = double.TryParse(Console.ReadLine(), out price);
+                                    if (!ok)
+                                        throw new IOException("input is Wrong");
                                     Console.WriteLine("Please enter Product's category:");
                                     Console.WriteLine("1 - Vegetables, 2 - Meat, 3 - Legumes, 4 - DairyProducts, 5 - CleanProducts");
                                     category = (BO.Enums.Category)int.Parse(Console.ReadLine()!);/* category--;*/
                                     Console.WriteLine("Please select quantity in stock for the product:");
-                                    instock = int.Parse(Console.ReadLine()!);
+                                    ok = double.TryParse(Console.ReadLine(), out price);
+                                    if (!ok)
+                                        throw new IOException("input is Wrong");
                                     NewProduct = bl!.BoProduct!.Create(id, name_p, price, category, instock);
                                     bl.BoProduct.AddProduct(NewProduct);
                                     Console.WriteLine("The product has been successfully added!");
@@ -66,7 +72,9 @@ internal class Program
                                 Console.WriteLine("Please Enter the ID of the product to get from the catalog:");
                                 try
                                 {
-                                    id = int.Parse(Console.ReadLine()!);
+                                    bool ok = int.TryParse(Console.ReadLine(), out id);
+                                    if (!ok)
+                                        throw new IOException("input is Wrong");
                                     BoProductItem newProductitem = bl!.BoProduct!.BuyerGetProduct(cart, id);
                                     Console.WriteLine("Product found!");
                                     Console.WriteLine(newProductitem);
@@ -80,7 +88,9 @@ internal class Program
                                 Console.WriteLine("Please Enter the ID of the product to get (for manager):");
                                 try
                                 {
-                                    id = int.Parse(Console.ReadLine()!);
+                                    bool ok = int.TryParse(Console.ReadLine(), out id);
+                                    if (!ok)
+                                        throw new IOException("input is Wrong");
                                     BoProduct newProductitem = bl!.BoProduct!.ManagerGetProduct(id);
                                     Console.WriteLine("Product found!");
                                     Console.WriteLine(newProductitem);
@@ -102,7 +112,9 @@ internal class Program
                                 Console.WriteLine("Please Enter the ID of the product you want to update:");
                                 try
                                 {
-                                    id = int.Parse(Console.ReadLine()!);
+                                    bool ok = int.TryParse(Console.ReadLine(), out id);
+                                    if (!ok)
+                                        throw new IOException("input is Wrong");
                                     BoProduct productToUpdate = bl!.BoProduct!.ManagerGetProduct(id);
                                     Console.WriteLine("Product found!");
                                     Console.WriteLine(productToUpdate);
@@ -110,12 +122,16 @@ internal class Program
                                     Console.WriteLine("Please enter Product Name:");
                                     name_p = Console.ReadLine()!;
                                     Console.WriteLine("Please Enter Product price:");
-                                    price = double.Parse(Console.ReadLine()!);
+                                    ok = double.TryParse(Console.ReadLine(), out price);
+                                    if (!ok)
+                                        throw new IOException("input is Wrong");
                                     Console.WriteLine("Please enter Product's category:");
                                     Console.WriteLine("0 - Vegetables, 1 - Meat, 2 - Legumes, 3 - DairyProducts, 4 - CleanProducts");
                                     category = (BO.Enums.Category)int.Parse(Console.ReadLine()!);
                                     Console.WriteLine("Please select quantity in stock for the product:");
-                                    instock = int.Parse(Console.ReadLine()!);
+                                    ok = int.TryParse(Console.ReadLine(), out instock);
+                                    if (!ok)
+                                        throw new IOException("input is Wrong");
                                     NewProduct = bl.BoProduct.Create(id, name_p, price, category, instock);
                                     NewProduct.ID = productToUpdate.ID;
                                     bl.BoProduct.UpdateProduct(NewProduct);
@@ -130,7 +146,9 @@ internal class Program
                                 Console.WriteLine("Please Enter the ID of the product you want to delete:");
                                 try
                                 {
-                                    id = int.Parse(Console.ReadLine()!);
+                                    bool ok = int.TryParse(Console.ReadLine(), out id);
+                                    if (!ok)
+                                        throw new IOException("input is Wrong");
                                     bl!.BoProduct!.DeleteProduct(id);
                                     Console.WriteLine("The product has been successfully deleted!");
                                 }
@@ -215,12 +233,12 @@ internal class Program
                                     Console.WriteLine("Please Enter the ID the product you want to update in cart:");
                                     isOK = int.TryParse(Console.ReadLine(), out productId);
                                     if (!isOK)
-                                        throw new DataRequestFailed("ID muse be int");
+                                        throw new DataRequestFailed("ID must be int");
 
                                     Console.WriteLine("Please Enter amount :");
                                     isOK = int.TryParse(Console.ReadLine(), out amount);
                                     if (!isOK)
-                                        throw new DataRequestFailed("amount muse be int positive");
+                                        throw new DataRequestFailed("amount must be int positive");
                                     cart = bl!.BoCart!.UpdateItem(cart, amount, productId);
                                     Console.WriteLine(cart);
                                     break;
@@ -301,7 +319,10 @@ internal class Program
                                 Console.WriteLine("Please Enter the ID of the order to get:");
                                 try
                                 {
-                                    int id = int.Parse(Console.ReadLine()!);
+                                    int id;
+                                    bool ok = int.TryParse(Console.ReadLine(), out id);
+                                    if (!ok)
+                                        throw new IOException("input is Wrong");
                                     BoOrder order = bl!.BoOrder!.GetOrder(id);
                                     Console.WriteLine("Order found!");
                                     Console.WriteLine(order);
@@ -315,7 +336,10 @@ internal class Program
                                 Console.WriteLine("Please Enter the ID of the order to update shipping:");
                                 try
                                 {
-                                    int id = int.Parse(Console.ReadLine()!);
+                                    int id;
+                                    bool ok = int.TryParse(Console.ReadLine(), out id);
+                                    if (!ok)
+                                        throw new IOException("input is Wrong");
                                     bl!.BoOrder!.UpdateShipping(id);
                                     Console.WriteLine("Order shipping date has updated to the current time!");
                                 }
@@ -328,7 +352,10 @@ internal class Program
                                 Console.WriteLine("Please Enter the ID of the order to update delivery:");
                                 try
                                 {
-                                    int id = int.Parse(Console.ReadLine()!);
+                                    int id;
+                                    bool ok = int.TryParse(Console.ReadLine(), out id);
+                                    if (!ok)
+                                        throw new IOException("input is Wrong");
                                     bl!.BoOrder!.UpdateDelivery(id);
                                     Console.WriteLine("Order delivery date has updated to the current time!");
                                 }
@@ -341,7 +368,10 @@ internal class Program
                                 Console.WriteLine("Please Enter the ID of the order you want to track:");
                                 try
                                 {
-                                    int id = int.Parse(Console.ReadLine()!);
+                                    int id;
+                                    bool ok = int.TryParse(Console.ReadLine(), out id);
+                                    if (!ok)
+                                        throw new IOException("input is Wrong");
                                     BoOrderTracking track = bl!.BoOrder!.Track(id);
                                     Console.WriteLine(track);
                                 }

@@ -42,12 +42,16 @@ namespace DalList
                                     Console.WriteLine("Please enter Product Name:");
                                     name = Console.ReadLine()!;
                                     Console.WriteLine("Please Enter Product price:");
-                                    price = double.Parse(Console.ReadLine()!);
+                                    bool ok = double.TryParse(Console.ReadLine(), out price);
+                                    if (!ok)
+                                        throw new IOException("input is Wrzong");
                                     Console.WriteLine("Please enter Product's category:");
                                     Console.WriteLine("1 - Vegetables, 2 - Meat, 3 - Legumes, 4 - DairyProducts, 5 - CleanProducts");
                                     category = (Category)int.Parse(Console.ReadLine()!);
                                     Console.WriteLine("Please select quantity in stock for the product:");
-                                    instock = int.Parse(Console.ReadLine()!);
+                                    ok = int.TryParse(Console.ReadLine(), out instock);
+                                    if (!ok)
+                                        throw new IOException("input is Wrong");
                                     try
                                     {
                                         Product newProduct = dal!.Product!.Create(name, price, category, instock);
@@ -61,7 +65,9 @@ namespace DalList
                                     break;
                                 case 2:
                                     Console.WriteLine("Please Enter the ID of the product to get:");
-                                    id = int.Parse(Console.ReadLine()!);
+                                    ok = int.TryParse(Console.ReadLine(), out id);
+                                    if (!ok)
+                                        throw new IOException("input is Wrong");
                                     try
                                     {
                                         Product product = dal!.Product!.Get(id);
@@ -85,7 +91,9 @@ namespace DalList
                                     break;
                                 case 4:
                                     Console.WriteLine("Please Enter the ID of the product you want to update:");
-                                    id = int.Parse(Console.ReadLine()!);
+                                    ok = int.TryParse(Console.ReadLine(), out id);
+                                    if (!ok)
+                                        throw new IOException("input is Wrong");
                                     try
                                     {
                                         Product product = dal!.Product!.Get(id);
@@ -96,12 +104,15 @@ namespace DalList
                                         Console.WriteLine("Please enter Product Name:");
                                         name = Console.ReadLine()!;
                                         Console.WriteLine("Please Enter Product price:");
-                                        price = double.Parse(Console.ReadLine()!);
-                                        Console.WriteLine("Please enter Product's category:");
+                                        ok = double.TryParse(Console.ReadLine(), out price);
+                                        if (!ok)
+                                            throw new IOException("input is Wrong"); Console.WriteLine("Please enter Product's category:");
                                         Console.WriteLine("0 - Vegetables, 1 - Meat, 2 - Legumes, 3 - DairyProducts, 4 - CleanProducts");
                                         category = (Category)int.Parse(Console.ReadLine()!);
                                         Console.WriteLine("Please select quantity in stock for the product:");
-                                        instock = int.Parse(Console.ReadLine()!);
+                                        ok = int.TryParse(Console.ReadLine(), out instock);
+                                        if (!ok)
+                                            throw new IOException("input is Wrong");
                                         Product NewProduct = dal.Product.Create(name, price, category, instock);
                                         NewProduct.ID = product.ID;
                                         dal.Product.Update(NewProduct);
@@ -114,7 +125,9 @@ namespace DalList
                                     break;
                                 case 5:
                                     Console.WriteLine("Please Enter the ID of the product you want to delete:");
-                                    id = int.Parse(Console.ReadLine()!);
+                                    ok = int.TryParse(Console.ReadLine(), out id);
+                                    if (!ok)
+                                        throw new IOException("input is Wrong");
                                     try
                                     {
                                         dal!.Product!.Delete(id);
@@ -163,11 +176,17 @@ namespace DalList
                                     Console.WriteLine("Please enter Costumer Adress:");
                                     costumerAdress = Console.ReadLine()!;
                                     Console.WriteLine("Please enter Order Date:");
-                                    orderDate = DateTime.Parse(Console.ReadLine()!);
+                                    bool ok = DateTime.TryParse(Console.ReadLine(), out orderDate);
+                                    if (!ok)
+                                        throw new IOException("input is Wrong");
                                     Console.WriteLine("Please enter Ship Date:");
-                                    shipDate = DateTime.Parse(Console.ReadLine()!);
+                                    ok = DateTime.TryParse(Console.ReadLine(), out shipDate);
+                                    if (!ok)
+                                        throw new IOException("input is Wrong");
                                     Console.WriteLine("Please enter Delivery Date:");
-                                    deliveryDate = DateTime.Parse(Console.ReadLine()!);
+                                    ok = DateTime.TryParse(Console.ReadLine(), out deliveryDate);
+                                    if (!ok)
+                                        throw new IOException("input is Wrong");
                                     try
                                     {
                                         Order NewOrder = dal!.Order!.Create(costumerName, costumerEmail, costumerAdress, orderDate, shipDate, deliveryDate);
@@ -181,7 +200,9 @@ namespace DalList
                                     break;
                                 case 2:
                                     Console.WriteLine("Please Enter the ID of the order to get:");
-                                    id = int.Parse(Console.ReadLine()!);
+                                    ok = int.TryParse(Console.ReadLine(), out id);
+                                    if (!ok)
+                                        throw new IOException("input is Wrong");
                                     try
                                     {
                                         Order order = dal!.Order!.Get(id);
@@ -202,7 +223,9 @@ namespace DalList
                                     break;
                                 case 4:
                                     Console.WriteLine("Please Enter the ID of the order you want to update:");
-                                    id = int.Parse(Console.ReadLine()!);
+                                    ok = int.TryParse(Console.ReadLine(), out id);
+                                    if (!ok)
+                                        throw new IOException("input is Wrong");
                                     try
                                     {
                                         Order order = dal!.Order!.Get(id);
@@ -217,11 +240,17 @@ namespace DalList
                                         Console.WriteLine("Please enter Costumer Adress:");
                                         costumerAdress = Console.ReadLine()!;
                                         Console.WriteLine("Please enter Order Date:");
-                                        orderDate = DateTime.Parse(Console.ReadLine()!);
+                                        ok = DateTime.TryParse(Console.ReadLine(), out orderDate);
+                                        if (!ok)
+                                            throw new IOException("input is Wrong");
                                         Console.WriteLine("Please enter Ship Date:");
-                                        shipDate = DateTime.Parse(Console.ReadLine()!);
+                                        ok = DateTime.TryParse(Console.ReadLine(), out shipDate);
+                                        if (!ok)
+                                            throw new IOException("input is Wrong");
                                         Console.WriteLine("Please enter Delivery Date:");
-                                        deliveryDate = DateTime.Parse(Console.ReadLine()!);
+                                        ok = DateTime.TryParse(Console.ReadLine(), out deliveryDate);
+                                        if (!ok)
+                                            throw new IOException("input is Wrong");
                                         Order NewOrder = dal.Order.Create(costumerName, costumerEmail, costumerAdress, orderDate, shipDate, deliveryDate);
                                         NewOrder.ID = order.ID;
                                         dal.Order.Update(NewOrder);
@@ -234,7 +263,9 @@ namespace DalList
                                     break;
                                 case 5:
                                     Console.WriteLine("Please Enter the ID of the order you want to delete:");
-                                    id = int.Parse(Console.ReadLine()!);
+                                    ok = int.TryParse(Console.ReadLine(), out id);
+                                    if (!ok)
+                                        throw new IOException("input is Wrong");
                                     try
                                     {
                                         dal!.Order!.Delete(id);
@@ -276,13 +307,21 @@ namespace DalList
                                     int ID,productId, orderId, amount;
                                     double price;
                                     Console.WriteLine("Please enter Product id:");
-                                    productId = int.Parse(Console.ReadLine()!);
+                                    bool ok = int.TryParse(Console.ReadLine(), out productId);
+                                    if (!ok)
+                                        throw new IOException("input is Wrong");
                                     Console.WriteLine("Please enter Order id:");
-                                    orderId = int.Parse(Console.ReadLine()!);
+                                    ok = int.TryParse(Console.ReadLine(), out orderId);
+                                    if (!ok)
+                                        throw new IOException("input is Wrong");
                                     Console.WriteLine("Please enter price:");
-                                    price = double.Parse(Console.ReadLine()!);
+                                    ok = double.TryParse(Console.ReadLine(), out price);
+                                    if (!ok)
+                                        throw new IOException("input is Wrong");
                                     Console.WriteLine("Please enter Amount:");
-                                    amount = int.Parse(Console.ReadLine()!);
+                                    ok = int.TryParse(Console.ReadLine(), out amount);
+                                    if (!ok)
+                                        throw new IOException("input is Wrong");
                                     try
                                     {
                                         OrderItem NewOrderItem = dal!.OrderItem!.Create(productId, orderId, price, amount);
@@ -296,7 +335,9 @@ namespace DalList
                                     break;
                                 case 2:
                                     Console.WriteLine("Please Enter the ID of the order item to get:");
-                                    ID = int.Parse(Console.ReadLine()!);
+                                    ok = int.TryParse(Console.ReadLine(), out ID);
+                                    if (!ok)
+                                        throw new IOException("input is Wrong");
                                     try
                                     {
                                         OrderItem orderItem = dal!.OrderItem!.Get(ID);
@@ -317,7 +358,9 @@ namespace DalList
                                     break;
                                 case 4:
                                     Console.WriteLine("Please Enter the ID of the order you want to update:");
-                                    ID = int.Parse(Console.ReadLine()!);
+                                    ok = int.TryParse(Console.ReadLine(), out ID);
+                                    if (!ok)
+                                        throw new IOException("input is Wrong");
                                     try
                                     {
                                         OrderItem orderItem = dal!.OrderItem!.Get(ID);
@@ -326,13 +369,21 @@ namespace DalList
                                             orderItem.ID, orderItem.ProductID, orderItem.ProductID, orderItem.Price, orderItem.Amount);
                                         Console.WriteLine("Please Enter the details of the new order item to update:");
                                         Console.WriteLine("Please enter Product id:");
-                                        productId = int.Parse(Console.ReadLine()!);
+                                        ok = int.TryParse(Console.ReadLine(), out productId);
+                                        if (!ok)
+                                            throw new IOException("input is Wrong");
                                         Console.WriteLine("Please enter Order id:");
-                                        orderId = int.Parse(Console.ReadLine()!);
+                                        ok = int.TryParse(Console.ReadLine(), out orderId);
+                                        if (!ok)
+                                            throw new IOException("input is Wrong");
                                         Console.WriteLine("Please enter price:");
-                                        price = double.Parse(Console.ReadLine()!);
+                                        ok = double.TryParse(Console.ReadLine(), out price);
+                                        if (!ok)
+                                            throw new IOException("input is Wrong");
                                         Console.WriteLine("Please enter Amount:");
-                                        amount = int.Parse(Console.ReadLine()!);
+                                        ok = int.TryParse(Console.ReadLine(), out amount);
+                                        if (!ok)
+                                            throw new IOException("input is Wrong");
                                         OrderItem NewOrderItem = dal.OrderItem.Create(productId, orderId, price, amount);
                                         NewOrderItem.ID = orderItem.ID;
                                         dal.OrderItem.Update(NewOrderItem);
@@ -345,7 +396,9 @@ namespace DalList
                                     break;
                                 case 5:
                                     Console.WriteLine("Please Enter the ID of the order item you want to delete:");
-                                    ID = int.Parse(Console.ReadLine()!);
+                                    ok = int.TryParse(Console.ReadLine(), out ID);
+                                    if (!ok)
+                                        throw new IOException("input is Wrong");
                                     try
                                     {
                                         dal!.OrderItem!.Delete(ID);

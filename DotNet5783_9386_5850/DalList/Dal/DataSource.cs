@@ -43,7 +43,6 @@ internal class DataSource
     //some methods to Initialize the data for stage 1
     public static void InitializeProduct(Product parameter)
     {
-
         Random r = new Random();
         parameter.ID = getlastProductId();
 
